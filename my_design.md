@@ -11,7 +11,8 @@ Body = Inter
 
 - design the UI like apple would 
 - use liquid glass like styling
-- assets are in the assest folder
+- assets are in the frontend/assets folder
+- user flows are user_flows.md
 - EasiShop green  = #1b8056
 - use icons appropriately
 - copywriting should be friendly

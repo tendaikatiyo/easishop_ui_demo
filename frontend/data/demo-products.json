@@ -1,0 +1,3862 @@
+{
+  "generatedAt": "2026-07-11T12:25:09.328Z",
+  "source": "demo-seed (refreshable via scripts/extract-demo-sample.ps1)",
+  "note": "Static sample for UI demo. Not live API data.",
+  "sampleSize": 74,
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Full Cream Milk 2L",
+      "category": "Milk & Dairy",
+      "categorySlug": "milk-and-dairy",
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+      "barcode": "60011000000",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 22.85,
+          "previousPrice": 28.67,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 12.6,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 26.29,
+          "previousPrice": 29.85,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 13.3,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 27.4,
+          "previousPrice": 33.56,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 14,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 29.56,
+          "previousPrice": 37,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 14.7,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 29.9,
+          "previousPrice": 37.52,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 15.4,
+          "unitLabel": "R/L"
+        }
+      ]
+    },
+    {
+      "id": "prod-002",
+      "name": "Low Fat Milk 1L",
+      "category": "Milk & Dairy",
+      "categorySlug": "milk-and-dairy",
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+      "barcode": "60011000001",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 14.51,
+          "previousPrice": 15.67,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 16.2,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 17.08,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 17.1,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 18.57,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 18,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 17.76,
+          "previousPrice": 19.18,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 18.9,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 17.76,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 19.8,
+          "unitLabel": "R/L"
+        }
+      ]
+    },
+    {
+      "id": "prod-003",
+      "name": "Greek Yoghurt 1kg",
+      "category": "Milk & Dairy",
+      "categorySlug": "milk-and-dairy",
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+      "barcode": "60011000002",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 49.29,
+          "previousPrice": 61.21,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 48.6,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 51.66,
+          "previousPrice": 66.87,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 51.3,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 51.2,
+          "previousPrice": 63.08,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 54,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 55.25,
+          "previousPrice": 65.01,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 56.7,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 56.12,
+          "previousPrice": 65.95,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 59.4,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-004",
+      "name": "Cheddar Cheese 400g",
+      "category": "Milk & Dairy",
+      "categorySlug": "milk-and-dairy",
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+      "barcode": "60011000003",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 59.58,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 155.25,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 62.04,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 163.88,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 66.24,
+          "previousPrice": 71.54,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 172.5,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 67.48,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 181.13,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 72.11,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 189.75,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-005",
+      "name": "White Bread 700g",
+      "category": "Bakery",
+      "categorySlug": "bakery",
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+      "barcode": "60011000004",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 16.03,
+          "previousPrice": 20.06,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 16.08,
+          "previousPrice": 18.95,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 17.57,
+          "previousPrice": 21.62,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 16.39,
+          "previousPrice": 18.91,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 18.95,
+          "previousPrice": 23.55,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-006",
+      "name": "Brown Bread 700g",
+      "category": "Bakery",
+      "categorySlug": "bakery",
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+      "barcode": "60011000005",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 17.23,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 16.02,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 19.91,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 20.74,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 19.51,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-007",
+      "name": "Croissants 4pk",
+      "category": "Bakery",
+      "categorySlug": "bakery",
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+      "barcode": "60011000006",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 36.42,
+          "previousPrice": 39.33,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 37.96,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 40.76,
+          "previousPrice": 44.02,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 41.78,
+          "previousPrice": 45.12,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-008",
+      "name": "Free Range Eggs 18s",
+      "category": "Milk & Dairy",
+      "categorySlug": "milk-and-dairy",
+      "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+      "barcode": "60011000007",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 57.02,
+          "previousPrice": 64.49,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 60.04,
+          "previousPrice": 69.66,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 61.77,
+          "previousPrice": 72.22,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 64.12,
+          "previousPrice": 72.26,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 66.92,
+          "previousPrice": 83.79,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-009",
+      "name": "Large Eggs 12s",
+      "category": "Milk & Dairy",
+      "categorySlug": "milk-and-dairy",
+      "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+      "barcode": "60011000008",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 37.71,
+          "previousPrice": 40.73,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 36.97,
+          "previousPrice": 39.93,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 42.14,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 40.95,
+          "previousPrice": 44.23,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 43.56,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-010",
+      "name": "Chicken Braai Pack 1.5kg",
+      "category": "Meat, Poultry & Fish",
+      "categorySlug": "meat-poultry-and-fish",
+      "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+      "barcode": "60011000009",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 79.12,
+          "previousPrice": 101.49,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 53.37,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 83.25,
+          "previousPrice": 93.57,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 56.34,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 84.84,
+          "previousPrice": 96.35,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 59.3,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 89.67,
+          "previousPrice": 102.76,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 62.27,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 91.13,
+          "previousPrice": 110.04,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 65.23,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-011",
+      "name": "Beef Mince 500g",
+      "category": "Meat, Poultry & Fish",
+      "categorySlug": "meat-poultry-and-fish",
+      "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+      "barcode": "60011000010",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 53.19,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 111.6,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 58.43,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 117.8,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 59.58,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 124,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 61.96,
+          "previousPrice": 66.92,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 130.2,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 65.29,
+          "previousPrice": 70.51,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 136.4,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-012",
+      "name": "Fresh Hake Fillets 400g",
+      "category": "Meat, Poultry & Fish",
+      "categorySlug": "meat-poultry-and-fish",
+      "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+      "barcode": "60011000011",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 68.42,
+          "previousPrice": 73.89,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 175.5,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 72.05,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 185.25,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 75.82,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 195,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 78.39,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 204.75,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-013",
+      "name": "Bananas 1kg",
+      "category": "Fruits & Vegetables",
+      "categorySlug": "fruits-and-vegetables",
+      "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+      "barcode": "60011000012",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 22.56,
+          "previousPrice": 25.79,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 21.6,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 20.31,
+          "previousPrice": 25.38,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 22.8,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 22.94,
+          "previousPrice": 28.54,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 24,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 23.46,
+          "previousPrice": 30.1,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 25.2,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 26.32,
+          "previousPrice": 32.3,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 26.4,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-014",
+      "name": "Avocados 4pk",
+      "category": "Fruits & Vegetables",
+      "categorySlug": "fruits-and-vegetables",
+      "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+      "barcode": "60011000013",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 34.3,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 33.97,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 36.25,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 40,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 38.9,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-015",
+      "name": "Tomatoes 1kg",
+      "category": "Fruits & Vegetables",
+      "categorySlug": "fruits-and-vegetables",
+      "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+      "barcode": "60011000014",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 19.61,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 19.8,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 19.58,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 20.9,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 20.2,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 22,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 22.12,
+          "previousPrice": 23.89,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 23.1,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 24.77,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 24.2,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-016",
+      "name": "Baby Spinach 200g",
+      "category": "Fruits & Vegetables",
+      "categorySlug": "fruits-and-vegetables",
+      "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+      "barcode": "60011000015",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 25.25,
+          "previousPrice": 27.27,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 25.63,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 25.83,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 26.85,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-017",
+      "name": "White Rice 2kg",
+      "category": "Pantry",
+      "categorySlug": "pantry",
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+      "barcode": "60011000016",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 35.69,
+          "previousPrice": 45.51,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 18.9,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 39.99,
+          "previousPrice": 47.72,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 19.95,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 39.51,
+          "previousPrice": 45.99,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 21,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 43.35,
+          "previousPrice": 51.38,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 22.05,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 43.24,
+          "previousPrice": 53.2,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 23.1,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-018",
+      "name": "Spaghetti 500g",
+      "category": "Pantry",
+      "categorySlug": "pantry",
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+      "barcode": "60011000017",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 15.03,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 15.41,
+          "previousPrice": 16.64,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 18.38,
+          "previousPrice": 19.85,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 19.3,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 18.36,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-019",
+      "name": "Sunflower Oil 2L",
+      "category": "Pantry",
+      "categorySlug": "pantry",
+      "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+      "barcode": "60011000018",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 60.33,
+          "previousPrice": 75.49,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": 30.6,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 60.73,
+          "previousPrice": 69.4,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": 32.3,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 63.43,
+          "previousPrice": 76.36,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": 34,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 68.51,
+          "previousPrice": 85.99,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": 35.7,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 72.19,
+          "previousPrice": 88.99,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": 37.4,
+          "unitLabel": "R/L"
+        }
+      ]
+    },
+    {
+      "id": "prod-020",
+      "name": "White Sugar 2.5kg",
+      "category": "Pantry",
+      "categorySlug": "pantry",
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+      "barcode": "60011000019",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 45.82,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 19.44,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 47.78,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 20.52,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 53.05,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 21.6,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 55.51,
+          "previousPrice": 59.95,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 22.68,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 56.65,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 23.76,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-021",
+      "name": "Filter Coffee 500g",
+      "category": "Beverages & Juices",
+      "categorySlug": "beverages-and-juices",
+      "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+      "barcode": "60011000020",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 79.65,
+          "previousPrice": 89.84,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 82.67,
+          "previousPrice": 98.7,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 84.67,
+          "previousPrice": 103.58,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 88.25,
+          "previousPrice": 103.75,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 91.72,
+          "previousPrice": 118.65,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-022",
+      "name": "Instant Coffee 200g",
+      "category": "Beverages & Juices",
+      "categorySlug": "beverages-and-juices",
+      "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+      "barcode": "60011000021",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 63.96,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 65.23,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 70.4,
+          "previousPrice": 76.03,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 71.58,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 75.5,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-023",
+      "name": "Orange Juice 1.5L",
+      "category": "Beverages & Juices",
+      "categorySlug": "beverages-and-juices",
+      "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+      "barcode": "60011000022",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 29.23,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": 20.34,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 32.05,
+          "previousPrice": 34.61,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": 21.47,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 30.94,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": 22.6,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 33.34,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": 23.73,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 34.7,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": 24.86,
+          "unitLabel": "R/L"
+        }
+      ]
+    },
+    {
+      "id": "prod-024",
+      "name": "Sparkling Water 6x500ml",
+      "category": "Beverages & Juices",
+      "categorySlug": "beverages-and-juices",
+      "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+      "barcode": "60011000023",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 41.24,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 44.71,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 44.27,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 46,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-025",
+      "name": "Rooibos Tea 80s",
+      "category": "Beverages & Juices",
+      "categorySlug": "beverages-and-juices",
+      "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+      "barcode": "60011000024",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 32.53,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 32.94,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 32.77,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 34.02,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 35.55,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-026",
+      "name": "Toothpaste Whitening 100ml",
+      "category": "Toiletries",
+      "categorySlug": "toiletries",
+      "image": "https://images.unsplash.com/photo-1622383563227-04401ab4de0d?w=400&q=80",
+      "barcode": "60011000025",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 27.76,
+          "previousPrice": 33.99,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622383563227-04401ab4de0d?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 31.41,
+          "previousPrice": 38.07,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622383563227-04401ab4de0d?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 31.38,
+          "previousPrice": 35.71,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622383563227-04401ab4de0d?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 32.61,
+          "previousPrice": 36.62,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622383563227-04401ab4de0d?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 34.86,
+          "previousPrice": 39.65,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622383563227-04401ab4de0d?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-027",
+      "name": "Body Wash 750ml",
+      "category": "Bath and Body",
+      "categorySlug": "bath-and-body",
+      "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+      "barcode": "60011000026",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 44.91,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 46.82,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 46.43,
+          "previousPrice": 50.14,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 47.63,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 52.58,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-028",
+      "name": "Hand Soap Refill 1L",
+      "category": "Bath and Body",
+      "categorySlug": "bath-and-body",
+      "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+      "barcode": "60011000027",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 33.93,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 33.43,
+          "previousPrice": 36.1,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 37.36,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 37.92,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 41.12,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-029",
+      "name": "Shampoo Repair 400ml",
+      "category": "Haircare",
+      "categorySlug": "haircare",
+      "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+      "barcode": "60011000028",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 57.88,
+          "previousPrice": 65.56,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 58.05,
+          "previousPrice": 73.18,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 60.29,
+          "previousPrice": 72.4,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 63.7,
+          "previousPrice": 73.54,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 66.12,
+          "previousPrice": 79.59,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-030",
+      "name": "Conditioner Soft 400ml",
+      "category": "Haircare",
+      "categorySlug": "haircare",
+      "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+      "barcode": "60011000029",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 57.43,
+          "previousPrice": 62.02,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 58.62,
+          "previousPrice": 63.31,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 60.37,
+          "previousPrice": 65.2,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 65.27,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 66.14,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-031",
+      "name": "Mens Face Wash 150ml",
+      "category": "Mens Grooming",
+      "categorySlug": "mens-grooming",
+      "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+      "barcode": "60011000030",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 69.85,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 73.29,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 74.86,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 78.38,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-032",
+      "name": "Disposable Razors 10pk",
+      "category": "Mens Grooming",
+      "categorySlug": "mens-grooming",
+      "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+      "barcode": "60011000031",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 47.39,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 49.82,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 53.96,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 54.21,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 56.08,
+          "previousPrice": 60.57,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-033",
+      "name": "Laundry Detergent 2kg",
+      "category": "Cleaning",
+      "categorySlug": "cleaning",
+      "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+      "barcode": "60011000032",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 106.66,
+          "previousPrice": 131.99,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 107.78,
+          "previousPrice": 126.25,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 113.64,
+          "previousPrice": 139.56,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 117.32,
+          "previousPrice": 134.94,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 121.84,
+          "previousPrice": 147.39,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-034",
+      "name": "Dishwashing Liquid 750ml",
+      "category": "Cleaning",
+      "categorySlug": "cleaning",
+      "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+      "barcode": "60011000033",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 29.16,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 30.88,
+          "previousPrice": 33.35,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 32.48,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 30.72,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 32.56,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-035",
+      "name": "Multi-Surface Cleaner 1L",
+      "category": "Cleaning",
+      "categorySlug": "cleaning",
+      "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+      "barcode": "60011000034",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 38.04,
+          "previousPrice": 41.08,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 38.56,
+          "previousPrice": 41.64,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 40.27,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 42.29,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 45.13,
+          "previousPrice": 48.74,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-036",
+      "name": "Toilet Cleaner 750ml",
+      "category": "Cleaning",
+      "categorySlug": "cleaning",
+      "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+      "barcode": "60011000035",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 29.84,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 31.75,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 34.11,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 34.97,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 38.73,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-037",
+      "name": "Kitchen Paper Towels 6pk",
+      "category": "Household",
+      "categorySlug": "household",
+      "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+      "barcode": "60011000036",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 60.36,
+          "previousPrice": 69.48,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 64.29,
+          "previousPrice": 72.54,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 63.78,
+          "previousPrice": 77.07,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 69.99,
+          "previousPrice": 86.86,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 68.74,
+          "previousPrice": 79.99,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-038",
+      "name": "Bin Bags 30s",
+      "category": "Household",
+      "categorySlug": "household",
+      "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+      "barcode": "60011000037",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 36.26,
+          "previousPrice": 39.16,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 38.81,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 41.43,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 42.9,
+          "previousPrice": 46.33,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 45.34,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-039",
+      "name": "LED Bulb 3pk",
+      "category": "Household",
+      "categorySlug": "household",
+      "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+      "barcode": "60011000038",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 79.98,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 80.52,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 83.51,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 87.94,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-040",
+      "name": "Nappies Size 4 40s",
+      "category": "Kids & Baby",
+      "categorySlug": "kids-and-baby",
+      "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+      "barcode": "60011000039",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 218.78,
+          "previousPrice": 270.94,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 229.55,
+          "previousPrice": 263.83,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 237.9,
+          "previousPrice": 301.32,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 247.54,
+          "previousPrice": 295.98,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 257.61,
+          "previousPrice": 317.55,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-041",
+      "name": "Baby Wipes 80s",
+      "category": "Kids & Baby",
+      "categorySlug": "kids-and-baby",
+      "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+      "barcode": "60011000040",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 48.1,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 48.21,
+          "previousPrice": 52.07,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 51.35,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 55.3,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 55.19,
+          "previousPrice": 59.61,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-042",
+      "name": "Kids Yoghurt Multipack",
+      "category": "Kids",
+      "categorySlug": "kids",
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+      "barcode": "60011000041",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 41.9,
+          "previousPrice": 45.25,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 43.64,
+          "previousPrice": 47.13,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 47.92,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 47.89,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 49.1,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-043",
+      "name": "Cereal Bars 6pk",
+      "category": "Kids",
+      "categorySlug": "kids",
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+      "barcode": "60011000042",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 34.56,
+          "previousPrice": 39.57,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 36.31,
+          "previousPrice": 45.68,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 35.46,
+          "previousPrice": 44.32,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 39.7,
+          "previousPrice": 49.37,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 40,
+          "previousPrice": 49.21,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-044",
+      "name": "Chenín Blanc 750ml",
+      "category": "Wine & Bubbles",
+      "categorySlug": "wine-and-bubbles",
+      "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+      "barcode": "60011000043",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 68.33,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 72.57,
+          "previousPrice": 78.38,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 77.54,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 77.3,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-045",
+      "name": "MCC Brut 750ml",
+      "category": "Wine & Bubbles",
+      "categorySlug": "wine-and-bubbles",
+      "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+      "barcode": "60011000044",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 129.5,
+          "previousPrice": 146.31,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 136.77,
+          "previousPrice": 172.55,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 142.9,
+          "previousPrice": 181.32,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-046",
+      "name": "Cabernet Sauvignon 750ml",
+      "category": "Wine & Bubbles",
+      "categorySlug": "wine-and-bubbles",
+      "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+      "barcode": "60011000045",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 86.77,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 91.9,
+          "previousPrice": 99.25,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 93.67,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 97.15,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-047",
+      "name": "Frozen Mixed Vegetables 1kg",
+      "category": "Frozen",
+      "categorySlug": "frozen",
+      "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+      "barcode": "60011000046",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 36.36,
+          "previousPrice": 45.09,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 40.27,
+          "previousPrice": 48.35,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 41.82,
+          "previousPrice": 52.51,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 40.67,
+          "previousPrice": 46.62,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 42.47,
+          "previousPrice": 51.48,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-048",
+      "name": "Ice Cream 2L",
+      "category": "Frozen",
+      "categorySlug": "frozen",
+      "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+      "barcode": "60011000047",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 79.33,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 83.85,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 84.64,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 88.05,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 93.45,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-049",
+      "name": "Frozen Pizza Margherita",
+      "category": "Frozen",
+      "categorySlug": "frozen",
+      "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+      "barcode": "60011000048",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 61.08,
+          "previousPrice": 65.97,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 65.12,
+          "previousPrice": 70.33,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 67.92,
+          "previousPrice": 73.35,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 70.77,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-050",
+      "name": "Sliced Ham 200g",
+      "category": "Deli",
+      "categorySlug": "deli",
+      "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+      "barcode": "60011000049",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 41.32,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 43.41,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 43.67,
+          "previousPrice": 47.16,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 44.21,
+          "previousPrice": 47.75,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 49.02,
+          "previousPrice": 52.94,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-051",
+      "name": "Chicken Mayo 400g",
+      "category": "Deli",
+      "categorySlug": "deli",
+      "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+      "barcode": "60011000050",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 46.6,
+          "previousPrice": 58.9,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 48.22,
+          "previousPrice": 57.5,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 51.48,
+          "previousPrice": 60.47,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 52.46,
+          "previousPrice": 63.69,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 53.87,
+          "previousPrice": 68.75,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-052",
+      "name": "Hydrating Face Cream 50ml",
+      "category": "Skincare",
+      "categorySlug": "skincare",
+      "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+      "barcode": "60011000051",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 168.1,
+          "previousPrice": 217.98,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 172.81,
+          "previousPrice": 209.59,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 179.9,
+          "previousPrice": 219.51,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 188.61,
+          "previousPrice": 215.72,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-053",
+      "name": "Vitamin C Serum 30ml",
+      "category": "Skincare",
+      "categorySlug": "skincare",
+      "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+      "barcode": "60011000052",
+      "prices": [
+        {
+          "retailer": "Dischem",
+          "price": 217.71,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 229.1,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 239.19,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-054",
+      "name": "Lipstick Nude",
+      "category": "Makeup",
+      "categorySlug": "makeup",
+      "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+      "barcode": "60011000053",
+      "prices": [
+        {
+          "retailer": "Dischem",
+          "price": 111.52,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 119.9,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 123.57,
+          "previousPrice": 133.46,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-055",
+      "name": "Mascara Volume",
+      "category": "Makeup",
+      "categorySlug": "makeup",
+      "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+      "barcode": "60011000054",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 140.54,
+          "previousPrice": 151.78,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 144.53,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 154.33,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 159.67,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-056",
+      "name": "Eau de Parfum 50ml",
+      "category": "Fragrance",
+      "categorySlug": "fragrance",
+      "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+      "barcode": "60011000055",
+      "prices": [
+        {
+          "retailer": "Dischem",
+          "price": 438.77,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 458.78,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 479.76,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-057",
+      "name": "Body Mist 100ml",
+      "category": "Fragrance",
+      "categorySlug": "fragrance",
+      "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+      "barcode": "60011000056",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 114.58,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 120.06,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 125.34,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 130.7,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-058",
+      "name": "Smartphone Case Clear",
+      "category": "Cellphones",
+      "categorySlug": "cellphones",
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+      "barcode": "60011000057",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 129.24,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 138.95,
+          "previousPrice": 150.07,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 144.48,
+          "previousPrice": 156.04,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-059",
+      "name": "USB-C Cable 1m",
+      "category": "Cellphones",
+      "categorySlug": "cellphones",
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+      "barcode": "60011000058",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 79.91,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 82.5,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 87.12,
+          "previousPrice": 94.09,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 90.94,
+          "previousPrice": 98.22,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-060",
+      "name": "Kids Shampoo Tear-Free",
+      "category": "Kids & Baby",
+      "categorySlug": "kids-and-baby",
+      "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+      "barcode": "60011000059",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 41.18,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 42.17,
+          "previousPrice": 45.54,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 44.89,
+          "previousPrice": 48.48,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 46.24,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 48.9,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1535585209827-a39f6f0275b1?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-061",
+      "name": "All-Purpose Flour 2.5kg",
+      "category": "Pantry",
+      "categorySlug": "pantry",
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+      "barcode": "60011000060",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 34.17,
+          "previousPrice": 36.9,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 13.68,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 36.65,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 14.44,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 35.23,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 15.2,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 38.07,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 15.96,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 38.5,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+          "unitPrice": 16.72,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-062",
+      "name": "Peanut Butter 400g",
+      "category": "Pantry",
+      "categorySlug": "pantry",
+      "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+      "barcode": "60011000061",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 38.61,
+          "previousPrice": 49.45,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 42.26,
+          "previousPrice": 47.37,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 45.57,
+          "previousPrice": 54.13,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 47.44,
+          "previousPrice": 53.73,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 48.34,
+          "previousPrice": 59.18,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-063",
+      "name": "Apples 1.5kg",
+      "category": "Fruits & Vegetables",
+      "categorySlug": "fruits-and-vegetables",
+      "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+      "barcode": "60011000062",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 28.29,
+          "previousPrice": 30.55,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 20.34,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 32.91,
+          "previousPrice": 35.54,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 21.47,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 31.89,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 22.6,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 33,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 23.73,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 34.65,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1619566636858-adf3ef4644b9?w=400&q=80",
+          "unitPrice": 24.86,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-064",
+      "name": "Carrots 1kg",
+      "category": "Fruits & Vegetables",
+      "categorySlug": "fruits-and-vegetables",
+      "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+      "barcode": "60011000063",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 12.88,
+          "previousPrice": 16.53,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 14.4,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 13.06,
+          "previousPrice": 15.31,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 15.2,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 14.23,
+          "previousPrice": 17.99,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 16,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 14.5,
+          "previousPrice": 16.34,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 16.8,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 17.56,
+          "previousPrice": 20.51,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+          "unitPrice": 17.6,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-065",
+      "name": "Pork Chops 800g",
+      "category": "Meat, Poultry & Fish",
+      "categorySlug": "meat-poultry-and-fish",
+      "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+      "barcode": "60011000064",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 74.13,
+          "previousPrice": 80.06,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 96.75,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 78.96,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 102.13,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 83.47,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 107.5,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 85.59,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 112.88,
+          "unitLabel": "R/kg"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 88.79,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&q=80",
+          "unitPrice": 118.25,
+          "unitLabel": "R/kg"
+        }
+      ]
+    },
+    {
+      "id": "prod-066",
+      "name": "Ciabatta Loaf",
+      "category": "Bakery",
+      "categorySlug": "bakery",
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+      "barcode": "60011000065",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 23.91,
+          "previousPrice": 25.82,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 24.43,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 28.74,
+          "previousPrice": 31.04,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 27.37,
+          "previousPrice": 29.56,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-067",
+      "name": "Almond Milk 1L",
+      "category": "Milk & Dairy",
+      "categorySlug": "milk-and-dairy",
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+      "barcode": "60011000066",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 30.41,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 32.4,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Dischem",
+          "price": 34.97,
+          "previousPrice": 37.77,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 34.2,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 34.38,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 36,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 35.38,
+          "previousPrice": 38.21,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 37.8,
+          "unitLabel": "R/L"
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 38.84,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+          "unitPrice": 39.6,
+          "unitLabel": "R/L"
+        }
+      ]
+    },
+    {
+      "id": "prod-068",
+      "name": "Cola 2L",
+      "category": "Beverages & Juices",
+      "categorySlug": "beverages-and-juices",
+      "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+      "barcode": "60011000067",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 22.61,
+          "previousPrice": 26.43,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 22.27,
+          "previousPrice": 25.8,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 23.82,
+          "previousPrice": 28.48,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 23.71,
+          "previousPrice": 27.68,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 23.62,
+          "previousPrice": 30.38,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-069",
+      "name": "Fabric Softener 2L",
+      "category": "Cleaning",
+      "categorySlug": "cleaning",
+      "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+      "barcode": "60011000068",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 57.64,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 58.61,
+          "previousPrice": 63.3,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 60.52,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 62.51,
+          "previousPrice": 67.51,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 67.83,
+          "previousPrice": 73.26,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-070",
+      "name": "Cotton Buds 200s",
+      "category": "Toiletries",
+      "categorySlug": "toiletries",
+      "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+      "barcode": "60011000069",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 18.08,
+          "previousPrice": 19.53,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 21.82,
+          "previousPrice": 23.57,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 21.4,
+          "previousPrice": 23.11,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 22.17,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 24.35,
+          "previousPrice": 26.3,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-071",
+      "name": "Deodorant Spray 150ml",
+      "category": "Toiletries",
+      "categorySlug": "toiletries",
+      "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+      "barcode": "60011000070",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 34.36,
+          "previousPrice": 39.94,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 34.92,
+          "previousPrice": 41.25,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 36.58,
+          "previousPrice": 43.25,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 40.19,
+          "previousPrice": 49.27,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 39.45,
+          "previousPrice": 50.88,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-072",
+      "name": "Sunscreen SPF50 200ml",
+      "category": "Skincare",
+      "categorySlug": "skincare",
+      "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+      "barcode": "60011000071",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 130.29,
+          "previousPrice": 160.55,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 136.78,
+          "previousPrice": 158.22,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 141.3,
+          "previousPrice": 167.39,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 147.66,
+          "previousPrice": 166.67,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 156.42,
+          "previousPrice": 194,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-073",
+      "name": "Baby Formula Stage 1 900g",
+      "category": "Kids & Baby",
+      "categorySlug": "kids-and-baby",
+      "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+      "barcode": "60011000072",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 252.93,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 267.5,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 279.22,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 287.06,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 298.69,
+          "previousPrice": null,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    },
+    {
+      "id": "prod-074",
+      "name": "Frozen Chips 1kg",
+      "category": "Frozen",
+      "categorySlug": "frozen",
+      "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+      "barcode": "60011000073",
+      "prices": [
+        {
+          "retailer": "Checkers",
+          "price": 34.65,
+          "previousPrice": 44.67,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Dischem",
+          "price": 36.86,
+          "previousPrice": 45.93,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Pick n Pay",
+          "price": 36,
+          "previousPrice": 46.45,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Shoprite",
+          "price": 38.92,
+          "previousPrice": 47.93,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        },
+        {
+          "retailer": "Woolworths",
+          "price": 41.1,
+          "previousPrice": 49.92,
+          "url": "https://www.easishop.co.za",
+          "image": "https://images.unsplash.com/photo-1601598851547-4302969d0614?w=400&q=80",
+          "unitPrice": null,
+          "unitLabel": null
+        }
+      ]
+    }
+  ]
+}
