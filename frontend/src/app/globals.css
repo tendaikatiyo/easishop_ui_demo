@@ -105,6 +105,8 @@
 
   /* EasiShop brand accent (sparingly) */
   --brand-green: #1b8056;
+  --brand-green-light: #e3f2eb;
+  --brand-green-soft: #f0f8f4;
 }
 
 @layer base {

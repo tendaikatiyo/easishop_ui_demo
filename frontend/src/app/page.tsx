@@ -13,8 +13,8 @@ const HERO_IMAGE =
 
 export default function HomePage() {
   return (
-    <div className="space-y-12 md:space-y-16">
-      <section className="relative overflow-hidden rounded-3xl">
+    <>
+      <section className="relative left-1/2 w-screen max-w-none -translate-x-1/2 -mt-6 overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={HERO_IMAGE}
@@ -22,32 +22,29 @@ export default function HomePage() {
             fill
             priority
             className="object-cover object-center"
-            sizes="(max-width: 768px) 100vw, 1152px"
+            sizes="100vw"
           />
         </div>
 
-        {/* Feather gradient from the left */}
         <div
-          className="absolute inset-0 bg-gradient-to-r from-[#14120f]/92 from-0% via-[#14120f]/72 via-45% to-transparent to-85%"
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-[#14120f]/30 via-transparent to-transparent"
+          className="absolute inset-0 [background:radial-gradient(120%_140%_at_0%_50%,rgba(10,56,37,0.97)_0%,rgba(15,79,52,0.9)_32%,rgba(21,102,68,0.55)_54%,rgba(27,128,86,0.12)_78%,transparent_95%)]"
           aria-hidden
         />
 
-        <div className="relative z-10 flex min-h-[340px] flex-col justify-center px-6 py-12 md:min-h-[400px] md:px-10 md:py-14 lg:px-12">
-          <div className="w-full max-w-xl space-y-6 text-left">
-            <div className="space-y-4">
-              <p className="font-accent text-[11px] font-normal uppercase tracking-[0.14em] text-white/70">
+        <div className="relative z-10 mx-auto flex min-h-[280px] w-full max-w-6xl flex-col justify-center px-4 py-10 md:min-h-[420px] md:py-16">
+          <div className="w-full max-w-xl space-y-5 text-left md:space-y-6">
+            <div className="space-y-3 md:space-y-4">
+              <p className="font-accent text-[11px] font-normal uppercase tracking-[0.14em] text-white">
                 South Africa grocery prices
               </p>
               <h1 className="font-heading text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl lg:text-[3.25rem]">
                 Search, compare, save
-                <br />
-                <span className="text-white/90">Find your next deal today</span>
+                <span className="hidden md:inline">
+                  <br />
+                  <span className="text-white/90">Find your next deal today</span>
+                </span>
               </h1>
-              <p className="max-w-md text-sm leading-relaxed text-white/75 md:text-base">
+              <p className="max-w-md text-sm leading-relaxed text-white/80 md:text-base">
                 Compare prices across Checkers, Pick n Pay, Shoprite, Woolworths
                 and Dis-Chem — all in one search.
               </p>
@@ -57,15 +54,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CategoryStrip />
+      <div className="space-y-12 md:space-y-16">
+        <CategoryStrip />
 
-      <Suspense fallback={<ProductGridSkeleton count={4} />}>
-        <HomeDeals />
-      </Suspense>
+        <Suspense fallback={<ProductGridSkeleton count={4} />}>
+          <HomeDeals />
+        </Suspense>
 
-      <Suspense fallback={<ProductGridSkeleton />}>
-        <HomeFeatured />
-      </Suspense>
-    </div>
+        <Suspense fallback={<ProductGridSkeleton />}>
+          <HomeFeatured />
+        </Suspense>
+      </div>
+    </>
   );
 }

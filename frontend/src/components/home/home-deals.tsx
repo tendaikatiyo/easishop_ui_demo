@@ -9,7 +9,7 @@ export async function HomeDeals() {
 
   if (!deals.length) {
     return (
-      <section className="figma-block space-y-5 bg-block-lime">
+      <section className="figma-block space-y-5 bg-block-cream">
         <div className="space-y-1">
           <p className="figma-eyebrow">Price drops</p>
           <h2 className="font-heading text-2xl font-medium md:text-3xl">
@@ -24,7 +24,7 @@ export async function HomeDeals() {
   }
 
   return (
-    <section className="figma-block space-y-6 bg-block-lime">
+    <section className="figma-block space-y-6 bg-block-cream">
       <div className="flex items-end justify-between gap-3">
         <div className="space-y-1">
           <p className="figma-eyebrow">Price drops</p>

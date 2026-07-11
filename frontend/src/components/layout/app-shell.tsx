@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 
-import { Heart, Home, LayoutGrid, Percent, Search, User } from "lucide-react";
+import { Home, LayoutGrid, ListChecks, Percent, Search, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -36,7 +36,7 @@ const nav = [
 
   { href: "/deals", label: "Deals", icon: Percent },
 
-  { href: "/lists", label: "Lists", icon: Heart },
+  { href: "/lists", label: "Lists", icon: ListChecks },
 
   { href: "/profile", label: "You", icon: User },
 

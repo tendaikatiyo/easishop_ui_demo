@@ -18,7 +18,7 @@ export function FloatingListPill() {
   return (
     <Button
       size="lg"
-      className="fixed bottom-20 right-4 z-30 rounded-full shadow-lg md:bottom-8"
+      className="fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom))] right-4 z-30 rounded-full shadow-lg md:bottom-8"
       render={<Link href="/lists" />}
     >
       <ListChecks className="size-4" />

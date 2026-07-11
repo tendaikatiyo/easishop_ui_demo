@@ -3,12 +3,16 @@ import type { Product, RetailerName, RetailerPrice } from "@/types";
 import type { RawApiProduct } from "@/lib/api/client";
 
 const RETAILER_MAP = [
-  { code: "chk", name: "Checkers" as RetailerName, imageBase: "https://www.checkers.co.za" },
-  { code: "dsc", name: "Dischem" as RetailerName, imageBase: "https://www.dischem.co.za" },
-  { code: "pnp", name: "Pick n Pay" as RetailerName, imageBase: "https://www.pnp.co.za" },
-  { code: "srt", name: "Shoprite" as RetailerName, imageBase: "https://www.shoprite.co.za" },
-  { code: "woo", name: "Woolworths" as RetailerName, imageBase: "https://www.woolworths.co.za" },
+  { code: "chk", name: "Checkers" as RetailerName },
+  { code: "dsc", name: "Dischem" as RetailerName },
+  { code: "pnp", name: "Pick n Pay" as RetailerName },
+  { code: "srt", name: "Shoprite" as RetailerName },
+  { code: "woo", name: "Woolworths" as RetailerName },
 ];
+
+// Relative image paths from the API are served from the production
+// site's own public/images folder, not the retailer domains.
+const IMAGE_BASE = "https://www.easishop.co.za";
 
 export function productIdFromName(name: string): string {
   return `p-${Buffer.from(name, "utf8").toString("base64url")}`;
@@ -29,13 +33,10 @@ function parsePrice(val: unknown): number | null {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
-function resolveImageUrl(
-  image: string | null | undefined,
-  base?: string
-): string | null {
+function resolveImageUrl(image: string | null | undefined): string | null {
   if (!image || image === "N/A") return null;
   if (/^https?:\/\//i.test(image)) return image;
-  if (image.startsWith("/") && base) return `${base}${image}`;
+  if (image.startsWith("/")) return `${IMAGE_BASE}${image}`;
   return null;
 }
 
@@ -62,10 +63,7 @@ export function normalizeApiProduct(
       price,
       previousPrice: parsePrice(prevRaw),
       url: urlRaw && urlRaw !== "N/A" ? String(urlRaw) : null,
-      image: resolveImageUrl(
-        imgRaw != null ? String(imgRaw) : null,
-        r.imageBase
-      ),
+      image: resolveImageUrl(imgRaw != null ? String(imgRaw) : null),
       unitPrice: null,
       unitLabel: null,
     });

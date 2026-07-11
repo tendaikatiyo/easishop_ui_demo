@@ -39,7 +39,7 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
         <div>
           <h2 className="font-heading text-lg font-semibold">Compare prices</h2>
           <p className="text-sm text-muted-foreground">
-            Heart to add to your list, or buy from a store site.
+            Tap + to add to your list, or buy from a store site.
           </p>
         </div>
         {bestValue?.unitPrice != null && bestValue.unitLabel ? (
