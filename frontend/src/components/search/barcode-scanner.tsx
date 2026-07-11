@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
-import { getProductsByBarcode, searchProducts } from "@/lib/products";
+import type { Product } from "@/types";
 
 export function BarcodeScanner({
   open,
@@ -85,17 +85,24 @@ export function BarcodeScanner({
     }
   }
 
-  function confirmScan() {
+  async function confirmScan() {
     if (!scanned) return;
-    const byBarcode = getProductsByBarcode(scanned);
-    const fallback = searchProducts(scanned);
-    const results = byBarcode.length ? byBarcode : fallback;
-    onOpenChange(false);
-    if (results.length === 1) {
-      router.push(`/product/${results[0].id}`);
-      return;
+    try {
+      const res = await fetch(
+        `/api/search?q=${encodeURIComponent(scanned)}&barcode=1`
+      );
+      const data = (await res.json()) as { products: Product[] };
+      const results = data.products ?? [];
+      onOpenChange(false);
+      if (results.length === 1) {
+        router.push(`/product/${results[0].id}`);
+        return;
+      }
+      router.push(`/search?q=${encodeURIComponent(scanned)}&scan=1`);
+    } catch {
+      onOpenChange(false);
+      router.push(`/search?q=${encodeURIComponent(scanned)}&scan=1`);
     }
-    router.push(`/search?q=${encodeURIComponent(scanned)}&scan=1`);
   }
 
   return (
@@ -113,12 +120,12 @@ export function BarcodeScanner({
         </DialogHeader>
 
         {!scanned ? (
-          <div className="overflow-hidden rounded-lg border border-hairline bg-black">
+          <div className="overflow-hidden rounded-lg border border-border bg-black">
             <div id="easishop-barcode-reader" className="min-h-[240px] w-full" />
           </div>
         ) : (
-          <div className="rounded-lg border border-hairline bg-muted px-4 py-6 text-center">
-            <p className="text-sm text-mute">Detected code</p>
+          <div className="rounded-lg border border-border bg-muted px-4 py-6 text-center">
+            <p className="text-sm text-muted-foreground">Detected code</p>
             <p className="mt-1 font-heading text-xl font-semibold tracking-wide">
               {scanned}
             </p>
@@ -141,7 +148,7 @@ export function BarcodeScanner({
               >
                 Scan again
               </Button>
-              <Button className="bg-brand hover:bg-brand/90" onClick={confirmScan}>
+              <Button className="bg-primary hover:bg-primary/90" onClick={confirmScan}>
                 Find product
               </Button>
             </>

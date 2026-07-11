@@ -39,13 +39,13 @@ export function HeartButton({
       variant="secondary"
       aria-label={saved ? "Remove from list" : "Add to list"}
       onClick={onToggle}
-      className={cn(
-        "size-9 rounded-full bg-white/90 shadow-sm hover:bg-white",
-        className
-      )}
+      className={cn("size-8 rounded-full shadow-sm", className)}
     >
       <Heart
-        className={cn("size-4", saved && "fill-brand text-brand")}
+        className={cn(
+          "size-4 text-red-700",
+          saved ? "fill-red-700" : "fill-transparent"
+        )}
         strokeWidth={2}
       />
     </Button>

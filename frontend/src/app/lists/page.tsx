@@ -42,12 +42,12 @@ export default function ListsPage() {
       <div className="flex items-end justify-between gap-3">
         <div>
           <h1 className="font-heading text-2xl font-semibold">Your lists</h1>
-          <p className="text-sm text-mute">
+          <p className="text-sm text-muted-foreground">
             Heart products as you browse — they land here.
           </p>
         </div>
         <Button
-          className="rounded-full bg-brand hover:bg-brand/90"
+          className="rounded-full"
           onClick={() => setOpen(true)}
         >
           <Plus className="size-4" />
@@ -60,15 +60,15 @@ export default function ListsPage() {
           <li key={list.id}>
             <Link
               href={`/lists/${list.id}`}
-              className="flex items-center justify-between rounded-xl border border-hairline bg-white px-4 py-4 transition-colors hover:border-brand/30"
+              className="flex items-center justify-between rounded-xl border border-border bg-white px-4 py-4 transition-colors hover:border-primary/30"
             >
               <div>
-                <p className="font-medium text-ink">{list.name}</p>
-                <p className="text-sm text-mute">
+                <p className="font-medium text-foreground">{list.name}</p>
+                <p className="text-sm text-muted-foreground">
                   {list.items.length} item{list.items.length === 1 ? "" : "s"}
                 </p>
               </div>
-              <span className="text-sm text-brand">Open</span>
+              <span className="text-sm text-primary">Open</span>
             </Link>
           </li>
         ))}
@@ -89,7 +89,7 @@ export default function ListsPage() {
             <Button variant="outline" onClick={() => setOpen(false)}>
               Cancel
             </Button>
-            <Button className="bg-brand hover:bg-brand/90" onClick={onCreate}>
+            <Button onClick={onCreate}>
               Create
             </Button>
           </DialogFooter>

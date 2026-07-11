@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+import { Bricolage_Grotesque, Geist_Mono, Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { AppShell } from "@/components/layout/app-shell";
 import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-heading",
@@ -10,8 +16,8 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-sans",
+const geistMono = Geist_Mono({
+  variable: "--font-accent",
   subsets: ["latin"],
   display: "swap",
 });
@@ -66,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-ZA"
-      className={`${bricolage.variable} ${inter.variable} h-full antialiased`}
+      className={`${inter.variable} ${bricolage.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <AppShell>{children}</AppShell>

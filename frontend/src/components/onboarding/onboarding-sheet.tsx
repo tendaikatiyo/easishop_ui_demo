@@ -43,22 +43,22 @@ export function OnboardingSheet() {
           </SheetDescription>
         </SheetHeader>
         <div className="space-y-3 px-4 pb-6 pt-2">
-          <ul className="space-y-2 text-sm text-ink-soft">
+          <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex gap-2">
-              <span className="text-brand">1.</span>
+              <span className="text-primary">1.</span>
               Search or pick a category — shop with a plan.
             </li>
             <li className="flex gap-2">
-              <span className="text-brand">2.</span>
+              <span className="text-primary">2.</span>
               Compare prices in one view. Screenshot-friendly on mobile.
             </li>
             <li className="flex gap-2">
-              <span className="text-brand">3.</span>
+              <span className="text-primary">3.</span>
               Heart deals to your list and turn on price alerts.
             </li>
           </ul>
           <Button
-            className="h-12 w-full rounded-full bg-brand text-base hover:bg-brand/90"
+            className="h-12 w-full rounded-full bg-primary text-base hover:bg-primary/90"
             onClick={complete}
           >
             Start comparing

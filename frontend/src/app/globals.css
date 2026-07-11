@@ -9,16 +9,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
-  --font-mono: var(--font-geist-mono);
-  --color-brand: var(--brand);
-  --color-brand-foreground: var(--brand-foreground);
-  --color-brand-soft: var(--brand-soft);
-  --color-surface: var(--surface);
-  --color-surface-warm: var(--surface-warm);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-mute: var(--mute);
-  --color-hairline: var(--hairline);
+  --font-mono: var(--font-accent);
+  --font-accent: var(--font-accent);
+  --color-block-lime: var(--block-lime);
+  --color-block-lilac: var(--block-lilac);
+  --color-block-cream: var(--block-cream);
+  --color-block-pink: var(--block-pink);
+  --color-block-mint: var(--block-mint);
+  --color-block-coral: var(--block-coral);
+  --color-block-navy: var(--block-navy);
+  --color-accent-magenta: var(--accent-magenta);
+  --color-surface-soft: var(--surface-soft);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -55,51 +56,55 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --radius-capsule: 1.75rem;
 }
 
 :root {
-  --brand: #1b8056;
-  --brand-foreground: #ffffff;
-  --brand-soft: #e8f5ef;
-  --surface: #ffffff;
-  --surface-warm: #f7f5f0;
-  --ink: #242529;
-  --ink-soft: #343538;
-  --mute: #72767e;
-  --hairline: #e8e9eb;
-  --background: #ffffff;
-  --foreground: #242529;
+  /* Figma palette */
+  --block-lime: #dceeb1;
+  --block-lilac: #c5b0f4;
+  --block-cream: #f4ecd6;
+  --block-pink: #efd4d4;
+  --block-mint: #c8e6cd;
+  --block-coral: #f3c9b6;
+  --block-navy: #1f1d3d;
+  --accent-magenta: #ff3d8b;
+  --surface-soft: #f0efeb;
+
+  --background: #f8f7f4;
+  --foreground: #000000;
   --card: #ffffff;
-  --card-foreground: #242529;
+  --card-foreground: #000000;
   --popover: #ffffff;
-  --popover-foreground: #242529;
-  --primary: #1b8056;
+  --popover-foreground: #000000;
+  --primary: #000000;
   --primary-foreground: #ffffff;
-  --secondary: #f7f5f0;
-  --secondary-foreground: #242529;
-  --muted: #f4f5f6;
-  --muted-foreground: #72767e;
-  --accent: #e8f5ef;
-  --accent-foreground: #1b8056;
-  --destructive: #e12726;
-  --border: #e8e9eb;
-  --input: #e8e9eb;
-  --ring: #1b8056;
+  --secondary: #f0efeb;
+  --secondary-foreground: #000000;
+  --muted: #f0efeb;
+  --muted-foreground: #000000;
+  --accent: #f0efeb;
+  --accent-foreground: #000000;
+  --destructive: #ef4444;
+  --border: #e8e7e3;
+  --input: #e8e7e3;
+  --ring: #000000;
   --chart-1: #1b8056;
-  --chart-2: #343538;
-  --chart-3: #72767e;
-  --chart-4: #c7c8cd;
-  --chart-5: #e8e9eb;
+  --chart-2: #c5b0f4;
+  --chart-3: #dceeb1;
+  --chart-4: #f3c9b6;
+  --chart-5: #ff3d8b;
   --radius: 0.5rem;
-  --sidebar: #f7f5f0;
-  --sidebar-foreground: #242529;
-  --sidebar-primary: #1b8056;
+  --sidebar: #f8f7f4;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e8f5ef;
-  --sidebar-accent-foreground: #1b8056;
-  --sidebar-border: #e8e9eb;
-  --sidebar-ring: #1b8056;
+  --sidebar-accent: #f0efeb;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e6e6e6;
+  --sidebar-ring: #000000;
+
+  /* EasiShop brand accent (sparingly) */
+  --brand-green: #1b8056;
 }
 
 @layer base {
@@ -108,60 +113,32 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(27, 128, 86, 0.08), transparent),
-      linear-gradient(180deg, #f7f5f0 0%, #ffffff 28%, #ffffff 100%);
-    background-attachment: fixed;
   }
   html {
     @apply font-sans;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.03em;
+    font-weight: 500;
   }
 }
 
 @layer utilities {
-  .glass {
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 8px 32px rgba(36, 37, 41, 0.06);
-  }
-  .glass-strong {
-    background: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(232, 233, 235, 0.9);
-    box-shadow: 0 10px 40px rgba(36, 37, 41, 0.08);
-  }
   .font-heading {
     font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.03em;
   }
-  .animate-rise {
-    animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  .font-accent {
+    font-family: var(--font-accent), ui-monospace, monospace;
   }
-  .animate-stagger > * {
-    animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  .figma-block {
+    @apply rounded-3xl p-6 md:p-10;
   }
-  .animate-stagger > *:nth-child(1) { animation-delay: 0.02s; }
-  .animate-stagger > *:nth-child(2) { animation-delay: 0.05s; }
-  .animate-stagger > *:nth-child(3) { animation-delay: 0.08s; }
-  .animate-stagger > *:nth-child(4) { animation-delay: 0.11s; }
-  .animate-stagger > *:nth-child(5) { animation-delay: 0.14s; }
-  .animate-stagger > *:nth-child(6) { animation-delay: 0.17s; }
-  .animate-stagger > *:nth-child(7) { animation-delay: 0.2s; }
-  .animate-stagger > *:nth-child(8) { animation-delay: 0.23s; }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  .figma-eyebrow {
+    @apply font-accent text-[11px] font-normal uppercase tracking-[0.12em] text-foreground;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .brand-green {
+    color: var(--brand-green);
   }
 }

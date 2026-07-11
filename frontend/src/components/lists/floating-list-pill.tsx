@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { ListChecks } from "lucide-react";
 import { useDemoUser } from "@/hooks/use-demo-user";
 import { totalListItems } from "@/lib/lists";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export function FloatingListPill() {
   const pathname = usePathname();
@@ -14,15 +16,16 @@ export function FloatingListPill() {
   if (!count || pathname.startsWith("/lists")) return null;
 
   return (
-    <Link
-      href="/lists"
-      className="fixed bottom-20 right-4 z-30 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-3 text-sm font-medium text-white shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98] md:bottom-8"
+    <Button
+      size="lg"
+      className="fixed bottom-20 right-4 z-30 rounded-full shadow-lg md:bottom-8"
+      render={<Link href="/lists" />}
     >
       <ListChecks className="size-4" />
       Your list
-      <span className="flex size-5 items-center justify-center rounded-full bg-white/20 text-xs">
+      <Badge variant="secondary" className="bg-primary-foreground/20 text-primary-foreground">
         {count}
-      </span>
-    </Link>
+      </Badge>
+    </Button>
   );
 }

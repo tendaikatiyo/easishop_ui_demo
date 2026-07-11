@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -11,10 +11,9 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { useDemoUser } from "@/hooks/use-demo-user";
 import { updateUser } from "@/lib/storage";
-import { getAllProducts } from "@/lib/products";
 import { track } from "@/lib/analytics";
 import { formatRand, getLowestPrice } from "@/lib/catalog";
-import type { LoyaltyCard, PriceAlert } from "@/types";
+import type { LoyaltyCard, PriceAlert, Product } from "@/types";
 
 const RETAILERS = [
   "Checkers",
@@ -26,12 +25,27 @@ const RETAILERS = [
 
 export default function ProfilePage() {
   const { user, refresh } = useDemoUser();
-  const products = useMemo(() => getAllProducts().slice(0, 12), []);
+  const [products, setProducts] = useState<Product[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [cardRetailer, setCardRetailer] = useState(RETAILERS[0]);
   const [cardNumber, setCardNumber] = useState("");
   const [cardLabel, setCardLabel] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/featured?limit=12")
+      .then((res) => res.json())
+      .then((data: { products: Product[] }) => {
+        if (!cancelled) setProducts(data.products ?? []);
+      })
+      .catch(() => {
+        if (!cancelled) setProducts([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (!user) return;
@@ -40,7 +54,7 @@ export default function ProfilePage() {
   }, [user]);
 
   if (!user) {
-    return <div className="py-20 text-center text-sm text-mute">Loading…</div>;
+    return <div className="py-20 text-center text-sm text-muted-foreground">Loading…</div>;
   }
 
   function saveProfile() {
@@ -117,12 +131,12 @@ export default function ProfilePage() {
 
       <div>
         <h1 className="font-heading text-2xl font-semibold">Your account</h1>
-        <p className="text-sm text-mute">
+        <p className="text-sm text-muted-foreground">
           Demo account — changes stay on this device.
         </p>
       </div>
 
-      <section className="space-y-4 rounded-xl border border-hairline bg-white p-4 md:p-5">
+      <section className="space-y-4 rounded-xl border border-border bg-white p-4 md:p-5">
         <h2 className="font-heading text-lg font-semibold">Profile</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="space-y-1.5">
@@ -144,17 +158,17 @@ export default function ProfilePage() {
           </div>
         </div>
         {user.location ? (
-          <p className="text-sm text-mute">
+          <p className="text-sm text-muted-foreground">
             Location saved for local pricing ({user.location.label ?? "Near you"}
             ).
           </p>
         ) : null}
-        <Button className="bg-brand hover:bg-brand/90" onClick={saveProfile}>
+        <Button onClick={saveProfile}>
           Save changes
         </Button>
       </section>
 
-      <section className="space-y-4 rounded-xl border border-hairline bg-white p-4 md:p-5">
+      <section className="space-y-4 rounded-xl border border-border bg-white p-4 md:p-5">
         <h2 className="font-heading text-lg font-semibold">Marketing preferences</h2>
         <div className="space-y-4">
           {(
@@ -178,20 +192,20 @@ export default function ProfilePage() {
         </div>
       </section>
 
-      <section className="space-y-4 rounded-xl border border-hairline bg-white p-4 md:p-5">
+      <section className="space-y-4 rounded-xl border border-border bg-white p-4 md:p-5">
         <h2 className="font-heading text-lg font-semibold">Loyalty cards</h2>
-        <p className="text-sm text-mute">
+        <p className="text-sm text-muted-foreground">
           Keep your store cards handy for checkout.
         </p>
         <ul className="space-y-2">
           {user.loyaltyCards.map((card) => (
             <li
               key={card.id}
-              className="flex items-center justify-between rounded-lg border border-hairline px-3 py-3"
+              className="flex items-center justify-between rounded-lg border border-border px-3 py-3"
             >
               <div>
                 <p className="font-medium">{card.label}</p>
-                <p className="text-sm text-mute">
+                <p className="text-sm text-muted-foreground">
                   {card.retailer} · •••• {card.cardNumber.slice(-4)}
                 </p>
               </div>
@@ -242,9 +256,9 @@ export default function ProfilePage() {
         </Button>
       </section>
 
-      <section className="space-y-4 rounded-xl border border-hairline bg-white p-4 md:p-5">
+      <section className="space-y-4 rounded-xl border border-border bg-white p-4 md:p-5">
         <h2 className="font-heading text-lg font-semibold">Price alerts</h2>
-        <p className="text-sm text-mute">
+        <p className="text-sm text-muted-foreground">
           Toggle alerts on products you care about. We&apos;ll notify you when
           prices drop (demo toggle only).
         </p>
@@ -255,17 +269,17 @@ export default function ProfilePage() {
             return (
               <li
                 key={product.id}
-                className="flex items-center justify-between gap-3 rounded-lg border border-hairline px-3 py-3"
+                className="flex items-center justify-between gap-3 rounded-lg border border-border px-3 py-3"
               >
                 <div className="min-w-0">
                   <Link
                     href={`/product/${product.id}`}
-                    className="line-clamp-1 font-medium hover:text-brand"
+                    className="line-clamp-1 font-medium hover:text-primary"
                   >
                     {product.name}
                   </Link>
                   {lowest ? (
-                    <p className="text-xs text-mute">
+                    <p className="text-xs text-muted-foreground">
                       Now from {formatRand(lowest.price)} at {lowest.retailer}
                     </p>
                   ) : null}
@@ -281,11 +295,11 @@ export default function ProfilePage() {
         </ul>
       </section>
 
-      <section className="rounded-xl border border-hairline bg-surface-warm p-4 text-sm text-mute">
-        <p className="font-medium text-ink">Follow EasiShop</p>
+      <section className="rounded-xl border border-border bg-muted p-4 text-sm text-muted-foreground">
+        <p className="font-medium text-foreground">Follow EasiShop</p>
         <div className="mt-2 flex flex-wrap gap-3">
           <a
-            className="text-brand hover:underline"
+            className="text-primary hover:underline"
             href="https://www.tiktok.com/@easishop_za"
             target="_blank"
             rel="noreferrer"
@@ -293,7 +307,7 @@ export default function ProfilePage() {
             TikTok
           </a>
           <a
-            className="text-brand hover:underline"
+            className="text-primary hover:underline"
             href="https://www.instagram.com/easishop_za"
             target="_blank"
             rel="noreferrer"
@@ -301,7 +315,7 @@ export default function ProfilePage() {
             Instagram
           </a>
           <a
-            className="text-brand hover:underline"
+            className="text-primary hover:underline"
             href="https://www.facebook.com/easishopza"
             target="_blank"
             rel="noreferrer"
@@ -309,7 +323,7 @@ export default function ProfilePage() {
             Facebook
           </a>
           <a
-            className="text-brand hover:underline"
+            className="text-primary hover:underline"
             href="https://www.linkedin.com/company/easishop"
             target="_blank"
             rel="noreferrer"
