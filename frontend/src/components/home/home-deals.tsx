@@ -37,12 +37,11 @@ export async function HomeDeals() {
         </div>
         <Button
           variant="outline"
-          size="sm"
-          className="h-auto rounded-full px-4"
+          className="h-10 shrink-0 rounded-full border-foreground/15 bg-white/80 px-5 shadow-xs hover:border-foreground/30 hover:bg-white"
           render={<Link href="/deals" />}
         >
           See all
-          <ArrowRight className="size-4" />
+          <ArrowRight className="size-4 transition-transform group-hover/button:translate-x-0.5" />
         </Button>
       </div>
       <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

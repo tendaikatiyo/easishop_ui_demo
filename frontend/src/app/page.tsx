@@ -54,7 +54,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="space-y-12 md:space-y-16">
+      <div className="space-y-12 pt-8 md:space-y-16 md:pt-12">
         <CategoryStrip />
 
         <Suspense fallback={<ProductGridSkeleton count={4} />}>

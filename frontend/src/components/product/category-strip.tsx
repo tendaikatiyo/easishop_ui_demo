@@ -35,49 +35,53 @@ export function CategoryStrip({ className }: { className?: string }) {
 
   return (
     <section id="categories" className={cn("scroll-mt-20", className)}>
-      <div className="mb-3 space-y-1 md:hidden">
+      <div className="mb-4 space-y-1 md:hidden">
         <p className="figma-eyebrow">Browse aisles</p>
-        <p className="font-heading text-lg font-medium">Categories</p>
+        <p className="font-heading text-xl font-medium">Categories</p>
       </div>
       <div className="relative md:hidden">
         <div
           ref={scrollRef}
-          className="flex gap-2 overflow-x-auto pb-1 pr-12 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex gap-2.5 overflow-x-auto pb-1.5 pr-16 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          <Button
+          <button
             type="button"
-            variant="outline"
-            size="sm"
-            className="shrink-0 rounded-full"
             onClick={() => setOpen(true)}
+            className="flex shrink-0 items-center gap-2.5 rounded-full bg-foreground py-1.5 pl-1.5 pr-4 text-sm font-medium text-background shadow-xs transition-transform active:scale-[0.97]"
           >
-            <LayoutGrid className="size-4 brand-green" />
-            Choose category
-            <ChevronDown className="size-4 text-muted-foreground" />
-          </Button>
+            <span className="flex size-8 items-center justify-center rounded-full bg-white/15">
+              <LayoutGrid className="size-4" strokeWidth={2} />
+            </span>
+            All categories
+            <ChevronDown className="-ml-1 size-4 opacity-70" />
+          </button>
           {featured.map((category) => {
             const Icon = getCategoryIcon(category.slug);
             return (
-              <Button
+              <Link
                 key={category.slug}
-                variant="outline"
-                size="sm"
-                className="shrink-0 rounded-full"
-                render={<Link href={`/category/${category.slug}`} />}
+                href={`/category/${category.slug}`}
+                className="flex shrink-0 items-center gap-2.5 rounded-full border border-border bg-white py-1.5 pl-1.5 pr-4 text-sm font-medium shadow-xs transition-all hover:border-[var(--brand-green)]/40 hover:shadow-sm active:scale-[0.97]"
               >
-                <Icon className="size-4 brand-green" strokeWidth={2} />
+                <span className="flex size-8 items-center justify-center rounded-full bg-[var(--brand-green-light)]">
+                  <Icon className="size-4 brand-green" strokeWidth={2} />
+                </span>
                 {category.name}
-              </Button>
+              </Link>
             );
           })}
         </div>
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent"
+          aria-hidden
+        />
         <Button
           type="button"
-          size="icon-sm"
+          size="icon"
           variant="outline"
           onClick={scrollNext}
           aria-label="Scroll categories"
-          className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full shadow-sm"
+          className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white shadow-md"
         >
           <ChevronRight className="size-4" />
         </Button>
@@ -87,7 +91,7 @@ export function CategoryStrip({ className }: { className?: string }) {
         <div className="mb-4 flex items-end justify-between gap-3">
           <div className="space-y-1">
             <p className="figma-eyebrow">Browse aisles</p>
-            <p className="font-heading text-lg font-medium">Categories</p>
+            <p className="font-heading text-xl font-medium">Categories</p>
           </div>
           <Button
             type="button"

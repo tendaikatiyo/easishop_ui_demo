@@ -3,6 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
+import type { LucideIcon } from "lucide-react";
+import {
+  BellRing,
+  MapPin,
+  Megaphone,
+  Plus,
+  Share2,
+  UserRound,
+  WalletCards,
+} from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +32,64 @@ const RETAILERS = [
   "Woolworths",
   "Dischem",
 ];
+
+const SOCIAL_LINKS = [
+  ["TikTok", "https://www.tiktok.com/@easishop_za"],
+  ["Instagram", "https://www.instagram.com/easishop_za"],
+  ["Facebook", "https://www.facebook.com/easishopza"],
+  ["LinkedIn", "https://www.linkedin.com/company/easishop"],
+] as const;
+
+const MARKETING_PREFS = [
+  [
+    "emailDeals",
+    "Email me weekly deals",
+    "A short digest of the best price drops.",
+  ],
+  [
+    "pushAlerts",
+    "Push notifications for price drops",
+    "Instant alerts on products you follow.",
+  ],
+  ["smsOffers", "SMS offers (sparingly)", "Occasional standout offers by text."],
+] as const;
+
+function getInitials(name: string): string {
+  return (
+    name
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase())
+      .join("") || "?"
+  );
+}
+
+function SectionHeader({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: LucideIcon;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-green-light)]">
+        <Icon className="size-4 brand-green" strokeWidth={2} />
+      </span>
+      <div className="space-y-0.5">
+        <h2 className="font-heading text-lg font-semibold leading-tight">
+          {title}
+        </h2>
+        {description ? (
+          <p className="text-sm text-muted-foreground">{description}</p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
 
 export default function ProfilePage() {
   const { user, refresh } = useDemoUser();
@@ -121,7 +189,7 @@ export default function ProfilePage() {
   );
 
   return (
-    <div className="mx-auto max-w-2xl space-y-8 animate-rise">
+    <div className="mx-auto max-w-2xl space-y-6 animate-rise">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -129,15 +197,37 @@ export default function ProfilePage() {
         ]}
       />
 
-      <div>
-        <h1 className="font-heading text-2xl font-semibold">Your account</h1>
-        <p className="text-sm text-muted-foreground">
-          Demo account — changes stay on this device.
+      <section className="relative overflow-hidden rounded-3xl bg-[#0e4a30] p-6 text-white md:p-8">
+        <div
+          className="absolute -right-20 -top-24 size-64 rounded-full bg-[var(--brand-green)]/50 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="absolute -bottom-28 -left-16 size-56 rounded-full bg-white/10 blur-3xl"
+          aria-hidden
+        />
+        <div className="relative flex items-center gap-4">
+          <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-white/15 font-heading text-xl font-medium ring-1 ring-white/20">
+            {getInitials(user.name)}
+          </span>
+          <div className="min-w-0">
+            <h1 className="font-heading text-2xl font-semibold">
+              Your account
+            </h1>
+            <p className="truncate text-sm text-white/70">{user.email}</p>
+          </div>
+        </div>
+        <p className="relative mt-5 inline-flex items-center rounded-full bg-white/10 px-3.5 py-1.5 text-xs text-white/80 ring-1 ring-white/15">
+          Demo account — changes stay on this device
         </p>
-      </div>
+      </section>
 
-      <section className="space-y-4 rounded-xl border border-border bg-white p-4 md:p-5">
-        <h2 className="font-heading text-lg font-semibold">Profile</h2>
+      <section className="space-y-5 rounded-2xl border border-border bg-white p-5 md:p-6">
+        <SectionHeader
+          icon={UserRound}
+          title="Profile"
+          description="How we address you and where updates go."
+        />
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="space-y-1.5">
             <Label htmlFor="name">Name</Label>
@@ -158,30 +248,35 @@ export default function ProfilePage() {
           </div>
         </div>
         {user.location ? (
-          <p className="text-sm text-muted-foreground">
-            Location saved for local pricing ({user.location.label ?? "Near you"}
-            ).
+          <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
+            <MapPin className="size-3.5 shrink-0 brand-green" />
+            Location saved for local pricing (
+            {user.location.label ?? "Near you"}).
           </p>
         ) : null}
-        <Button onClick={saveProfile}>
+        <Button className="rounded-full px-5" onClick={saveProfile}>
           Save changes
         </Button>
       </section>
 
-      <section className="space-y-4 rounded-xl border border-border bg-white p-4 md:p-5">
-        <h2 className="font-heading text-lg font-semibold">Marketing preferences</h2>
-        <div className="space-y-4">
-          {(
-            [
-              ["emailDeals", "Email me weekly deals"],
-              ["pushAlerts", "Push notifications for price drops"],
-              ["smsOffers", "SMS offers (sparingly)"],
-            ] as const
-          ).map(([key, label]) => (
-            <div key={key} className="flex items-center justify-between gap-3">
-              <Label htmlFor={key} className="font-normal">
-                {label}
-              </Label>
+      <section className="space-y-4 rounded-2xl border border-border bg-white p-5 md:p-6">
+        <SectionHeader
+          icon={Megaphone}
+          title="Marketing preferences"
+          description="Choose how we keep you in the loop."
+        />
+        <div className="divide-y divide-border">
+          {MARKETING_PREFS.map(([key, label, description]) => (
+            <div
+              key={key}
+              className="flex items-center justify-between gap-4 py-3.5 first:pt-1 last:pb-1"
+            >
+              <div className="space-y-0.5">
+                <Label htmlFor={key} className="font-medium">
+                  {label}
+                </Label>
+                <p className="text-xs text-muted-foreground">{description}</p>
+              </div>
               <Switch
                 id={key}
                 checked={user.marketingPrefs[key]}
@@ -192,29 +287,41 @@ export default function ProfilePage() {
         </div>
       </section>
 
-      <section className="space-y-4 rounded-xl border border-border bg-white p-4 md:p-5">
-        <h2 className="font-heading text-lg font-semibold">Loyalty cards</h2>
-        <p className="text-sm text-muted-foreground">
-          Keep your store cards handy for checkout.
-        </p>
-        <ul className="space-y-2">
-          {user.loyaltyCards.map((card) => (
-            <li
-              key={card.id}
-              className="flex items-center justify-between rounded-lg border border-border px-3 py-3"
-            >
-              <div>
-                <p className="font-medium">{card.label}</p>
-                <p className="text-sm text-muted-foreground">
-                  {card.retailer} · •••• {card.cardNumber.slice(-4)}
-                </p>
-              </div>
-              <Button variant="ghost" size="sm" onClick={() => removeCard(card.id)}>
-                Remove
-              </Button>
-            </li>
-          ))}
-        </ul>
+      <section className="space-y-4 rounded-2xl border border-border bg-white p-5 md:p-6">
+        <SectionHeader
+          icon={WalletCards}
+          title="Loyalty cards"
+          description="Keep your store cards handy for checkout."
+        />
+        {user.loyaltyCards.length ? (
+          <ul className="space-y-2">
+            {user.loyaltyCards.map((card) => (
+              <li
+                key={card.id}
+                className="flex items-center justify-between gap-3 rounded-xl border border-border bg-background px-3.5 py-3"
+              >
+                <div className="min-w-0">
+                  <p className="truncate font-medium">{card.label}</p>
+                  <p className="font-accent text-xs text-muted-foreground">
+                    {card.retailer} · •••• {card.cardNumber.slice(-4)}
+                  </p>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="shrink-0 rounded-full text-muted-foreground hover:text-destructive"
+                  onClick={() => removeCard(card.id)}
+                >
+                  Remove
+                </Button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="rounded-xl border border-dashed border-border px-4 py-5 text-center text-sm text-muted-foreground">
+            No cards yet — add your first one below.
+          </p>
+        )}
         <Separator />
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="space-y-1.5 sm:col-span-2">
@@ -251,17 +358,22 @@ export default function ProfilePage() {
             />
           </div>
         </div>
-        <Button variant="outline" onClick={addLoyaltyCard}>
+        <Button
+          variant="outline"
+          className="rounded-full px-5"
+          onClick={addLoyaltyCard}
+        >
+          <Plus className="size-4" />
           Add card
         </Button>
       </section>
 
-      <section className="space-y-4 rounded-xl border border-border bg-white p-4 md:p-5">
-        <h2 className="font-heading text-lg font-semibold">Price alerts</h2>
-        <p className="text-sm text-muted-foreground">
-          Toggle alerts on products you care about. We&apos;ll notify you when
-          prices drop (demo toggle only).
-        </p>
+      <section className="space-y-4 rounded-2xl border border-border bg-white p-5 md:p-6">
+        <SectionHeader
+          icon={BellRing}
+          title="Price alerts"
+          description="We'll notify you when prices drop (demo toggle only)."
+        />
         <ul className="space-y-2">
           {products.map((product) => {
             const lowest = getLowestPrice(product);
@@ -269,18 +381,22 @@ export default function ProfilePage() {
             return (
               <li
                 key={product.id}
-                className="flex items-center justify-between gap-3 rounded-lg border border-border px-3 py-3"
+                className="flex items-center justify-between gap-3 rounded-xl border border-border bg-background px-3.5 py-3"
               >
                 <div className="min-w-0">
                   <Link
                     href={`/product/${product.id}`}
-                    className="line-clamp-1 font-medium hover:text-primary"
+                    className="line-clamp-1 font-medium transition-colors hover:text-[var(--brand-green)]"
                   >
                     {product.name}
                   </Link>
                   {lowest ? (
                     <p className="text-xs text-muted-foreground">
-                      Now from {formatRand(lowest.price)} at {lowest.retailer}
+                      Now from{" "}
+                      <span className="font-accent brand-green">
+                        {formatRand(lowest.price)}
+                      </span>{" "}
+                      at {lowest.retailer}
                     </p>
                   ) : null}
                 </div>
@@ -295,41 +411,24 @@ export default function ProfilePage() {
         </ul>
       </section>
 
-      <section className="rounded-xl border border-border bg-muted p-4 text-sm text-muted-foreground">
-        <p className="font-medium text-foreground">Follow EasiShop</p>
-        <div className="mt-2 flex flex-wrap gap-3">
-          <a
-            className="text-primary hover:underline"
-            href="https://www.tiktok.com/@easishop_za"
-            target="_blank"
-            rel="noreferrer"
-          >
-            TikTok
-          </a>
-          <a
-            className="text-primary hover:underline"
-            href="https://www.instagram.com/easishop_za"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Instagram
-          </a>
-          <a
-            className="text-primary hover:underline"
-            href="https://www.facebook.com/easishopza"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Facebook
-          </a>
-          <a
-            className="text-primary hover:underline"
-            href="https://www.linkedin.com/company/easishop"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </a>
+      <section className="space-y-4 rounded-2xl border border-border bg-white p-5 md:p-6">
+        <SectionHeader
+          icon={Share2}
+          title="Follow EasiShop"
+          description="Deals, drops and updates on your feed."
+        />
+        <div className="flex flex-wrap gap-2">
+          {SOCIAL_LINKS.map(([label, href]) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-xs transition-all hover:border-[var(--brand-green)]/40 hover:bg-[var(--brand-green-soft)] active:scale-[0.97]"
+            >
+              {label}
+            </a>
+          ))}
         </div>
       </section>
     </div>
