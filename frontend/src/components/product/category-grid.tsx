@@ -34,7 +34,7 @@ export function CategoryGrid({
             key={category.slug}
             href={`/category/${category.slug}`}
             className={cn(
-              "flex items-center gap-3 rounded-xl border border-border px-3 py-3.5 text-sm font-medium text-foreground transition-transform hover:-translate-y-0.5 hover:border-primary/30",
+              "flex items-center gap-3 rounded-2xl px-3 py-3.5 text-sm font-medium text-foreground transition-transform hover:-translate-y-0.5",
               accents[index % accents.length].split(" ")[0]
             )}
           >

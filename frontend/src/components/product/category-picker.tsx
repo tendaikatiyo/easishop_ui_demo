@@ -10,8 +10,8 @@ import {
 } from "react";
 import { Search } from "lucide-react";
 import { CATEGORIES, getCategoryIcon } from "@/lib/catalog";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Sheet,
   SheetContent,
@@ -66,6 +66,7 @@ function CategoryPickerSheet({
   onOpenChange: (open: boolean) => void;
 }) {
   const [query, setQuery] = useState("");
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -82,45 +83,45 @@ function CategoryPickerSheet({
       }}
     >
       <SheetContent
-        side="bottom"
-        className="max-h-[85vh] rounded-t-2xl md:mx-auto md:max-w-lg"
+        side={isDesktop ? "left" : "bottom"}
+        className={
+          isDesktop
+            ? "w-full max-w-md border-r-0 rounded-r-3xl"
+            : "max-h-[85vh] rounded-t-2xl"
+        }
       >
         <SheetHeader>
           <SheetTitle className="font-heading text-left">All categories</SheetTitle>
         </SheetHeader>
-        <div className="relative px-4 pb-3">
-          <Search className="absolute left-7 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search categories..."
-            className="pl-9"
-            autoFocus
-          />
+        <div className="px-4 pb-3">
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search categories..."
+              className="rounded-full pl-9"
+            />
+          </div>
         </div>
         {filtered.length ? (
-          <ul className="grid max-h-[52vh] grid-cols-2 gap-2 overflow-y-auto px-4 pb-6 sm:grid-cols-3">
+          <ul className="grid max-h-[52vh] grid-cols-3 gap-1 overflow-y-auto px-3 pb-6 md:max-h-none md:min-h-0 md:flex-1 md:content-start">
             {filtered.map((category) => {
               const Icon = getCategoryIcon(category.slug);
               return (
                 <li key={category.slug}>
-                  <Card
-                    size="sm"
-                    className="py-0 transition-colors hover:border-foreground/20 hover:bg-surface-soft"
+                  <Link
+                    href={`/category/${category.slug}`}
+                    onClick={() => onOpenChange(false)}
+                    className="group flex h-full flex-col items-center gap-2 rounded-2xl px-1 py-3 text-center transition-colors hover:bg-surface-soft active:bg-surface-soft"
                   >
-                    <Link
-                      href={`/category/${category.slug}`}
-                      onClick={() => onOpenChange(false)}
-                      className="block"
-                    >
-                      <CardContent className="flex items-center gap-2.5 py-3">
-                        <Icon className="size-4 shrink-0 brand-green" strokeWidth={2} />
-                        <span className="text-sm font-medium leading-snug">
-                          {category.name}
-                        </span>
-                      </CardContent>
-                    </Link>
-                  </Card>
+                    <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-surface-soft transition-colors group-hover:bg-block-cream">
+                      <Icon className="size-5 text-foreground" strokeWidth={1.75} />
+                    </span>
+                    <span className="line-clamp-2 text-xs font-medium leading-tight text-foreground/80 group-hover:text-foreground">
+                      {category.name}
+                    </span>
+                  </Link>
                 </li>
               );
             })}

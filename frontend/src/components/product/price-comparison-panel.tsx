@@ -6,20 +6,24 @@ import {
   formatRand,
   getAvailablePrices,
   getBestValue,
-  getSavingsPercent,
+  getSavingsAmount,
 } from "@/lib/catalog";
 import { getRetailerLogo } from "@/lib/retailers";
 import type { Product } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { DealBadge } from "@/components/product/deal-badge";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 export function PriceComparisonPanel({ product }: { product: Product }) {
   const prices = getAvailablePrices(product).sort((a, b) => a.price - b.price);
   const bestValue = getBestValue(product);
-  const lowestId = prices[0]?.retailer;
+  // "Lowest" only means something when stores actually differ on price
+  const hasLowest =
+    prices.length > 1 && prices[0].price < prices[prices.length - 1].price;
+  const lowestId = hasLowest ? prices[0].retailer : null;
 
   if (!prices.length) {
     return (
@@ -39,7 +43,7 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
         <div>
           <h2 className="font-heading text-lg font-semibold">Compare prices</h2>
           <p className="text-sm text-muted-foreground">
-            Tap + to add to your list, or buy from a store site.
+            Tap + to add to a list, or buy from a store site.
           </p>
         </div>
         {bestValue?.unitPrice != null && bestValue.unitLabel ? (
@@ -53,16 +57,13 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
       <ul className="space-y-2">
         {prices.map((price) => {
           const isBest = price.retailer === lowestId;
-          const savings = getSavingsPercent(price);
+          const savings = getSavingsAmount(price);
           const logo = getRetailerLogo(price.retailer);
           return (
             <li key={price.retailer}>
               <Card
                 size="sm"
-                className={cn(
-                  "py-0",
-                  isBest && "border-primary/30 bg-accent/50"
-                )}
+                className={cn("py-0", isBest && "bg-accent/60")}
               >
                 <CardContent className="flex items-center gap-3 py-3">
                   <div className="relative size-11 shrink-0 overflow-hidden rounded-full border bg-background shadow-sm">
@@ -82,28 +83,22 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      {isBest ? (
-                        <Badge className="gap-1">
-                          <Medal className="size-3" />
-                          Lowest
-                        </Badge>
-                      ) : null}
-                    </div>
+                    {isBest ? (
+                      <Badge className="gap-1">
+                        <Medal className="size-3" />
+                        Lowest
+                      </Badge>
+                    ) : null}
                     <div className="mt-0.5 flex flex-wrap items-baseline gap-2">
-                      <span className="font-heading text-xl font-semibold">
+                      <span className="font-accent text-xl font-medium tracking-tight">
                         {formatRand(price.price)}
                       </span>
                       {price.previousPrice && price.previousPrice > price.price ? (
-                        <span className="text-sm text-muted-foreground line-through">
+                        <span className="font-accent text-sm tracking-tight text-muted-foreground line-through">
                           {formatRand(price.previousPrice)}
                         </span>
                       ) : null}
-                      {savings ? (
-                        <span className="text-xs font-medium text-primary">
-                          Save {savings}%
-                        </span>
-                      ) : null}
+                      {savings ? <DealBadge amount={savings} /> : null}
                     </div>
                   </div>
 

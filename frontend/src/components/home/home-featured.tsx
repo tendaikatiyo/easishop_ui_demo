@@ -22,7 +22,7 @@ export async function HomeFeatured() {
           ))}
         </div>
       ) : (
-        <div className="figma-block border border-dashed border-foreground/15 bg-surface-soft text-center text-sm">
+        <div className="figma-block bg-surface-soft text-center text-sm">
           Search for a product to start comparing prices.
         </div>
       )}

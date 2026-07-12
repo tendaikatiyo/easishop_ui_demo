@@ -16,7 +16,7 @@ export async function HomeDeals() {
             Top deals of the day
           </h2>
         </div>
-        <div className="rounded-2xl border border-dashed border-foreground/15 bg-background/50 px-6 py-10 text-center text-sm">
+        <div className="rounded-3xl bg-background/60 px-6 py-10 text-center text-sm">
           No price drops right now. Check back soon or browse categories.
         </div>
       </section>
@@ -36,8 +36,8 @@ export async function HomeDeals() {
           </p>
         </div>
         <Button
-          variant="outline"
-          className="h-10 shrink-0 rounded-full border-foreground/15 bg-white/80 px-5 shadow-xs hover:border-foreground/30 hover:bg-white"
+          variant="ghost"
+          className="h-10 shrink-0 rounded-full bg-white/80 px-5 shadow-xs hover:bg-white"
           render={<Link href="/deals" />}
         >
           See all

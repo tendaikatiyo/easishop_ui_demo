@@ -8,7 +8,7 @@ export interface Crumb {
 
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-4 overflow-x-auto">
+    <nav aria-label="Breadcrumb" className="mb-4 hidden overflow-x-auto md:block">
       <ol className="flex min-w-max items-center gap-1 text-sm text-muted-foreground">
         {items.map((item, index) => {
           const last = index === items.length - 1;

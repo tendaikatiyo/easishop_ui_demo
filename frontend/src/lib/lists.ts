@@ -102,6 +102,15 @@ export function removeFromList(productId: string, listId?: string): void {
   saveUser(user);
 }
 
+export function toggleInList(listId: string, productId: string): boolean {
+  if (isInList(listId, productId)) {
+    removeFromList(productId, listId);
+    return false;
+  }
+  addToList(productId, listId);
+  return true;
+}
+
 export function toggleInDefaultList(productId: string): boolean {
   if (isInAnyList(productId)) {
     removeFromList(productId);

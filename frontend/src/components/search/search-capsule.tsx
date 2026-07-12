@@ -8,19 +8,26 @@ import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { BarcodeScanner } from "@/components/search/barcode-scanner";
+import { useReturningVisitor } from "@/hooks/use-returning-visitor";
 
 export function SearchCapsule({
   initialQuery = "",
   autoFocus = false,
   className,
   variant = "default",
+  placeholder,
 }: {
   initialQuery?: string;
   autoFocus?: boolean;
   className?: string;
   variant?: "default" | "hero";
+  placeholder?: string;
 }) {
   const router = useRouter();
+  const isReturning = useReturningVisitor();
+  const resolvedPlaceholder =
+    placeholder ??
+    (isReturning ? "Milk, bread, or something new…" : "What are you shopping for?");
   const [query, setQuery] = useState(initialQuery);
   const [scanOpen, setScanOpen] = useState(false);
 
@@ -47,7 +54,7 @@ export function SearchCapsule({
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="What are you shopping for?"
+          placeholder={resolvedPlaceholder}
           autoFocus={autoFocus}
           className={cn(
             "border-0 bg-transparent shadow-none focus-visible:ring-0",

@@ -2,35 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronRight, Heart, ListChecks, Plus } from "lucide-react";
+import { ChevronRight, ListChecks, Plus } from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { ListSheet } from "@/components/lists/list-sheet";
 import { useDemoUser } from "@/hooks/use-demo-user";
-import { createList } from "@/lib/lists";
-import { track } from "@/lib/analytics";
 
 export default function ListsPage() {
-  const { user, refresh } = useDemoUser();
+  const { user } = useDemoUser();
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState("");
-
-  function onCreate() {
-    const trimmed = name.trim() || "New list";
-    createList(trimmed);
-    track("create_list", { name: trimmed });
-    setName("");
-    setOpen(false);
-    refresh();
-  }
-
   const lists = user?.lists ?? [];
 
   return (
@@ -47,7 +27,7 @@ export default function ListsPage() {
             Your lists
           </h1>
           <p className="max-w-md text-sm text-muted-foreground">
-            Heart products as you browse — they land here.
+            Tap + on products as you browse — pick a list or start a new one.
           </p>
         </div>
         <Button
@@ -66,7 +46,7 @@ export default function ListsPage() {
               <li key={list.id}>
                 <Link
                   href={`/lists/${list.id}`}
-                  className="group flex items-center gap-4 rounded-2xl border border-border bg-white p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:border-[var(--brand-green)]/30 hover:shadow-md"
+                  className="group flex items-center gap-4 rounded-3xl bg-white p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:shadow-md"
                 >
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-green-light)]">
                     <ListChecks className="size-5 brand-green" strokeWidth={2} />
@@ -89,23 +69,23 @@ export default function ListsPage() {
             ))}
           </ul>
 
-          <div className="flex items-center gap-3 rounded-2xl bg-surface-soft px-4 py-3.5 text-sm text-muted-foreground">
-            <Heart className="size-4 shrink-0 brand-green" strokeWidth={2} />
+          <div className="flex items-center gap-3 rounded-3xl bg-surface-soft px-4 py-3.5 text-sm text-muted-foreground">
+            <Plus className="size-4 shrink-0 brand-green" strokeWidth={2} />
             <p>
-              Tip: tap the heart on any product to add it straight to a list.
+              Tip: tap + on any product to add it to a list or create a new one.
             </p>
           </div>
         </>
       ) : (
-        <div className="rounded-3xl border border-dashed border-border bg-white px-6 py-14 text-center">
+        <div className="rounded-3xl bg-white px-6 py-14 text-center">
           <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[var(--brand-green-light)]">
-            <Heart className="size-6 brand-green" strokeWidth={2} />
+            <ListChecks className="size-6 brand-green" strokeWidth={2} />
           </div>
           <h2 className="mt-4 font-heading text-xl font-medium">
             No lists yet
           </h2>
           <p className="mx-auto mt-1.5 max-w-sm text-sm text-muted-foreground">
-            Create a list, then heart products as you browse to build your
+            Create a list, then tap + on products as you browse to build your
             weekly shop.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2.5">
@@ -127,27 +107,7 @@ export default function ListsPage() {
         </div>
       )}
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="font-heading">Create a list</DialogTitle>
-          </DialogHeader>
-          <Input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="e.g. Braai Saturday"
-            autoFocus
-          />
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setOpen(false)}>
-              Cancel
-            </Button>
-            <Button onClick={onCreate}>
-              Create
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <ListSheet open={open} onOpenChange={setOpen} />
     </div>
   );
 }

@@ -61,7 +61,7 @@ export function CategoryStrip({ className }: { className?: string }) {
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
-                className="flex shrink-0 items-center gap-2.5 rounded-full border border-border bg-white py-1.5 pl-1.5 pr-4 text-sm font-medium shadow-xs transition-all hover:border-[var(--brand-green)]/40 hover:shadow-sm active:scale-[0.97]"
+                className="flex shrink-0 items-center gap-2.5 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-sm font-medium shadow-xs transition-all hover:shadow-sm active:scale-[0.97]"
               >
                 <span className="flex size-8 items-center justify-center rounded-full bg-[var(--brand-green-light)]">
                   <Icon className="size-4 brand-green" strokeWidth={2} />
@@ -113,7 +113,7 @@ export function CategoryStrip({ className }: { className?: string }) {
                 href={`/category/${category.slug}`}
                 className="group flex w-[88px] shrink-0 flex-col items-center gap-2.5 text-center"
               >
-                <span className="flex size-14 items-center justify-center rounded-2xl border border-border bg-surface-soft text-foreground transition-colors group-hover:border-foreground/20 group-hover:bg-block-cream">
+                <span className="flex size-14 items-center justify-center rounded-2xl bg-surface-soft text-foreground transition-colors group-hover:bg-block-cream">
                   <Icon className="size-7" strokeWidth={1.5} />
                 </span>
                 <span className="line-clamp-2 text-xs font-medium leading-tight text-muted-foreground group-hover:text-foreground">

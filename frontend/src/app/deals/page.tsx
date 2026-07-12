@@ -135,7 +135,7 @@ export default function DealsPage() {
       {loading ? (
         <ProductGridSkeleton />
       ) : error ? (
-        <div className="rounded-xl border border-dashed border-border px-6 py-16 text-center text-sm text-muted-foreground">
+        <div className="rounded-3xl bg-white px-6 py-16 text-center text-sm text-muted-foreground">
           {error}
         </div>
       ) : sorted.length ? (
@@ -145,7 +145,7 @@ export default function DealsPage() {
           ))}
         </div>
       ) : (
-        <div className="rounded-xl border border-dashed border-border px-6 py-16 text-center text-sm text-muted-foreground">
+        <div className="rounded-3xl bg-white px-6 py-16 text-center text-sm text-muted-foreground">
           No deals in this filter right now.
         </div>
       )}

@@ -11,6 +11,11 @@ import {
 } from "@/lib/api/normalize";
 import type { Product } from "@/types";
 import type { RawApiProduct } from "@/lib/api/client";
+import {
+  expandSearchQueries,
+  productMatchesAllTokens,
+  rankSearchResults,
+} from "@/lib/search-query";
 
 const FEATURED_QUERIES = ["milk", "bread", "chicken", "coffee"];
 
@@ -52,7 +57,30 @@ function extractRawProducts(
 }
 
 export async function searchProducts(query: string): Promise<Product[]> {
-  return searchApi(query);
+  const q = query.trim();
+  if (!q) return [];
+
+  const variants = expandSearchQueries(q);
+  const byName = new Map<string, Product>();
+
+  await Promise.all(
+    variants.map(async (variant) => {
+      const results = await searchApi(variant);
+      for (const product of results) {
+        if (!byName.has(product.name)) byName.set(product.name, product);
+      }
+    })
+  );
+
+  let products = [...byName.values()];
+
+  const words = q.split(/\s+/).filter((w) => w.length > 1);
+  if (words.length > 1) {
+    const strict = products.filter((p) => productMatchesAllTokens(p.name, q));
+    if (strict.length) products = strict;
+  }
+
+  return rankSearchResults(products, q);
 }
 
 export async function getProductById(id: string): Promise<Product | undefined> {

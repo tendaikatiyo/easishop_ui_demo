@@ -5,7 +5,6 @@ import { AddToListButton } from "@/components/product/add-to-list-button";
 import { ProductImage } from "@/components/product/product-image";
 import { PriceComparisonPanel } from "@/components/product/price-comparison-panel";
 import { SimilarProducts } from "@/components/product/similar-products";
-import { formatRand, getLowestPrice } from "@/lib/catalog";
 import { getProductById } from "@/lib/products";
 import { ProductViewTracker } from "./product-tracker";
 
@@ -18,7 +17,6 @@ export default async function ProductPage({
   const product = await getProductById(id);
   if (!product) notFound();
 
-  const lowest = getLowestPrice(product);
   const hasKnownCategory =
     product.categorySlug && product.categorySlug !== "general";
 
@@ -43,7 +41,7 @@ export default async function ProductPage({
       {/* Mobile: price-first, compact image */}
       <div className="md:hidden space-y-5">
         <div className="flex gap-3">
-          <div className="relative size-20 shrink-0 overflow-hidden rounded-lg border border-border bg-white">
+          <div className="relative size-20 shrink-0 overflow-hidden rounded-2xl bg-white">
             <ProductImage
               src={product.image}
               alt={product.name}
@@ -61,14 +59,6 @@ export default async function ProductPage({
                 productName={product.name}
               />
             </div>
-            {lowest ? (
-              <p className="mt-1 text-sm">
-                <span className="font-heading text-xl font-bold text-primary">
-                  {formatRand(lowest.price)}
-                </span>
-                <span className="text-muted-foreground"> lowest at {lowest.retailer}</span>
-              </p>
-            ) : null}
           </div>
         </div>
         <PriceComparisonPanel product={product} />
@@ -76,19 +66,19 @@ export default async function ProductPage({
 
       {/* Desktop: efficient two-column */}
       <div className="hidden gap-8 md:grid md:grid-cols-[280px_1fr]">
-        <div className="space-y-3">
-          <div className="relative aspect-square overflow-hidden rounded-xl border border-border bg-white">
-            <ProductImage
-              src={product.image}
-              alt={product.name}
-              className="object-contain p-6"
-              sizes="280px"
-              priority
-            />
-          </div>
-          <div className="flex items-start justify-between gap-2">
+        <div className="relative aspect-square overflow-hidden rounded-[32px] bg-white">
+          <ProductImage
+            src={product.image}
+            alt={product.name}
+            className="object-contain p-6"
+            sizes="280px"
+            priority
+          />
+        </div>
+        <div className="space-y-6">
+          <div className="flex items-start justify-between gap-3">
             <div>
-              <h1 className="font-heading text-2xl font-semibold leading-tight">
+              <h1 className="font-heading text-3xl font-semibold leading-tight">
                 {product.name}
               </h1>
               {hasKnownCategory ? (
@@ -99,8 +89,8 @@ export default async function ProductPage({
             </div>
             <AddToListButton productId={product.id} productName={product.name} />
           </div>
+          <PriceComparisonPanel product={product} />
         </div>
-        <PriceComparisonPanel product={product} />
       </div>
 
       <Suspense fallback={null}>

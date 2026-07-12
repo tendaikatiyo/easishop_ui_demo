@@ -1,22 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   formatRand,
   getLowestPrice,
   getSavingsAmount,
 } from "@/lib/catalog";
-import type { RetailerPrice } from "@/types";
+import { getRetailerLogo } from "@/lib/retailers";
 import { AddToListButton } from "@/components/product/add-to-list-button";
 import { DealBadge } from "@/components/product/deal-badge";
 import { ProductImage } from "@/components/product/product-image";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/types";
-
-function getProductSubtitle(lowest: RetailerPrice): string {
-  if (lowest.unitLabel) return `${lowest.retailer} · ${lowest.unitLabel}`;
-  return lowest.retailer;
-}
 
 export function ProductCard({ product }: { product: Product }) {
   const lowest = getLowestPrice(product);
@@ -60,13 +56,22 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
 
       <Link href={`/product/${product.id}`} className="flex flex-col gap-2.5">
-        <div className="space-y-1 px-1">
-          {lowest ? (
-            <p className="line-clamp-1 text-xs text-foreground/70">
-              {getProductSubtitle(lowest)}
-            </p>
+        <div className="flex items-start gap-2 px-1">
+          {lowest?.retailer && getRetailerLogo(lowest.retailer) ? (
+            <span
+              className="relative mt-px size-5 shrink-0 overflow-hidden rounded-full border border-border bg-white"
+              title={lowest.retailer}
+            >
+              <Image
+                src={getRetailerLogo(lowest.retailer)!}
+                alt={lowest.retailer}
+                fill
+                className="object-contain p-0.5"
+                sizes="20px"
+              />
+            </span>
           ) : null}
-          <p className="line-clamp-2 font-semibold leading-snug">
+          <p className="line-clamp-2 text-sm font-medium leading-snug text-foreground/75">
             {product.name}
           </p>
         </div>

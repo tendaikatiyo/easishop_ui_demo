@@ -120,11 +120,11 @@ export function BarcodeScanner({
         </DialogHeader>
 
         {!scanned ? (
-          <div className="overflow-hidden rounded-lg border border-border bg-black">
+          <div className="overflow-hidden rounded-3xl bg-black">
             <div id="easishop-barcode-reader" className="min-h-[240px] w-full" />
           </div>
         ) : (
-          <div className="rounded-lg border border-border bg-muted px-4 py-6 text-center">
+          <div className="rounded-3xl bg-muted px-4 py-6 text-center">
             <p className="text-sm text-muted-foreground">Detected code</p>
             <p className="mt-1 font-heading text-xl font-semibold tracking-wide">
               {scanned}

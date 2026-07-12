@@ -2,6 +2,7 @@ import type { DemoUser, AnalyticsEvent } from "@/types";
 
 const USER_KEY = "easishop.demo.user";
 const EVENTS_KEY = "easishop.demo.events";
+const VISITED_KEY = "easishop.demo.visited";
 const MAX_EVENTS = 200;
 
 export const DEFAULT_USER: DemoUser = {
@@ -71,4 +72,14 @@ export function pushEvent(event: AnalyticsEvent): void {
   if (!canUseStorage()) return;
   const events = [event, ...getEvents()].slice(0, MAX_EVENTS);
   localStorage.setItem(EVENTS_KEY, JSON.stringify(events));
+}
+
+export function isReturningVisitor(): boolean {
+  if (!canUseStorage()) return false;
+  return localStorage.getItem(VISITED_KEY) === "1";
+}
+
+export function markVisited(): void {
+  if (!canUseStorage()) return;
+  localStorage.setItem(VISITED_KEY, "1");
 }
