@@ -86,8 +86,8 @@ function CategoryPickerSheet({
         side={isDesktop ? "left" : "bottom"}
         className={
           isDesktop
-            ? "w-full max-w-md border-r-0 rounded-r-3xl"
-            : "max-h-[85vh] rounded-t-2xl"
+            ? "w-full max-w-md"
+            : "max-h-[85vh]"
         }
       >
         <SheetHeader>

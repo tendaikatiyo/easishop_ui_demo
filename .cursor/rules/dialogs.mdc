@@ -1,0 +1,37 @@
+---
+description: Bubble-feel dialog and sheet preferences for EasiShop UI
+globs: frontend/src/components/ui/dialog.tsx,frontend/src/components/ui/sheet.tsx,frontend/src/components/**/*dialog*,frontend/src/components/**/*sheet*,frontend/src/components/lists/**
+alwaysApply: false
+---
+
+# Dialog & sheet preferences
+
+Dialogs and sheets must match the product-card **bubble** aesthetic — soft, rounded, floating. Prefer editing shared `Dialog` / `Sheet` primitives so every modal inherits the look.
+
+## Shape & surface
+
+- Container: `rounded-[32px]` (sheets: `rounded-t-[32px]` / side sheets with matching large radii)
+- White surface, soft `shadow-xl` — **no** hairline rings, borders, or bordered footer strips
+- Generous padding (`p-5`–`p-6`); airy spacing, not dense shadcn defaults
+- Overlay: soft darken + light blur (`bg-black/20`, `backdrop-blur-sm`)
+
+## Controls
+
+- Close button: circular (`size-9 rounded-full`), soft grey fill (`bg-zinc-100`), like the product-card `+`
+- Primary / secondary actions: **pill** buttons (`h-11 rounded-full px-5`)
+- Inputs in dialogs: pill (`rounded-full`), soft fill (`bg-zinc-100`), no hard border
+- List rows / options: soft bubbles (`rounded-[28px]`, muted fill), circular trailing `+` / check — not flat `rounded-lg` menu rows
+
+## Patterns
+
+- Use shared `@/components/ui/dialog` (and `sheet`) rather than one-off modal chrome
+- Avoid default shadcn “box” look: small radius, `ring-1`, muted footer bar with `border-t`
+- Reference: product card (`rounded-[32px]`–`[40px]`, pill price, circular `+`)
+
+```tsx
+// ❌ BAD — sharp default dialog
+className="rounded-xl ring-1 ring-foreground/10 p-4"
+
+// ✅ GOOD — bubble dialog
+className="rounded-[32px] bg-white p-6 shadow-xl"
+```

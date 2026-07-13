@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Plus } from "lucide-react";
+import { Check, ListChecks, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import {
   Dialog,
   DialogContent,
@@ -90,7 +88,7 @@ export function ListSheet({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md" showCloseButton>
+      <DialogContent className="gap-5 sm:max-w-md">
         <DialogHeader>
           <DialogTitle>
             {showCreate
@@ -109,24 +107,20 @@ export function ListSheet({
         </DialogHeader>
 
         {showCreate ? (
-          <div className="grid gap-3">
-            <div className="grid gap-2">
-              <Label htmlFor="list-name">List name</Label>
-              <Input
-                id="list-name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Braai Saturday"
-                autoFocus
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") onCreateList();
-                }}
-              />
-            </div>
-          </div>
+          <Input
+            id="list-name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="e.g. Braai Saturday"
+            autoFocus
+            className="h-12 rounded-full border-0 bg-zinc-100 px-5 shadow-none focus-visible:ring-2 focus-visible:ring-ring/40"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") onCreateList();
+            }}
+          />
         ) : (
           <div className="grid gap-3">
-            <ul className="max-h-[40vh] space-y-1 overflow-y-auto">
+            <ul className="max-h-[40vh] space-y-2 overflow-y-auto">
               {lists.map((list) => {
                 const saved = isInList(list.id, productId!);
                 return (
@@ -135,11 +129,26 @@ export function ListSheet({
                       type="button"
                       onClick={() => onToggleList(list.id, list.name)}
                       className={cn(
-                        "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors",
-                        "hover:bg-muted focus-visible:bg-muted focus-visible:outline-none",
-                        saved && "bg-muted"
+                        "flex w-full items-center gap-3 rounded-[28px] p-3.5 text-left transition-colors",
+                        saved
+                          ? "bg-[var(--brand-green-light)]"
+                          : "bg-zinc-100 hover:bg-zinc-200/80"
                       )}
                     >
+                      <span
+                        className={cn(
+                          "flex size-10 shrink-0 items-center justify-center rounded-full",
+                          saved ? "bg-white shadow-sm" : "bg-white/80"
+                        )}
+                      >
+                        <ListChecks
+                          className={cn(
+                            "size-5",
+                            saved ? "brand-green" : "text-foreground/70"
+                          )}
+                          strokeWidth={2}
+                        />
+                      </span>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-medium">
                           {list.name}
@@ -149,31 +158,34 @@ export function ListSheet({
                           {list.items.length === 1 ? "" : "s"}
                         </p>
                       </div>
-                      {saved ? (
-                        <Check
-                          className="size-4 shrink-0 text-primary"
-                          strokeWidth={2.5}
-                        />
-                      ) : (
-                        <Plus
-                          className="size-4 shrink-0 text-muted-foreground"
-                          strokeWidth={2}
-                        />
-                      )}
+                      <span
+                        className={cn(
+                          "flex size-9 shrink-0 items-center justify-center rounded-full shadow-sm",
+                          saved
+                            ? "bg-[var(--brand-green)] text-white"
+                            : "bg-white text-zinc-600"
+                        )}
+                      >
+                        {saved ? (
+                          <Check className="size-4" strokeWidth={2.5} />
+                        ) : (
+                          <Plus className="size-4" strokeWidth={2.5} />
+                        )}
+                      </span>
                     </button>
                   </li>
                 );
               })}
             </ul>
 
-            <Separator />
-
             <Button
-              variant="outline"
-              className="w-full justify-start"
+              variant="ghost"
+              className="h-12 w-full justify-start gap-3 rounded-[28px] bg-zinc-100 px-3.5 hover:bg-zinc-200/80"
               onClick={() => setCreating(true)}
             >
-              <Plus className="size-4" />
+              <span className="flex size-10 items-center justify-center rounded-full bg-white shadow-sm">
+                <Plus className="size-4" strokeWidth={2.5} />
+              </span>
               Create new list
             </Button>
           </div>
@@ -182,15 +194,23 @@ export function ListSheet({
         {showCreate ? (
           <DialogFooter>
             {isPicker && lists.length > 0 ? (
-              <Button variant="outline" onClick={() => setCreating(false)}>
+              <Button
+                variant="ghost"
+                className="h-11 rounded-full px-5 bg-zinc-100 hover:bg-zinc-200"
+                onClick={() => setCreating(false)}
+              >
                 Back
               </Button>
             ) : (
-              <Button variant="outline" onClick={() => onOpenChange(false)}>
+              <Button
+                variant="ghost"
+                className="h-11 rounded-full px-5 bg-zinc-100 hover:bg-zinc-200"
+                onClick={() => onOpenChange(false)}
+              >
                 Cancel
               </Button>
             )}
-            <Button onClick={onCreateList}>
+            <Button className="h-11 rounded-full px-6" onClick={onCreateList}>
               {isPicker ? "Create & add" : "Create"}
             </Button>
           </DialogFooter>

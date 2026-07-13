@@ -47,13 +47,13 @@ export function CategoryStrip({ className }: { className?: string }) {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="flex shrink-0 items-center gap-2.5 rounded-full bg-foreground py-1.5 pl-1.5 pr-4 text-sm font-medium text-background shadow-xs transition-transform active:scale-[0.97]"
+            className="glass-dark flex shrink-0 items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4 text-sm font-medium text-white transition-transform active:scale-[0.97]"
           >
             <span className="flex size-8 items-center justify-center rounded-full bg-white/15">
-              <LayoutGrid className="size-4" strokeWidth={2} />
+              <LayoutGrid className="size-4 text-white" strokeWidth={2} />
             </span>
             All categories
-            <ChevronDown className="-ml-1 size-4 opacity-70" />
+            <ChevronDown className="-ml-1 size-4 text-white/70" />
           </button>
           {featured.map((category) => {
             const Icon = getCategoryIcon(category.slug);
@@ -61,7 +61,7 @@ export function CategoryStrip({ className }: { className?: string }) {
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
-                className="flex shrink-0 items-center gap-2.5 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-sm font-medium shadow-xs transition-all hover:shadow-sm active:scale-[0.97]"
+                className="glass glass-pill flex shrink-0 items-center gap-2.5 py-1.5 pl-1.5 pr-4 text-sm font-medium text-foreground transition-all active:scale-[0.97]"
               >
                 <span className="flex size-8 items-center justify-center rounded-full bg-[var(--brand-green-light)]">
                   <Icon className="size-4 brand-green" strokeWidth={2} />
@@ -81,7 +81,7 @@ export function CategoryStrip({ className }: { className?: string }) {
           variant="outline"
           onClick={scrollNext}
           aria-label="Scroll categories"
-          className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white shadow-md"
+          className="!absolute right-0 top-1/2 z-20 size-9 !-translate-y-1/2 rounded-full border-white/70 bg-white/85 shadow-sm backdrop-blur-md"
         >
           <ChevronRight className="size-4" />
         </Button>

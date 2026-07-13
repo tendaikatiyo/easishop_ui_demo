@@ -71,11 +71,6 @@ export function HomeHero() {
           <SearchCapsule
             variant="hero"
             className="w-full max-w-lg"
-            placeholder={
-              isReturning
-                ? "Milk, bread, or something new…"
-                : "What are you shopping for?"
-            }
           />
         </div>
       </div>

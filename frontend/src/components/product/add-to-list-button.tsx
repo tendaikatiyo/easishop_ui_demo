@@ -37,9 +37,9 @@ export function AddToListButton({
         onClick={onOpen}
         className={cn(
           "size-9 rounded-full shadow-sm transition-colors",
-          saved
-            ? "bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-950 dark:text-green-300 dark:hover:bg-green-900"
-            : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200",
+        saved
+          ? "glass-soft text-green-800 hover:bg-white/55 dark:bg-green-950 dark:text-green-300 dark:hover:bg-green-900"
+          : "glass-soft text-zinc-600 hover:bg-white/55",
           className
         )}
       >

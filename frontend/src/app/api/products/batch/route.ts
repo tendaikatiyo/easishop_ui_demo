@@ -3,6 +3,7 @@ import { getProductsByIds } from "@/lib/products";
 
 export async function GET(req: NextRequest) {
   const idsParam = req.nextUrl.searchParams.get("ids")?.trim() ?? "";
+  const fresh = req.nextUrl.searchParams.get("refresh") === "1";
   const ids = idsParam
     .split(",")
     .map((id) => id.trim())
@@ -13,7 +14,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const map = await getProductsByIds(ids);
+    const map = await getProductsByIds(ids, { fresh });
     const products = ids.map((id) => map[id]).filter(Boolean);
     return NextResponse.json({ products });
   } catch {

@@ -58,13 +58,15 @@ export interface ShoppingList {
 }
 
 export interface MarketingPrefs {
-  emailDeals: boolean;
-  pushAlerts: boolean;
-  smsOffers: boolean;
+  /** Consent to receive marketing emails */
+  emailMarketing: boolean;
 }
 
 export interface DemoUser {
+  username: string;
   name: string;
+  surname: string;
+  phone: string;
   email: string;
   marketingPrefs: MarketingPrefs;
   loyaltyCards: LoyaltyCard[];

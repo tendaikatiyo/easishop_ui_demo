@@ -32,3 +32,31 @@ export function PriceRowSkeleton() {
     </div>
   );
 }
+
+export function ListProductRowSkeleton() {
+  return (
+    <div className="flex items-center gap-3 rounded-2xl bg-white p-3">
+      <Skeleton className="size-14 shrink-0 rounded-lg" />
+      <div className="min-w-0 flex-1 space-y-2">
+        <Skeleton className="h-4 w-3/4" />
+        <div className="flex items-center gap-2">
+          <Skeleton className="size-5 shrink-0 rounded-full" />
+          <Skeleton className="h-4 w-16" />
+        </div>
+      </div>
+      <Skeleton className="h-8 w-16 shrink-0 rounded-full" />
+    </div>
+  );
+}
+
+export function ListProductSkeleton({ count = 4 }: { count?: number }) {
+  return (
+    <ul className="space-y-2">
+      {Array.from({ length: count }).map((_, i) => (
+        <li key={i}>
+          <ListProductRowSkeleton />
+        </li>
+      ))}
+    </ul>
+  );
+}

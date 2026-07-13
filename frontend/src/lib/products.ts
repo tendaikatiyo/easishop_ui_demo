@@ -20,15 +20,22 @@ import {
 const FEATURED_QUERIES = ["milk", "bread", "chicken", "coffee"];
 
 export const searchApi = cache(async (query: string): Promise<Product[]> => {
+  return searchApiUncached(query);
+});
+
+async function searchApiUncached(
+  query: string,
+  opts?: { fresh?: boolean }
+): Promise<Product[]> {
   const q = query.trim();
   if (!q) return [];
   try {
-    const data = await apiSearch(q);
+    const data = await apiSearch(q, opts);
     return normalizeSearchResults(data.products ?? []);
   } catch {
     return [];
   }
-});
+}
 
 async function searchCategory(slug: string): Promise<Product[]> {
   const queries = CATEGORY_SEARCH_QUERIES[slug] ?? [slug.replace(/-/g, " ")];
@@ -83,11 +90,17 @@ export async function searchProducts(query: string): Promise<Product[]> {
   return rankSearchResults(products, q);
 }
 
-export async function getProductById(id: string): Promise<Product | undefined> {
+export async function getProductById(
+  id: string,
+  opts?: { fresh?: boolean }
+): Promise<Product | undefined> {
   const name = productNameFromId(id);
   if (!name) return undefined;
 
-  const results = await searchApi(name.split(" ")[0] ?? name);
+  const query = name.split(" ")[0] ?? name;
+  const results = opts?.fresh
+    ? await searchApiUncached(query, { fresh: true })
+    : await searchApi(query);
   return (
     results.find((p) => p.id === id || p.name === name) ??
     results.find((p) => p.name.toLowerCase() === name.toLowerCase())
@@ -95,12 +108,13 @@ export async function getProductById(id: string): Promise<Product | undefined> {
 }
 
 export async function getProductsByIds(
-  ids: string[]
+  ids: string[],
+  opts?: { fresh?: boolean }
 ): Promise<Record<string, Product>> {
   const map: Record<string, Product> = {};
   await Promise.all(
     ids.map(async (id) => {
-      const product = await getProductById(id);
+      const product = await getProductById(id, opts);
       if (product) map[id] = product;
     })
   );
@@ -158,6 +172,33 @@ export async function getFeaturedProducts(limit = 8): Promise<Product[]> {
   for (const term of FEATURED_QUERIES) {
     const results = await searchApi(term);
     for (const p of results) {
+      if (!byName.has(p.name)) byName.set(p.name, p);
+      if (byName.size >= limit) break;
+    }
+    if (byName.size >= limit) break;
+  }
+
+  return [...byName.values()].slice(0, limit);
+}
+
+/** Products that have a price at the given retailer (by API name). */
+export async function getProductsByRetailer(
+  retailerApiName: string,
+  limit = 24
+): Promise<Product[]> {
+  const terms =
+    retailerApiName === "Dischem"
+      ? ["shampoo", "vitamin", "nivea", "cream", "toothpaste"]
+      : [...FEATURED_QUERIES, "eggs", "rice"];
+
+  const byName = new Map<string, Product>();
+
+  for (const term of terms) {
+    const results = await searchApi(term);
+    for (const p of results) {
+      if (!p.prices.some((price) => price.retailer === retailerApiName)) {
+        continue;
+      }
       if (!byName.has(p.name)) byName.set(p.name, p);
       if (byName.size >= limit) break;
     }

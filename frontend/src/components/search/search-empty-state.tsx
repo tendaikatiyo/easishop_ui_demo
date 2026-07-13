@@ -32,7 +32,7 @@ export function PopularSearchPills() {
         <Link
           key={term}
           href={`/search?q=${encodeURIComponent(term)}`}
-          className="rounded-full bg-surface-soft px-4 py-2 text-sm font-medium transition-all hover:bg-[var(--brand-green-soft)] active:scale-[0.97]"
+          className="glass glass-pill px-4 py-2 text-sm font-medium transition-all hover:bg-white/70 active:scale-[0.97]"
         >
           {term}
         </Link>
@@ -79,7 +79,7 @@ export function SearchEmptyState() {
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
-                className="flex items-center gap-2.5 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-sm font-medium shadow-xs transition-all hover:shadow-sm active:scale-[0.97]"
+                className="glass glass-pill flex items-center gap-2.5 py-1.5 pl-1.5 pr-4 text-sm font-medium transition-all active:scale-[0.97]"
               >
                 <span className="flex size-8 items-center justify-center rounded-full bg-[var(--brand-green-light)]">
                   <Icon className="size-4 brand-green" strokeWidth={2} />

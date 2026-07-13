@@ -37,7 +37,7 @@ export async function HomeDeals() {
         </div>
         <Button
           variant="ghost"
-          className="h-10 shrink-0 rounded-full bg-white/80 px-5 shadow-xs hover:bg-white"
+          className="h-10 shrink-0 glass px-5 hover:bg-white/70"
           render={<Link href="/deals" />}
         >
           See all

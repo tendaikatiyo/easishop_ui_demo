@@ -156,4 +156,167 @@
   .brand-green {
     color: var(--brand-green);
   }
+
+  @keyframes placeholder-flicker {
+    0% {
+      opacity: 0;
+      transform: translateY(5px);
+      filter: blur(3px);
+    }
+    16% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    78% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-5px);
+      filter: blur(3px);
+    }
+  }
+  .animate-placeholder-flicker {
+    animation: placeholder-flicker 2.4s ease-in-out both;
+  }
+
+  /*
+   * Liquid glass — frost + chromatic rim.
+   * No ::after overlay: positioned pseudos sit above unwrapped text nodes
+   * and ghost the labels (icons in spans looked fine; bare text did not).
+   */
+  .glass,
+  .glass-strong,
+  .glass-soft,
+  .glass-dark {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transform: translateZ(0);
+    border: 1px solid transparent;
+  }
+
+  .glass {
+    color: var(--foreground);
+    background:
+      linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.72) 0%,
+        rgba(255, 255, 255, 0.38) 45%,
+        rgba(200, 230, 255, 0.14) 100%
+      ),
+      color-mix(in srgb, white 52%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.92),
+      inset 1px 0 0 0 rgba(170, 220, 255, 0.2),
+      inset -1px 0 0 0 rgba(255, 190, 210, 0.12),
+      0 1px 2px rgba(15, 23, 15, 0.04),
+      0 4px 12px rgba(15, 23, 15, 0.04);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+  }
+
+  .glass-strong {
+    color: var(--foreground);
+    background:
+      linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.88) 0%,
+        rgba(255, 255, 255, 0.52) 45%,
+        rgba(210, 235, 255, 0.16) 100%
+      ),
+      color-mix(in srgb, white 68%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+      inset 1px 0 0 0 rgba(170, 220, 255, 0.22),
+      inset -1px 0 0 0 rgba(255, 190, 210, 0.14),
+      0 1px 2px rgba(15, 23, 15, 0.04),
+      0 6px 16px rgba(15, 23, 15, 0.05);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    backdrop-filter: blur(24px) saturate(190%);
+  }
+
+  .glass-soft {
+    color: var(--foreground);
+    background:
+      linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.22) 50%,
+        rgba(200, 230, 255, 0.1) 100%
+      ),
+      color-mix(in srgb, white 38%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+      inset 1px 0 0 0 rgba(170, 220, 255, 0.12),
+      inset -1px 0 0 0 rgba(255, 190, 210, 0.08),
+      0 1px 2px rgba(15, 23, 15, 0.03);
+    -webkit-backdrop-filter: blur(14px) saturate(170%);
+    backdrop-filter: blur(14px) saturate(170%);
+  }
+
+  .glass-dark {
+    color: #fff;
+    background:
+      linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.05) 40%,
+        rgba(120, 180, 255, 0.06) 100%
+      ),
+      color-mix(in srgb, black 78%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+      inset 1px 0 0 0 rgba(150, 210, 255, 0.14),
+      inset -1px 0 0 0 rgba(210, 170, 255, 0.1),
+      0 1px 2px rgba(0, 0, 0, 0.12);
+    -webkit-backdrop-filter: blur(16px) saturate(170%);
+    backdrop-filter: blur(16px) saturate(170%);
+  }
+
+  .glass-dark svg {
+    color: #fff;
+  }
+
+  .glass-pill {
+    @apply rounded-full;
+  }
+
+  /* Bottom nav / chrome — denser frost */
+  .glass-nav {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transform: translateZ(0);
+    border: 1px solid color-mix(in srgb, white 70%, transparent);
+    background:
+      linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.78) 0%,
+        rgba(255, 255, 255, 0.55) 45%,
+        rgba(255, 255, 255, 0.62) 100%
+      ),
+      color-mix(in srgb, white 72%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+      inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.35),
+      0 1px 2px rgba(15, 23, 15, 0.05),
+      0 10px 28px rgba(15, 23, 15, 0.08);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    backdrop-filter: blur(28px) saturate(180%);
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-strong,
+  .glass-soft {
+    background: rgba(255, 255, 255, 0.92);
+  }
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.88);
+  }
 }

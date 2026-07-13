@@ -14,7 +14,6 @@ import { cn } from "@/lib/utils";
 import { useDemoUser } from "@/hooks/use-demo-user";
 import { totalListItems } from "@/lib/lists";
 import { BackButton } from "@/components/layout/back-button";
-import { FloatingListPill } from "@/components/lists/floating-list-pill";
 import { OnboardingSheet } from "@/components/onboarding/onboarding-sheet";
 import { LocationPrompt } from "@/components/layout/location-prompt";
 import {
@@ -32,7 +31,7 @@ const mobileNav = [
   { href: "/search", label: "Search", icon: Search },
   { href: "/deals", label: "Deals", icon: Percent },
   { href: "/lists", label: "Lists", icon: ListChecks },
-  { href: "/profile", label: "You", icon: User },
+  { href: "/profile", label: "Profile", icon: User },
 ] as const;
 
 const desktopNav = [
@@ -56,10 +55,10 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-background/75 backdrop-blur-lg supports-[backdrop-filter]:bg-background/65">
+      <header className="sticky top-0 z-40 border-b border-white/30 bg-background/45 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-background/35">
         <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4 md:h-[4.25rem] md:gap-4">
           {pathname !== "/" ? (
-            <BackButton className="-ml-1 shrink-0 md:hidden" />
+            <BackButton className="-ml-1 shrink-0 glass-soft md:hidden" />
           ) : null}
 
           <Link href="/" className="shrink-0">
@@ -72,7 +71,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
             {!onHome ? (
               <Link
                 href="/search"
-                className="flex items-center gap-2.5 rounded-full bg-white px-4 py-2.5 text-sm text-foreground/45 shadow-xs transition-colors hover:text-foreground/70"
+                className="glass glass-pill flex items-center gap-2.5 px-4 py-2.5 text-sm text-foreground/45 transition-colors hover:text-foreground/70"
               >
                 <Search className="size-4 shrink-0" strokeWidth={2} />
                 <span className="truncate">{searchPlaceholder(isReturning)}</span>
@@ -83,20 +82,21 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
           <nav className="hidden shrink-0 items-center gap-0.5 md:flex">
             {desktopNav.map((item) => {
               const active = isActive(pathname, item.href);
+              const showCount = item.href === "/lists" && listCount > 0;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                    "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium transition-all",
                     active
-                      ? "bg-white text-foreground shadow-xs"
-                      : "text-foreground/55 hover:text-foreground"
+                      ? "glass-strong text-foreground"
+                      : "text-foreground/55 hover:glass-soft hover:text-foreground"
                   )}
                 >
                   {item.label}
-                  {item.href === "/lists" && listCount > 0 ? (
-                    <span className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-[var(--brand-green)] text-[10px] font-medium text-white">
+                  {showCount ? (
+                    <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--brand-green)] px-1.5 text-[10px] font-medium text-white">
                       {listCount}
                     </span>
                   ) : null}
@@ -109,10 +109,10 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
               onClick={toggleCategories}
               aria-expanded={categoriesOpen}
               className={cn(
-                "rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                "rounded-full px-3.5 py-2 text-sm font-medium transition-all",
                 onCategoryPage || categoriesOpen
-                  ? "bg-white text-foreground shadow-xs"
-                  : "text-foreground/55 hover:text-foreground"
+                  ? "glass-strong text-foreground"
+                  : "text-foreground/55 hover:glass-soft hover:text-foreground"
               )}
             >
               Categories
@@ -121,12 +121,12 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
             <Link
               href="/profile"
               className={cn(
-                "ml-1 flex size-9 items-center justify-center rounded-full transition-colors",
+                "ml-1 flex size-9 items-center justify-center rounded-full transition-all",
                 isActive(pathname, "/profile")
-                  ? "bg-white text-foreground shadow-xs"
-                  : "bg-white/60 text-foreground/70 hover:bg-white hover:text-foreground hover:shadow-xs"
+                  ? "glass-strong text-foreground"
+                  : "glass-soft text-foreground/70 hover:glass-strong hover:text-foreground"
               )}
-              aria-label="Your profile"
+              aria-label="Profile"
             >
               <User className="size-4" strokeWidth={2} />
             </Link>
@@ -136,7 +136,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
             type="button"
             variant="ghost"
             size="icon"
-            className="ml-auto shrink-0 rounded-full md:hidden"
+            className="ml-auto shrink-0 glass-soft md:hidden"
             aria-label="Browse categories"
             aria-expanded={categoriesOpen}
             onClick={toggleCategories}
@@ -146,35 +146,35 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-24 pt-6 md:pb-10">
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-28 pt-6 md:pb-10">
         {children}
       </main>
 
-      <nav className="fixed inset-x-0 bottom-0 z-40 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/70 md:hidden">
-        <ul className="mx-auto grid max-w-lg grid-cols-5 px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1.5">
+      <nav
+        className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden"
+        aria-label="Primary"
+      >
+        <ul className="glass-nav glass-pill pointer-events-auto grid w-full max-w-md grid-cols-5 gap-0.5 p-1.5">
           {mobileNav.map((item) => {
             const Icon = item.icon;
             const active = isActive(pathname, item.href);
             return (
-              <li key={item.href}>
+              <li key={item.href} className="min-w-0">
                 <Link
                   href={item.href}
                   className={cn(
-                    "relative flex flex-col items-center gap-1 py-1.5 text-[10px] font-medium transition-colors",
-                    active ? "text-foreground" : "text-foreground/45"
+                    "relative flex flex-col items-center gap-0.5 rounded-full px-1 py-1.5 text-[10px] font-medium transition-colors",
+                    active
+                      ? "bg-white/90 text-foreground shadow-sm"
+                      : "text-foreground/45 hover:bg-white/35 hover:text-foreground/70"
                   )}
                 >
-                  <span
-                    className={cn(
-                      "flex size-9 items-center justify-center rounded-2xl transition-all",
-                      active && "bg-white shadow-xs"
-                    )}
-                  >
+                  <span className="flex size-7 items-center justify-center">
                     <Icon className="size-5" strokeWidth={active ? 2.25 : 2} />
                   </span>
                   {item.label}
                   {item.href === "/lists" && listCount > 0 ? (
-                    <span className="absolute right-3 top-0 flex size-4 items-center justify-center rounded-full bg-[var(--brand-green)] text-[9px] font-medium text-white">
+                    <span className="absolute right-1 top-0.5 flex size-4 items-center justify-center rounded-full bg-[var(--brand-green)] text-[9px] font-medium text-white">
                       {listCount}
                     </span>
                   ) : null}
@@ -185,7 +185,6 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
         </ul>
       </nav>
 
-      <FloatingListPill />
       <OnboardingSheet />
       <LocationPrompt />
     </>

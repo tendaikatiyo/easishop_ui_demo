@@ -61,7 +61,7 @@ export function LocationPrompt() {
 
   return (
     <Sheet open={open} onOpenChange={(v) => !v && markAsked()}>
-      <SheetContent side="bottom" className="rounded-t-2xl">
+      <SheetContent side="bottom">
         <SheetHeader>
           <SheetTitle className="font-heading flex items-center gap-2">
             <MapPin className="size-5 text-primary" />
@@ -73,10 +73,17 @@ export function LocationPrompt() {
           </SheetDescription>
         </SheetHeader>
         <div className="mt-4 flex gap-2 px-4 pb-6">
-          <Button variant="outline" className="flex-1" onClick={markAsked}>
+          <Button
+            variant="ghost"
+            className="h-11 flex-1 rounded-full bg-zinc-100 hover:bg-zinc-200"
+            onClick={markAsked}
+          >
             Not now
           </Button>
-          <Button className="flex-1 bg-primary hover:bg-primary/90" onClick={requestLocation}>
+          <Button
+            className="h-11 flex-1 rounded-full bg-primary hover:bg-primary/90"
+            onClick={requestLocation}
+          >
             Use my location
           </Button>
         </div>

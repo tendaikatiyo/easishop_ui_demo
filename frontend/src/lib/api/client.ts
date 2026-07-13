@@ -20,21 +20,24 @@ export function getApiAuthHeader(): string {
 
 export async function apiFetch<T>(
   path: string,
-  init?: RequestInit
+  init?: RequestInit & { fresh?: boolean }
 ): Promise<T> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30_000);
+  const { fresh, ...requestInit } = init ?? {};
 
   try {
     const res = await fetch(`${BASE_URL}${path}`, {
-      ...init,
+      ...requestInit,
       signal: controller.signal,
       headers: {
         Authorization: getApiAuthHeader(),
         "Content-Type": "application/json",
-        ...init?.headers,
+        ...requestInit?.headers,
       },
-      next: { revalidate: 300 },
+      ...(fresh
+        ? { cache: "no-store" as const }
+        : { next: { revalidate: 300 } }),
     });
 
     if (!res.ok) {
@@ -48,10 +51,11 @@ export async function apiFetch<T>(
   }
 }
 
-export async function apiSearch(query: string) {
+export async function apiSearch(query: string, opts?: { fresh?: boolean }) {
   return apiFetch<{ products: RawApiProduct[] }>("/search", {
     method: "POST",
     body: JSON.stringify({ query }),
+    fresh: opts?.fresh,
   });
 }
 
