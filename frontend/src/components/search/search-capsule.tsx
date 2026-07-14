@@ -2,12 +2,15 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ScanBarcode2, Search } from "reicon-react";
+// Barcode feature temporarily disabled
+// import { ArrowRight, ScanBarcode2, Search } from "reicon-react";
+import { ArrowRight, Search } from "reicon-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
-import { BarcodeScanner } from "@/components/search/barcode-scanner";
+// import { BarcodeScanner } from "@/components/search/barcode-scanner";
+import { startPageTransition } from "@/components/layout/navigation-loader";
 
 const SAMPLE_QUERIES = [
   "Milk",
@@ -47,7 +50,7 @@ export function SearchCapsule({
 }) {
   const router = useRouter();
   const [query, setQuery] = useState(initialQuery);
-  const [scanOpen, setScanOpen] = useState(false);
+  // const [scanOpen, setScanOpen] = useState(false);
   const [focused, setFocused] = useState(false);
   const [queries, setQueries] = useState(SAMPLE_QUERIES);
   const [index, setIndex] = useState(0);
@@ -73,6 +76,7 @@ export function SearchCapsule({
     const q = query.trim();
     if (!q) return;
     track("search", { query: q, method: "text" });
+    startPageTransition();
     router.push(`/search?q=${encodeURIComponent(q)}`);
   }
 
@@ -116,6 +120,7 @@ export function SearchCapsule({
             )}
           />
         </div>
+        {/* Barcode feature temporarily disabled
         <Button
           type="button"
           size="icon-sm"
@@ -129,6 +134,7 @@ export function SearchCapsule({
         >
           <ScanBarcode2 size={16} aria-hidden />
         </Button>
+        */}
         {variant === "hero" ? (
           <Button
             type="submit"
@@ -144,7 +150,7 @@ export function SearchCapsule({
           </Button>
         )}
       </form>
-      <BarcodeScanner open={scanOpen} onOpenChange={setScanOpen} />
+      {/* <BarcodeScanner open={scanOpen} onOpenChange={setScanOpen} /> */}
     </>
   );
 }

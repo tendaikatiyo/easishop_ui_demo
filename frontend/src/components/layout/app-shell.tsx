@@ -21,8 +21,10 @@ import {
 } from "@/components/product/category-picker";
 import { HashScroll } from "@/components/layout/hash-scroll";
 import { NavigationHistory } from "@/components/layout/navigation-history";
+import { NavigationLoader } from "@/components/layout/navigation-loader";
 import { useReturningVisitor } from "@/hooks/use-returning-visitor";
 import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
 
 const searchPlaceholder = (returning: boolean) =>
   returning ? "Milk, bread, or something new…" : "What are you shopping for?";
@@ -59,6 +61,9 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
     <>
       <HashScroll />
       <NavigationHistory />
+      <Suspense fallback={null}>
+        <NavigationLoader />
+      </Suspense>
       <header className="sticky top-0 z-40 border-b border-white/50 bg-white/80 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/72">
         <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4 md:h-[4.25rem] md:gap-4">
           {pathname !== "/" ? (
@@ -145,10 +150,8 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
             aria-expanded={open}
             onClick={() => openBrowse("stores")}
             className={cn(
-              "ml-auto h-9 shrink-0 gap-1.5 rounded-full px-2.5 text-sm font-medium md:hidden",
-              onBrowsePage || open
-                ? "glass-strong text-foreground"
-                : "glass-soft text-foreground/80"
+              "ml-auto h-9 shrink-0 gap-1.5 rounded-full bg-zinc-100 px-2.5 text-sm font-medium text-foreground hover:bg-zinc-200/80 md:hidden",
+              (onBrowsePage || open) && "bg-zinc-200 text-foreground"
             )}
           >
             <Compass size={16} aria-hidden />

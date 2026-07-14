@@ -37,12 +37,13 @@ Nav UX plan (implemented): [`ux-nav-explore-header.md`](./ux-nav-explore-header.
 
 | Area | What changed |
 |---|---|
-| **Nav / Explore** | Explore renamed from Browse; mobile header **compass + “Explore”**; drawer defaults to **Stores**; **All categories** opens **Aisles**; home order Search → Stores → Categories → Deals → Featured. |
-| **P0–P5 wayfinding** | Labeled Explore; Explore rules; home ladder; browse→search link; add-to-list toast **View list** + list **Add more**; hierarchical Back + hash scroll + in-app path stack. |
+| **Nav / Explore** | Explore renamed from Browse; mobile header **compass + “Explore”** (soft gray pill on **mobile only**); drawer defaults to **Stores**; mobile drawer is **right-side** (keyboard-safe); **All categories** opens **Aisles**; home order Search → Stores → Categories → Deals → Featured. |
+| **P0–P5 wayfinding** | Labeled Explore; Explore rules; home ladder; browse→search link; add-to-list promise toast + **View list** + list **Add more**; hierarchical Back + hash scroll + in-app path stack; **NavigationLoader** for slow page transitions. |
 | **Footer / legal** | Desktop footer; `/about`, `/faq`, `/privacy`, `/terms`; mobile Profile utility links + feedback; social pills with brand SVGs. |
 | **Visual polish** | Softened nav frost; store/product/comparison logos `object-cover` in circles; add-to-list `+` solid zinc (readable on white product images). |
 | **Icons** | Migrated off lucide → **reicon-react**; category icons in client-only `category-icons.tsx`. |
-| **Compare / search** | Tied retailers all show Lowest badge; removed “Lay’s chips” from sample search placeholders. |
+| **Compare / search** | Tied retailers all show Lowest badge; removed “Lay’s chips” from sample search placeholders; **barcode UI temporarily commented out** (scanner + API remain). |
+| **Toasts** | Sonner styled like bubble dialogs; list add/create/remove use `toast.promise`. |
 | **Bugfix pass** | Hash scroll, search capsule `q` sync, safe Back, list remove race, empty lists (no reseed), media-query flicker, barcode abort/`res.ok`, toaster without ThemeProvider. |
 
 ## Architecture cheat-sheet
@@ -68,7 +69,7 @@ Nav UX plan (implemented): [`ux-nav-explore-header.md`](./ux-nav-explore-header.
 | Route | Purpose |
 |---|---|
 | `/` | Home — hero, **stores**, categories, deals, featured |
-| `/search` | Search + barcode |
+| `/search` | Search (barcode UI currently disabled) |
 | `/store/[slug]` | Products by retailer |
 | `/category/[slug]` | Aisle (search-term approximated) |
 | `/deals` | Price drops |
@@ -80,9 +81,11 @@ Nav UX plan (implemented): [`ux-nav-explore-header.md`](./ux-nav-explore-header.
 
 See `.cursor/rules/dialogs.mdc`. Bubble feel: `rounded-[32px]`, white surface,
 soft shadow, pill inputs/buttons. List picker: `ListSheet`. Explore: category picker sheet.
+Toasts (Sonner) match the same bubble look; list mutations use promise-style toasts.
 
 ## Known issues / next steps
 
+- **Barcode** — UI is commented out in `search-capsule.tsx`; re-enable by restoring the scan button + `BarcodeScanner` mount. Scanner file and `/api/search?barcode=1` remain.
 - **Search** — frontend shim is a workaround; fuzzy search belongs on the backend.
 - **Dischem / Shoprite** — API field gaps (`dsc` often empty); not a frontend bug.
 - **Categories** — still search-term approximated; need a real category endpoint.

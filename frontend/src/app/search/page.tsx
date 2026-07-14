@@ -50,8 +50,8 @@ export default async function SearchPage({
           Search
         </h1>
         <p className="max-w-md text-sm text-muted-foreground">
-          Type a product name, or scan a barcode — then open a result to compare
-          and add it to your list.
+          Type a product name, then open a result to compare and add it to your
+          list.
         </p>
       </div>
       <SearchCapsule initialQuery={q} autoFocus={!q} />

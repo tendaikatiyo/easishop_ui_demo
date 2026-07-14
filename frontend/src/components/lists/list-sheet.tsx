@@ -22,6 +22,7 @@ import {
   toggleInList,
 } from "@/lib/lists";
 import { track } from "@/lib/analytics";
+import { startPageTransition } from "@/components/layout/navigation-loader";
 import { cn } from "@/lib/utils";
 
 type ListSheetProps = {
@@ -31,6 +32,10 @@ type ListSheetProps = {
   productId?: string;
   productName?: string;
 };
+
+function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 export function ListSheet({
   open,
@@ -53,12 +58,49 @@ export function ListSheet({
     }
   }, [open]);
 
-  function notifyAdded(listId: string, listName: string) {
-    toast.success(`Added to ${listName}`, {
-      action: {
-        label: "View list",
-        onClick: () => router.push(`/lists/${listId}`),
+  function viewListAction(listId: string) {
+    return {
+      label: "View list",
+      onClick: () => {
+        startPageTransition();
+        router.push(`/lists/${listId}`);
       },
+    };
+  }
+
+  function notifyAdded(listId: string, listName: string) {
+    toast.promise(
+      wait(320).then(() => ({ listId, listName })),
+      {
+        loading: "Adding to list…",
+        success: (data) => ({
+          message: `Added to ${data.listName}`,
+          action: viewListAction(data.listId),
+        }),
+        error: "Couldn't add to list",
+      }
+    );
+  }
+
+  function notifyCreated(listId: string, listName: string) {
+    toast.promise(
+      wait(320).then(() => ({ listId, listName })),
+      {
+        loading: "Creating list…",
+        success: (data) => ({
+          message: `Created ${data.listName}`,
+          action: viewListAction(data.listId),
+        }),
+        error: "Couldn't create list",
+      }
+    );
+  }
+
+  function notifyRemoved(listName: string) {
+    toast.promise(wait(280).then(() => listName), {
+      loading: "Updating list…",
+      success: (name) => `Removed from ${name}`,
+      error: "Couldn't update list",
     });
   }
 
@@ -72,12 +114,7 @@ export function ListSheet({
       track("add_to_list", { productId, productName, listId: list.id });
       notifyAdded(list.id, trimmed);
     } else {
-      toast.success(`Created ${trimmed}`, {
-        action: {
-          label: "View list",
-          onClick: () => router.push(`/lists/${list.id}`),
-        },
-      });
+      notifyCreated(list.id, trimmed);
     }
 
     setName("");
@@ -98,7 +135,7 @@ export function ListSheet({
     if (added) {
       notifyAdded(listId, listName);
     } else {
-      toast.success(`Removed from ${listName}`);
+      notifyRemoved(listName);
     }
     refresh();
     if (added) onOpenChange(false);

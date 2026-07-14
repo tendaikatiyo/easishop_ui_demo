@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
+import { startPageTransition } from "@/components/layout/navigation-loader";
 import type { Product } from "@/types";
 
 const BARCODE_FORMATS = [
@@ -142,6 +143,7 @@ export function BarcodeScanner({
       const results = data.products ?? [];
       resetState();
       onOpenChange(false);
+      startPageTransition();
       if (results.length === 1) {
         router.push(`/product/${results[0].id}`);
         return;

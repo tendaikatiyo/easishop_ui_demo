@@ -183,6 +183,39 @@
     animation: placeholder-flicker 2.4s ease-in-out both;
   }
 
+  @keyframes nav-progress {
+    0% {
+      transform: scaleX(0.08);
+      opacity: 0.85;
+    }
+    50% {
+      transform: scaleX(0.55);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleX(0.92);
+      opacity: 0.9;
+    }
+  }
+  .animate-nav-progress {
+    animation: nav-progress 1.15s ease-in-out infinite alternate;
+  }
+
+  /* Sonner — bubble dialog aesthetic */
+  [data-sonner-toaster][data-sonner-theme="light"] {
+    --normal-bg: #ffffff;
+    --normal-text: var(--foreground);
+    --normal-border: transparent;
+    --border-radius: 32px;
+  }
+
+  [data-sonner-toast].cn-toast {
+    border: none !important;
+    box-shadow:
+      0 18px 40px rgba(15, 23, 42, 0.12),
+      0 2px 8px rgba(15, 23, 42, 0.06) !important;
+  }
+
   /*
    * Liquid glass — frost + chromatic rim.
    * No ::after overlay: positioned pseudos sit above unwrapped text nodes

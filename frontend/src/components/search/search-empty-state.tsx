@@ -60,7 +60,7 @@ export function SearchEmptyState() {
         <p className="mx-auto mt-1.5 max-w-sm text-sm text-muted-foreground">
           {isReturning
             ? "Find your best price across five stores."
-            : "Search by name or scan a barcode to compare live prices across retailers."}
+            : "Search by name to compare live prices across retailers."}
         </p>
         <div className="mt-8 space-y-3">
           <p className="figma-eyebrow flex items-center justify-center gap-1.5">

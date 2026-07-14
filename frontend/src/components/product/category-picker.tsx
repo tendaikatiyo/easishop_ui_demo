@@ -126,16 +126,16 @@ function BrowsePickerSheet({
       }}
     >
       <SheetContent
-        side={isDesktop ? "left" : "bottom"}
-        className={isDesktop ? "w-full max-w-md" : "max-h-[85vh]"}
+        side={isDesktop ? "left" : "right"}
+        className="w-[min(100vw,24rem)] max-w-full gap-0 overflow-hidden"
       >
-        <SheetHeader>
+        <SheetHeader className="shrink-0 pr-12">
           <SheetTitle className="font-heading text-left">
             {tab === "stores" ? "Stores" : "Aisles"}
           </SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-3 px-4 pb-3">
+        <div className="shrink-0 space-y-3 px-4 pb-3">
           <div className="grid grid-cols-2 gap-1 rounded-full bg-zinc-100 p-1">
             {(
               [
@@ -183,7 +183,7 @@ function BrowsePickerSheet({
 
         {tab === "aisles" ? (
           filteredCategories.length ? (
-            <ul className="grid max-h-[52vh] grid-cols-3 gap-1 overflow-y-auto px-3 pb-6 md:max-h-none md:min-h-0 md:flex-1 md:content-start">
+            <ul className="grid min-h-0 flex-1 grid-cols-3 content-start gap-1 overflow-y-auto overscroll-contain px-3 pb-6">
               {filteredCategories.map((category) => {
                 const Icon = getCategoryIcon(category.slug);
                 return (
@@ -215,7 +215,7 @@ function BrowsePickerSheet({
             </p>
           )
         ) : filteredStores.length ? (
-          <ul className="max-h-[52vh] space-y-2 overflow-y-auto px-3 pb-6 md:max-h-none md:min-h-0 md:flex-1">
+          <ul className="min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain px-3 pb-6">
             {filteredStores.map((store) => (
               <li key={store.slug}>
                 <Link

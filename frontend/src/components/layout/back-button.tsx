@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { ChevronLeft } from "reicon-react";
 import { Button } from "@/components/ui/button";
 import { canSafelyGoBack } from "@/components/layout/navigation-history";
+import { startPageTransition } from "@/components/layout/navigation-loader";
 import { getNavParent } from "@/lib/nav-parent";
 import { cn } from "@/lib/utils";
 
@@ -29,21 +30,25 @@ export function BackButton({
       className={cn("rounded-full", className)}
       onClick={() => {
         if (fallbackHref) {
+          startPageTransition();
           router.push(fallbackHref);
           return;
         }
 
         const parent = pathname ? getNavParent(pathname) : null;
         if (parent?.force) {
+          startPageTransition();
           router.push(parent.href);
           return;
         }
 
         if (canSafelyGoBack()) {
+          startPageTransition();
           router.back();
           return;
         }
 
+        startPageTransition();
         router.push(parent?.href ?? "/");
       }}
     >
