@@ -1,11 +1,23 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft } from "reicon-react";
 import { Button } from "@/components/ui/button";
+import { canSafelyGoBack } from "@/components/layout/navigation-history";
+import { getNavParent } from "@/lib/nav-parent";
 import { cn } from "@/lib/utils";
 
-export function BackButton({ className }: { className?: string }) {
+export function BackButton({
+  className,
+  pathname,
+  fallbackHref,
+}: {
+  className?: string;
+  /** Current path — used to resolve a hierarchical parent. */
+  pathname?: string;
+  /** Override parent when the page knows it explicitly. */
+  fallbackHref?: string;
+}) {
   const router = useRouter();
 
   return (
@@ -16,14 +28,26 @@ export function BackButton({ className }: { className?: string }) {
       aria-label="Go back"
       className={cn("rounded-full", className)}
       onClick={() => {
-        if (window.history.length > 1) {
-          router.back();
-        } else {
-          router.push("/");
+        if (fallbackHref) {
+          router.push(fallbackHref);
+          return;
         }
+
+        const parent = pathname ? getNavParent(pathname) : null;
+        if (parent?.force) {
+          router.push(parent.href);
+          return;
+        }
+
+        if (canSafelyGoBack()) {
+          router.back();
+          return;
+        }
+
+        router.push(parent?.href ?? "/");
       }}
     >
-      <ChevronLeft className="size-5" strokeWidth={2.25} />
+      <ChevronLeft size={20} aria-hidden />
     </Button>
   );
 }

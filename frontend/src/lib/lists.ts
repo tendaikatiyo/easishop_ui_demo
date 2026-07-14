@@ -39,17 +39,6 @@ export function renameList(listId: string, name: string): void {
 export function deleteList(listId: string): void {
   const user = getUser();
   user.lists = user.lists.filter((l) => l.id !== listId);
-  if (!user.lists.length) {
-    user.lists = [
-      {
-        id: uid("list"),
-        name: "Weekly shop",
-        items: [],
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      },
-    ];
-  }
   saveUser(user);
 }
 

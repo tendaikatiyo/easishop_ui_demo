@@ -1,7 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Check, ListChecks, Plus } from "lucide-react";
+import { Check, ListCheck, Plus } from "reicon-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,6 +38,7 @@ export function ListSheet({
   productId,
   productName,
 }: ListSheetProps) {
+  const router = useRouter();
   const { user, refresh } = useDemoUser();
   const [name, setName] = useState("");
   const [creating, setCreating] = useState(false);
@@ -51,6 +53,15 @@ export function ListSheet({
     }
   }, [open]);
 
+  function notifyAdded(listId: string, listName: string) {
+    toast.success(`Added to ${listName}`, {
+      action: {
+        label: "View list",
+        onClick: () => router.push(`/lists/${listId}`),
+      },
+    });
+  }
+
   function onCreateList() {
     const trimmed = name.trim() || "New list";
     const list = createList(trimmed);
@@ -59,9 +70,14 @@ export function ListSheet({
     if (isPicker && productId) {
       addToList(productId, list.id);
       track("add_to_list", { productId, productName, listId: list.id });
-      toast.success(`Added to ${trimmed}`);
+      notifyAdded(list.id, trimmed);
     } else {
-      toast.success(`Created ${trimmed}`);
+      toast.success(`Created ${trimmed}`, {
+        action: {
+          label: "View list",
+          onClick: () => router.push(`/lists/${list.id}`),
+        },
+      });
     }
 
     setName("");
@@ -79,9 +95,11 @@ export function ListSheet({
       productName,
       listId,
     });
-    toast.success(
-      added ? `Added to ${listName}` : `Removed from ${listName}`
-    );
+    if (added) {
+      notifyAdded(listId, listName);
+    } else {
+      toast.success(`Removed from ${listName}`);
+    }
     refresh();
     if (added) onOpenChange(false);
   }
@@ -141,12 +159,12 @@ export function ListSheet({
                           saved ? "bg-white shadow-sm" : "bg-white/80"
                         )}
                       >
-                        <ListChecks
+                        <ListCheck
+                          size={20}
                           className={cn(
-                            "size-5",
                             saved ? "brand-green" : "text-foreground/70"
                           )}
-                          strokeWidth={2}
+                          aria-hidden
                         />
                       </span>
                       <div className="min-w-0 flex-1">
@@ -167,9 +185,9 @@ export function ListSheet({
                         )}
                       >
                         {saved ? (
-                          <Check className="size-4" strokeWidth={2.5} />
+                          <Check size={16} strokeWidth={2.5} aria-hidden />
                         ) : (
-                          <Plus className="size-4" strokeWidth={2.5} />
+                          <Plus size={16} strokeWidth={2.5} aria-hidden />
                         )}
                       </span>
                     </button>
@@ -184,7 +202,7 @@ export function ListSheet({
               onClick={() => setCreating(true)}
             >
               <span className="flex size-10 items-center justify-center rounded-full bg-white shadow-sm">
-                <Plus className="size-4" strokeWidth={2.5} />
+                <Plus size={16} strokeWidth={2.5} aria-hidden />
               </span>
               Create new list
             </Button>

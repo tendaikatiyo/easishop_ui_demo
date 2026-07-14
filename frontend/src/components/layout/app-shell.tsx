@@ -3,23 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  Compass,
   Home,
-  LayoutGrid,
-  ListChecks,
-  Percent,
+  ListCheck,
+  PercentCircle,
   Search,
   User,
-} from "lucide-react";
+} from "reicon-react";
 import { cn } from "@/lib/utils";
 import { useDemoUser } from "@/hooks/use-demo-user";
 import { totalListItems } from "@/lib/lists";
 import { BackButton } from "@/components/layout/back-button";
-import { OnboardingSheet } from "@/components/onboarding/onboarding-sheet";
-import { LocationPrompt } from "@/components/layout/location-prompt";
+import { SiteFooter } from "@/components/layout/site-footer";
 import {
   CategoryPickerProvider,
   useCategoryPicker,
 } from "@/components/product/category-picker";
+import { HashScroll } from "@/components/layout/hash-scroll";
+import { NavigationHistory } from "@/components/layout/navigation-history";
 import { useReturningVisitor } from "@/hooks/use-returning-visitor";
 import { Button } from "@/components/ui/button";
 
@@ -29,8 +30,8 @@ const searchPlaceholder = (returning: boolean) =>
 const mobileNav = [
   { href: "/", label: "Home", icon: Home },
   { href: "/search", label: "Search", icon: Search },
-  { href: "/deals", label: "Deals", icon: Percent },
-  { href: "/lists", label: "Lists", icon: ListChecks },
+  { href: "/deals", label: "Deals", icon: PercentCircle },
+  { href: "/lists", label: "Lists", icon: ListCheck },
   { href: "/profile", label: "Profile", icon: User },
 ] as const;
 
@@ -47,18 +48,24 @@ function isActive(pathname: string, href: string) {
 function AppShellInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { user } = useDemoUser();
-  const { toggle: toggleCategories, open: categoriesOpen } = useCategoryPicker();
+  const { open, openBrowse } = useCategoryPicker();
   const listCount = user ? totalListItems() : 0;
-  const onCategoryPage = pathname.startsWith("/category/");
+  const onBrowsePage =
+    pathname.startsWith("/category/") || pathname.startsWith("/store/");
   const isReturning = useReturningVisitor();
   const onHome = pathname === "/";
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-white/30 bg-background/45 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-background/35">
+      <HashScroll />
+      <NavigationHistory />
+      <header className="sticky top-0 z-40 border-b border-white/50 bg-white/80 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/72">
         <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4 md:h-[4.25rem] md:gap-4">
           {pathname !== "/" ? (
-            <BackButton className="-ml-1 shrink-0 glass-soft md:hidden" />
+            <BackButton
+              pathname={pathname}
+              className="-ml-1 shrink-0 glass-soft md:hidden"
+            />
           ) : null}
 
           <Link href="/" className="shrink-0">
@@ -73,7 +80,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
                 href="/search"
                 className="glass glass-pill flex items-center gap-2.5 px-4 py-2.5 text-sm text-foreground/45 transition-colors hover:text-foreground/70"
               >
-                <Search className="size-4 shrink-0" strokeWidth={2} />
+                <Search size={16} aria-hidden className="shrink-0" />
                 <span className="truncate">{searchPlaceholder(isReturning)}</span>
               </Link>
             ) : null}
@@ -106,16 +113,16 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
 
             <button
               type="button"
-              onClick={toggleCategories}
-              aria-expanded={categoriesOpen}
+              onClick={() => openBrowse("stores")}
+              aria-expanded={open}
               className={cn(
                 "rounded-full px-3.5 py-2 text-sm font-medium transition-all",
-                onCategoryPage || categoriesOpen
+                onBrowsePage || open
                   ? "glass-strong text-foreground"
                   : "text-foreground/55 hover:glass-soft hover:text-foreground"
               )}
             >
-              Categories
+              Explore
             </button>
 
             <Link
@@ -128,20 +135,24 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
               )}
               aria-label="Profile"
             >
-              <User className="size-4" strokeWidth={2} />
+              <User size={16} aria-hidden />
             </Link>
           </nav>
 
           <Button
             type="button"
             variant="ghost"
-            size="icon"
-            className="ml-auto shrink-0 glass-soft md:hidden"
-            aria-label="Browse categories"
-            aria-expanded={categoriesOpen}
-            onClick={toggleCategories}
+            aria-expanded={open}
+            onClick={() => openBrowse("stores")}
+            className={cn(
+              "ml-auto h-9 shrink-0 gap-1.5 rounded-full px-2.5 text-sm font-medium md:hidden",
+              onBrowsePage || open
+                ? "glass-strong text-foreground"
+                : "glass-soft text-foreground/80"
+            )}
           >
-            <LayoutGrid className="size-5" strokeWidth={2} />
+            <Compass size={16} aria-hidden />
+            Explore
           </Button>
         </div>
       </header>
@@ -149,6 +160,8 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-28 pt-6 md:pb-10">
         {children}
       </main>
+
+      <SiteFooter />
 
       <nav
         className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden"
@@ -170,7 +183,11 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
                   )}
                 >
                   <span className="flex size-7 items-center justify-center">
-                    <Icon className="size-5" strokeWidth={active ? 2.25 : 2} />
+                    <Icon
+                      size={20}
+                      weight={active ? "Filled" : "Outline"}
+                      aria-hidden
+                    />
                   </span>
                   {item.label}
                   {item.href === "/lists" && listCount > 0 ? (
@@ -184,9 +201,6 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
           })}
         </ul>
       </nav>
-
-      <OnboardingSheet />
-      <LocationPrompt />
     </>
   );
 }

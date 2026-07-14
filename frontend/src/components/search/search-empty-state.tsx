@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Search, TrendingUp } from "lucide-react";
-import { CATEGORIES, getCategoryIcon } from "@/lib/catalog";
+import { Search, TrendUp2 } from "reicon-react";
+import { CATEGORIES } from "@/lib/catalog";
+import { getCategoryIcon } from "@/components/product/category-icons";
 import { useReturningVisitor } from "@/hooks/use-returning-visitor";
 
 const POPULAR_SEARCHES = [
@@ -51,7 +52,7 @@ export function SearchEmptyState() {
     <div className="space-y-6">
       <div className="rounded-[32px] bg-white px-6 py-12 text-center md:py-16">
         <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[var(--brand-green-light)]">
-          <Search className="size-6 brand-green" strokeWidth={2} />
+          <Search size={24} className="brand-green" aria-hidden />
         </div>
         <h2 className="mt-4 font-heading text-xl font-medium">
           {isReturning ? "Welcome back" : "What are you shopping for?"}
@@ -63,7 +64,7 @@ export function SearchEmptyState() {
         </p>
         <div className="mt-8 space-y-3">
           <p className="figma-eyebrow flex items-center justify-center gap-1.5">
-            <TrendingUp className="size-3.5 brand-green" />
+            <TrendUp2 size={14} className="brand-green" aria-hidden />
             Popular searches
           </p>
           <PopularSearchPills />
@@ -82,7 +83,7 @@ export function SearchEmptyState() {
                 className="glass glass-pill flex items-center gap-2.5 py-1.5 pl-1.5 pr-4 text-sm font-medium transition-all active:scale-[0.97]"
               >
                 <span className="flex size-8 items-center justify-center rounded-full bg-[var(--brand-green-light)]">
-                  <Icon className="size-4 brand-green" strokeWidth={2} />
+                  <Icon size={16} className="brand-green" aria-hidden />
                 </span>
                 {category.name}
               </Link>

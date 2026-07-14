@@ -1,4 +1,6 @@
-import { ArrowDown } from "lucide-react";
+"use client";
+
+import { ArrowDown } from "reicon-react";
 import { Badge } from "@/components/ui/badge";
 import { formatRand } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
@@ -19,7 +21,7 @@ export function DealBadge({
         className
       )}
     >
-      <ArrowDown />
+      <ArrowDown size={16} aria-hidden />
       <span className="font-accent tracking-tight">{formatRand(amount)}</span>
     </Badge>
   );

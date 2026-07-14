@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { UserRound } from "lucide-react";
+import { UserCircle } from "reicon-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FieldError, ProfileSectionHeader } from "@/components/profile/profile-ui";
 import { Button } from "@/components/ui/button";
@@ -88,7 +88,7 @@ export default function EditProfilePage() {
 
       <section className="space-y-5 rounded-3xl bg-white p-5 md:p-6">
         <ProfileSectionHeader
-          icon={UserRound}
+          icon={UserCircle}
           title="Edit profile"
           description="Email is required — everything else is optional."
         />

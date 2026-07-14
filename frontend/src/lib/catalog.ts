@@ -1,27 +1,3 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Apple,
-  Baby,
-  Bath,
-  Beef,
-  Cookie,
-  Croissant,
-  Droplets,
-  Flower2,
-  Grape,
-  HeartPulse,
-  Home,
-  Milk,
-  Package,
-  Phone,
-  Sandwich,
-  Shirt,
-  ShowerHead,
-  Snowflake,
-  Sparkles,
-  SprayCan,
-  Wine,
-} from "lucide-react";
 import type { Category, Product, RetailerPrice } from "@/types";
 
 export const CATEGORIES: Category[] = [
@@ -47,36 +23,6 @@ export const CATEGORIES: Category[] = [
   { name: "Kids & Baby", slug: "kids-baby" },
   { name: "Cellphones", slug: "cellphones" },
 ];
-
-export const CATEGORY_ICONS: Record<string, LucideIcon> = {
-  toiletries: Droplets,
-  household: Home,
-  kids: Cookie,
-  "wine-bubbles": Wine,
-  cleaning: Sparkles,
-  "fruits-vegetables": Apple,
-  "meat-poultry-fish": Beef,
-  bakery: Croissant,
-  "milk-dairy": Milk,
-  pantry: Package,
-  "beverages-juices": Grape,
-  deli: Sandwich,
-  frozen: Snowflake,
-  fragrance: Flower2,
-  skincare: HeartPulse,
-  makeup: SprayCan,
-  haircare: ShowerHead,
-  "mens-grooming": Shirt,
-  "bath-and-body": Bath,
-  "kids-baby": Baby,
-  cellphones: Phone,
-};
-
-export const DEFAULT_CATEGORY_ICON: LucideIcon = Package;
-
-export function getCategoryIcon(slug: string): LucideIcon {
-  return CATEGORY_ICONS[slug] ?? DEFAULT_CATEGORY_ICON;
-}
 
 export function slugify(name: string): string {
   return name

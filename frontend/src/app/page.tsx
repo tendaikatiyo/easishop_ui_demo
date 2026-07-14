@@ -14,13 +14,13 @@ export default function HomePage() {
       <HomeHero />
 
       <div className="space-y-12 pt-8 md:space-y-16 md:pt-12">
+        <HomeStores />
+
         <CategoryStrip />
 
         <Suspense fallback={<ProductGridSkeleton count={4} />}>
           <HomeDeals />
         </Suspense>
-
-        <HomeStores />
 
         <Suspense fallback={<ProductGridSkeleton />}>
           <HomeFeatured />

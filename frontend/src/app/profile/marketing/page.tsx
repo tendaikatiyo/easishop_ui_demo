@@ -1,6 +1,6 @@
 "use client";
 
-import { Megaphone } from "lucide-react";
+import { Bullhorn } from "reicon-react";
 import { toast } from "sonner";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ProfileSectionHeader } from "@/components/profile/profile-ui";
@@ -47,7 +47,7 @@ export default function MarketingPreferencesPage() {
 
       <section className="space-y-5 rounded-3xl bg-white p-5 md:p-6">
         <ProfileSectionHeader
-          icon={Megaphone}
+          icon={Bullhorn}
           title="Marketing preferences"
           description="Control whether we can email you about deals and updates."
         />

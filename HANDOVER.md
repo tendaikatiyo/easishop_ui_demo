@@ -1,6 +1,6 @@
 # EasiShop UI Demo — Handover
 
-Last updated: 13 July 2026
+Last updated: 14 July 2026
 
 ## What this repo is
 
@@ -8,8 +8,9 @@ A Next.js 16 (App Router) demo of the revamped EasiShop UI, living in `frontend/
 It runs against the **live EasiShop API** (`https://www.easishop.co.za/api/v1`, HTTP Basic Auth).
 Product requirements are in `context.md`; user journeys in `user_flows.md`.
 
-Stack: Next.js 16 + TypeScript, Tailwind CSS v4, shadcn/ui (Base UI), lucide-react,
-`next/font` (Bricolage Grotesque headings, Inter body, Geist Mono for prices/eyebrows).
+Stack: Next.js 16 + TypeScript, Tailwind CSS v4, shadcn/ui (Base UI), **reicon-react**
+(icons — all `"use client"`; never import into Server Components), `next/font`
+(Bricolage Grotesque headings, Inter body, Geist Mono for prices/eyebrows).
 
 ## Running it
 
@@ -29,19 +30,20 @@ EASISHOP_API_PASSWORD=...
 Credentials are server-only — they never reach the browser. Client components go
 through the Next API routes under `src/app/api/*`.
 
-## Latest session — summary
+## Latest session (14 Jul 2026) — summary
 
-This session expanded profile/settings, lists UX, search polish, store browsing, and
-visual refinements. Key themes:
+Full write-up: [`HANDOVER-2026-07-14.md`](./HANDOVER-2026-07-14.md).  
+Nav UX plan (implemented): [`ux-nav-explore-header.md`](./ux-nav-explore-header.md).
 
 | Area | What changed |
 |---|---|
-| **Profile** | Nav label **You → Profile**. Hub at `/profile` with links to **Edit profile**, **Marketing preferences**, and **Account settings** (delete). Extended user model: `username`, `name`, `surname`, `phone`, `email`, `marketingPrefs.emailMarketing`. Validation in `lib/profile-validation.ts` — **email is the only required field**. Removed user-facing “demo account” copy. |
-| **Lists** | Shared bubble `ListSheet` for add-to-list and create-list flows. Floating “Your list” pill removed. Lists index toned down (neutral icons, muted “Open” — green reserved for CTAs). List detail: row skeletons while loading, cheapest retailer logo + price per item, **rename list** (dialog), **refresh prices** (bypasses 5‑min API cache via `?refresh=1`). |
-| **Search** | Frontend search shim in `lib/search-query.ts` (query variants, token matching, ranking) because the live API is literal — `Lay's` works, `Lays` often does not. Rolling placeholder in search capsule, stronger frost, improved barcode scanner (EAN/UPC, wide qrbox, camera fallback). |
-| **Home / stores** | **Explore by store** section (`HomeStores`) before trending staples; `/store/[slug]` pages via `lib/retailers.ts` + `getProductsByRetailer()`. Returning-visitor hero subtext updated. |
-| **Visual / glass** | Liquid-glass utilities in `globals.css` (`glass`, `glass-nav`, etc.). SVG displacement filters removed (caused dark blobs / dialog smear). Dialogs/sheets are solid white bubbles again; dialog preference rule in `.cursor/rules/dialogs.mdc`. Bottom nav uses `glass-nav`; active tab is solid white pill. |
-| **Fixes** | `Button` wrapper sets `nativeButton={false}` when `render` is used (fixes Base UI warning for `render={<Link/>}`). Batch products API supports `?refresh=1` for fresh price fetches. |
+| **Nav / Explore** | Explore renamed from Browse; mobile header **compass + “Explore”**; drawer defaults to **Stores**; **All categories** opens **Aisles**; home order Search → Stores → Categories → Deals → Featured. |
+| **P0–P5 wayfinding** | Labeled Explore; Explore rules; home ladder; browse→search link; add-to-list toast **View list** + list **Add more**; hierarchical Back + hash scroll + in-app path stack. |
+| **Footer / legal** | Desktop footer; `/about`, `/faq`, `/privacy`, `/terms`; mobile Profile utility links + feedback; social pills with brand SVGs. |
+| **Visual polish** | Softened nav frost; store/product/comparison logos `object-cover` in circles; add-to-list `+` solid zinc (readable on white product images). |
+| **Icons** | Migrated off lucide → **reicon-react**; category icons in client-only `category-icons.tsx`. |
+| **Compare / search** | Tied retailers all show Lowest badge; removed “Lay’s chips” from sample search placeholders. |
+| **Bugfix pass** | Hash scroll, search capsule `q` sync, safe Back, list remove race, empty lists (no reseed), media-query flicker, barcode abort/`res.ok`, toaster without ThemeProvider. |
 
 ## Architecture cheat-sheet
 
@@ -54,51 +56,45 @@ visual refinements. Key themes:
   uses query expansion from `search-query.ts`. `getProductsByIds(ids, { fresh })` for
   list price refresh.
 - `src/lib/storage.ts` — localStorage user, lists, analytics events, visit flag.
-  `updateUser`, `deleteAccount`, marketing prefs migration from old `emailDeals`.
-- `src/lib/lists.ts` — CRUD for shopping lists (`createList`, `renameList`,
-  `addToList`, `removeFromList`, etc.).
-- `src/app/api/{search,deals,featured,products/[id],products/batch}` — proxies for
-  client components. Batch route: `GET ?ids=...&refresh=1` for fresh prices.
-- Server components fetch directly; client pages (lists, profile) fetch via proxies.
+- `src/lib/lists.ts` — CRUD; **deleteList may leave zero lists** (empty state is real).
+- `src/lib/nav-parent.ts` — hierarchical Back parents; `HashScroll` + `NavigationHistory`
+  in the shell for hash sections and safe soft-nav Back.
+- `src/components/product/category-picker.tsx` — Explore drawer (Stores \| Aisles).
+- `src/app/api/{search,deals,featured,products/[id],products/batch}` — client proxies.
+  Batch: `GET ?ids=...&refresh=1`.
 
 ## Key routes
 
 | Route | Purpose |
 |---|---|
-| `/` | Home — hero, stores, categories, deals, featured |
+| `/` | Home — hero, **stores**, categories, deals, featured |
 | `/search` | Search + barcode |
-| `/store/[slug]` | Products filtered by retailer |
-| `/lists` | All lists |
-| `/lists/[id]` | List detail — rename, refresh prices, remove items |
-| `/profile` | Settings hub |
-| `/profile/edit` | Edit profile (email required) |
-| `/profile/marketing` | Email marketing consent |
-| `/profile/account` | Delete account |
+| `/store/[slug]` | Products by retailer |
+| `/category/[slug]` | Aisle (search-term approximated) |
+| `/deals` | Price drops |
+| `/lists`, `/lists/[id]` | Lists + detail (rename, refresh, add more) |
+| `/profile` (+ edit / marketing / account) | Settings hub |
+| `/about`, `/faq`, `/privacy`, `/terms` | Legal / info |
 
 ## Dialog / sheet conventions
 
 See `.cursor/rules/dialogs.mdc`. Bubble feel: `rounded-[32px]`, white surface,
-soft shadow, pill inputs/buttons, no hairline footer borders. List picker uses
-`ListSheet` (`components/lists/list-sheet.tsx`).
+soft shadow, pill inputs/buttons. List picker: `ListSheet`. Explore: category picker sheet.
 
 ## Known issues / next steps
 
-- **Search** — frontend shim is a workaround; proper fuzzy search belongs on the backend.
-- **Dischem** — API `dsc` fields are often empty in search payloads; not a frontend bug.
-  Shoprite (`srt`) is sometimes present.
-- Category browsing is approximated by search terms — replace with a real category
-  endpoint when the backend has one.
-- Deals fall back to search-derived price drops if
-  `/analytics/price-changes/last-week` fails or is empty.
-- Price history chart, location-based pricing, and real auth are stubs/absent by
-  design (localStorage-only user for now).
-- `frontend/.next/` build artifacts may appear in `git status` — ensure `.gitignore`
-  covers them locally.
+- **Search** — frontend shim is a workaround; fuzzy search belongs on the backend.
+- **Dischem / Shoprite** — API field gaps (`dsc` often empty); not a frontend bug.
+- **Categories** — still search-term approximated; need a real category endpoint.
+- **Deals** — fall back to search-derived drops if analytics endpoint fails.
+- Price history, location pricing, real auth — stubs / localStorage-only by design.
+- Keep `frontend/.next/` gitignored locally.
 
 ## Who did what
 
 | Phase | Work |
 |---|---|
-| Scaffold + live API + early design | Earlier sessions (see git history) |
-| Image fix, add-to-list, similar products | Fable 5 session (11 Jul) — prior handover |
-| Profile, lists, search polish, stores, glass UI | Cursor session (13 Jul) — this handover |
+| Scaffold + live API + early design | Earlier sessions (git history) |
+| Image fix, add-to-list, similar products | Fable 5 (11 Jul) |
+| Profile, lists, search polish, stores, glass UI | Cursor (13 Jul) |
+| Explore/nav P0–P5, footer/legal, reicon, bugfix | Cursor (14 Jul) — see `HANDOVER-2026-07-14.md` |

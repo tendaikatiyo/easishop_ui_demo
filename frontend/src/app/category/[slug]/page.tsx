@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ProductCard } from "@/components/product/product-card";
+import { BrowseSearchLink } from "@/components/search/browse-search-link";
 import { getCategoryBySlug, getProductsByCategory } from "@/lib/products";
 import { CategoryViewTracker } from "./category-tracker";
 
@@ -25,13 +26,16 @@ export default async function CategoryPage({
         ]}
       />
       <CategoryViewTracker slug={slug} name={category.name} />
-      <div>
-        <h1 className="font-heading text-2xl font-semibold">{category.name}</h1>
-        <p className="text-sm text-muted-foreground">
-          {products.length
-            ? `${products.length} products to compare`
-            : "No products found in this category — try another aisle or search."}
-        </p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="font-heading text-2xl font-semibold">{category.name}</h1>
+          <p className="text-sm text-muted-foreground">
+            {products.length
+              ? `${products.length} products to compare`
+              : "No products found in this category — try another aisle or search."}
+          </p>
+        </div>
+        <BrowseSearchLink className="w-full sm:w-auto sm:min-w-[14rem] md:hidden" />
       </div>
       {products.length ? (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4">

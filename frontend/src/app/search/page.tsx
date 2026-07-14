@@ -1,11 +1,8 @@
 import { Suspense } from "react";
-import { SearchX } from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { SearchCapsule } from "@/components/search/search-capsule";
-import {
-  PopularSearchPills,
-  SearchEmptyState,
-} from "@/components/search/search-empty-state";
+import { SearchEmptyState } from "@/components/search/search-empty-state";
+import { SearchNoMatches } from "@/components/search/search-no-matches";
 import { ProductCard } from "@/components/product/product-card";
 import { ProductGridSkeleton } from "@/components/product/skeletons";
 import { searchProducts } from "@/lib/products";
@@ -26,18 +23,7 @@ async function SearchResults({ q }: { q: string }) {
           ))}
         </div>
       ) : (
-        <div className="rounded-[32px] bg-white px-6 py-14 text-center">
-          <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-surface-soft">
-            <SearchX className="size-6 text-muted-foreground" strokeWidth={2} />
-          </div>
-          <h2 className="mt-4 font-heading text-xl font-medium">No matches</h2>
-          <p className="mx-auto mt-1.5 max-w-sm text-sm text-muted-foreground">
-            Try another name, check the spelling, or start from one of these.
-          </p>
-          <div className="mt-6">
-            <PopularSearchPills />
-          </div>
-        </div>
+        <SearchNoMatches />
       )}
     </div>
   );

@@ -4,9 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Pencil, RefreshCw, Trash2 } from "lucide-react";
+import { Compass, Edit2, Refresh, Search, Trash2 } from "reicon-react";
 import { toast } from "sonner";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { useCategoryPicker } from "@/components/product/category-picker";
 import { ListProductSkeleton } from "@/components/product/skeletons";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,6 +30,7 @@ import { cn } from "@/lib/utils";
 export default function ListDetailPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
+  const { openBrowse } = useCategoryPicker();
   const { user, refresh } = useDemoUser();
   const list = user?.lists.find((l) => l.id === params.id);
   const [products, setProducts] = useState<Product[]>([]);
@@ -43,7 +45,7 @@ export default function ListDetailPage() {
   );
 
   const loadProducts = useCallback(
-    async (opts?: { refresh?: boolean }) => {
+    async (opts?: { refresh?: boolean; signal?: AbortSignal }) => {
       if (!productIds) {
         setProducts([]);
         return;
@@ -59,17 +61,21 @@ export default function ListDetailPage() {
       try {
         const res = await fetch(`/api/products/batch?${qs.toString()}`, {
           cache: isRefresh ? "no-store" : "default",
+          signal: opts?.signal,
         });
+        if (opts?.signal?.aborted) return;
         const data = (await res.json()) as { products?: Product[] };
         setProducts(data.products ?? []);
         if (isRefresh) toast.success("Prices updated");
-      } catch {
+      } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") return;
         if (isRefresh) {
           toast.error("Couldn't refresh prices");
         } else {
           setProducts([]);
         }
       } finally {
+        if (opts?.signal?.aborted) return;
         if (isRefresh) setRefreshing(false);
         else setLoadingProducts(false);
       }
@@ -78,7 +84,9 @@ export default function ListDetailPage() {
   );
 
   useEffect(() => {
-    void loadProducts();
+    const controller = new AbortController();
+    void loadProducts({ signal: controller.signal });
+    return () => controller.abort();
   }, [loadProducts]);
 
   if (!user) {
@@ -150,7 +158,7 @@ export default function ListDetailPage() {
               aria-label="Rename list"
               onClick={openRename}
             >
-              <Pencil className="size-4" />
+              <Edit2 size={16} aria-hidden />
             </Button>
           </div>
           <p className="text-sm text-muted-foreground">
@@ -169,8 +177,10 @@ export default function ListDetailPage() {
               disabled={showSkeleton}
               onClick={() => void loadProducts({ refresh: true })}
             >
-              <RefreshCw
-                className={cn("size-4", refreshing && "animate-spin")}
+              <Refresh
+                size={16}
+                className={cn(refreshing && "animate-spin")}
+                aria-hidden
               />
             </Button>
           ) : null}
@@ -184,7 +194,7 @@ export default function ListDetailPage() {
               router.push("/lists");
             }}
           >
-            <Trash2 className="size-4" />
+            <Trash2 size={16} aria-hidden />
           </Button>
         </div>
       </div>
@@ -259,6 +269,9 @@ export default function ListDetailPage() {
                       productId: product.id,
                       listId: list.id,
                     });
+                    setProducts((prev) =>
+                      prev.filter((p) => p.id !== product.id)
+                    );
                     refresh();
                   }}
                 >
@@ -289,11 +302,46 @@ export default function ListDetailPage() {
           <p className="mt-1 text-sm text-muted-foreground">
             Tap the + on any product to add it.
           </p>
-          <Button className="mt-4 rounded-full" render={<Link href="/search" />}>
-            Find products
-          </Button>
+          <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+            <Button className="rounded-full" render={<Link href="/search" />}>
+              Find products
+            </Button>
+            <Button
+              variant="outline"
+              className="rounded-full"
+              onClick={() => openBrowse("stores")}
+            >
+              Explore stores
+            </Button>
+          </div>
         </div>
       )}
+
+      {list.items.length > 0 && !showSkeleton ? (
+        <div className="flex flex-col gap-2.5 rounded-[28px] bg-surface-soft p-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-muted-foreground">
+            Add more from search or by store.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant="outline"
+              className="h-10 rounded-full bg-white px-4"
+              render={<Link href="/search" />}
+            >
+              <Search size={16} aria-hidden />
+              Search
+            </Button>
+            <Button
+              variant="outline"
+              className="h-10 rounded-full bg-white px-4"
+              onClick={() => openBrowse("stores")}
+            >
+              <Compass size={16} aria-hidden />
+              Explore
+            </Button>
+          </div>
+        </div>
+      ) : null}
 
       <Dialog open={renameOpen} onOpenChange={setRenameOpen}>
         <DialogContent className="sm:max-w-md">

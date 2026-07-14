@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { ProductCard } from "@/components/product/product-card";
-import { Button } from "@/components/ui/button";
+import { SeeAllDealsButton } from "@/components/home/see-all-deals-button";
 import { getDeals } from "@/lib/products";
 
 export async function HomeDeals() {
@@ -35,18 +34,14 @@ export async function HomeDeals() {
             Prices that dropped — worth a look.
           </p>
         </div>
-        <Button
-          variant="ghost"
-          className="h-10 shrink-0 glass px-5 hover:bg-white/70"
-          render={<Link href="/deals" />}
-        >
-          See all
-          <ArrowRight className="size-4 transition-transform group-hover/button:translate-x-0.5" />
-        </Button>
+        <SeeAllDealsButton />
       </div>
       <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {deals.map((product) => (
-          <div key={product.id} className="w-[min(46vw,200px)] shrink-0 sm:w-[200px]">
+          <div
+            key={product.id}
+            className="w-[min(46vw,200px)] shrink-0 sm:w-[200px]"
+          >
             <ProductCard product={product} />
           </div>
         ))}

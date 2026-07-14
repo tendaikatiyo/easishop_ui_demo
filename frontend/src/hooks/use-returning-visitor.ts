@@ -3,14 +3,19 @@
 import { useEffect, useState } from "react";
 import { isReturningVisitor, markVisited } from "@/lib/storage";
 
+/**
+ * Returning-visitor flag from localStorage.
+ * Always starts `false` so SSR and the first client render match, then
+ * updates after mount (avoids hydration mismatches).
+ */
 export function useReturningVisitor() {
-  const [isReturning] = useState(
-    () => typeof window !== "undefined" && isReturningVisitor()
-  );
+  const [isReturning, setIsReturning] = useState(false);
 
   useEffect(() => {
-    if (!isReturning) markVisited();
-  }, [isReturning]);
+    const returning = isReturningVisitor();
+    setIsReturning(returning);
+    markVisited();
+  }, []);
 
   return isReturning;
 }

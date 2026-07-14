@@ -66,7 +66,7 @@ export function ProductCard({ product }: { product: Product }) {
                 src={getRetailerLogo(lowest.retailer)!}
                 alt={lowest.retailer}
                 fill
-                className="object-contain p-0.5"
+                className="object-cover"
                 sizes="20px"
               />
             </span>

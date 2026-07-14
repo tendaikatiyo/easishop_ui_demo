@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Plus } from "lucide-react";
+import { Check, Plus } from "reicon-react";
 import { Button } from "@/components/ui/button";
 import { ListSheet } from "@/components/lists/list-sheet";
 import { cn } from "@/lib/utils";
@@ -37,16 +37,16 @@ export function AddToListButton({
         onClick={onOpen}
         className={cn(
           "size-9 rounded-full shadow-sm transition-colors",
-        saved
-          ? "glass-soft text-green-800 hover:bg-white/55 dark:bg-green-950 dark:text-green-300 dark:hover:bg-green-900"
-          : "glass-soft text-zinc-600 hover:bg-white/55",
+          saved
+            ? "bg-[var(--brand-green-light)] text-green-800 ring-1 ring-black/5 hover:bg-[var(--brand-green-light)]/80"
+            : "bg-zinc-100 text-zinc-700 ring-1 ring-black/10 hover:bg-zinc-200/90",
           className
         )}
       >
         {saved ? (
-          <Check className="size-4" strokeWidth={2.5} />
+          <Check size={16} strokeWidth={2.5} aria-hidden />
         ) : (
-          <Plus className="size-4" strokeWidth={2.5} />
+          <Plus size={16} strokeWidth={2.5} aria-hidden />
         )}
       </Button>
 

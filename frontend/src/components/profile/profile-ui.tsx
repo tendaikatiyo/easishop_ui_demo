@@ -1,5 +1,7 @@
-import type { LucideIcon } from "lucide-react";
-import { ChevronRight } from "lucide-react";
+"use client";
+
+import { ChevronRight } from "reicon-react";
+import type { AppIcon } from "@/lib/icons";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -8,14 +10,14 @@ export function ProfileSectionHeader({
   title,
   description,
 }: {
-  icon: LucideIcon;
+  icon: AppIcon;
   title: string;
   description?: string;
 }) {
   return (
     <div className="flex items-start gap-3">
       <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-green-light)]">
-        <Icon className="size-4 brand-green" strokeWidth={2} />
+        <Icon size={16} className="brand-green" aria-hidden />
       </span>
       <div className="space-y-0.5">
         <h1 className="font-heading text-xl font-semibold leading-tight md:text-2xl">
@@ -60,8 +62,10 @@ export function ProfileNavLink({
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
       <ChevronRight
+        size={20}
+        aria-hidden
         className={cn(
-          "size-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5",
+          "shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5",
           tone === "danger" && "text-destructive/70"
         )}
       />

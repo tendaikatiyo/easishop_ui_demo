@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { CATEGORIES, getCategoryIcon } from "@/lib/catalog";
+import { CATEGORIES } from "@/lib/catalog";
+import { getCategoryIcon } from "@/components/product/category-icons";
 import { cn } from "@/lib/utils";
 
 const accents = [
@@ -44,7 +47,7 @@ export function CategoryGrid({
                 accents[index % accents.length]
               )}
             >
-              <Icon className="size-5" strokeWidth={2} />
+              <Icon size={20} aria-hidden />
             </span>
             <span className="leading-snug">{category.name}</span>
           </Link>

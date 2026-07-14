@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink, Medal } from "lucide-react";
+import { ArrowUpRight2, Medal } from "reicon-react";
 import {
   formatRand,
   getAvailablePrices,
@@ -23,7 +23,7 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
   // "Lowest" only means something when stores actually differ on price
   const hasLowest =
     prices.length > 1 && prices[0].price < prices[prices.length - 1].price;
-  const lowestId = hasLowest ? prices[0].retailer : null;
+  const lowestPrice = hasLowest ? prices[0].price : null;
 
   if (!prices.length) {
     return (
@@ -56,7 +56,7 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
 
       <ul className="space-y-2">
         {prices.map((price) => {
-          const isBest = price.retailer === lowestId;
+          const isBest = lowestPrice != null && price.price === lowestPrice;
           const savings = getSavingsAmount(price);
           const logo = getRetailerLogo(price.retailer);
           return (
@@ -72,7 +72,7 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
                         src={logo}
                         alt={price.retailer}
                         fill
-                        className="object-contain p-2"
+                        className="object-cover"
                         sizes="44px"
                       />
                     ) : (
@@ -85,7 +85,7 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
                   <div className="min-w-0 flex-1">
                     {isBest ? (
                       <Badge className="gap-1">
-                        <Medal className="size-3" />
+                        <Medal size={14} aria-hidden />
                         Lowest
                       </Badge>
                     ) : null}
@@ -121,7 +121,7 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
                       }
                     >
                       Buy
-                      <ExternalLink className="size-3.5" />
+                      <ArrowUpRight2 size={14} aria-hidden />
                     </Button>
                   ) : null}
                 </CardContent>

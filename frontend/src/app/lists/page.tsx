@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronRight, ListChecks, Plus } from "lucide-react";
+import { ChevronRight, ListCheck, Plus } from "reicon-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { ListSheet } from "@/components/lists/list-sheet";
@@ -34,7 +34,7 @@ export default function ListsPage() {
           className="h-10 shrink-0 rounded-full px-5 shadow-xs"
           onClick={() => setOpen(true)}
         >
-          <Plus className="size-4" />
+          <Plus size={16} aria-hidden />
           New list
         </Button>
       </div>
@@ -49,9 +49,10 @@ export default function ListsPage() {
                   className="group flex items-center gap-4 rounded-3xl bg-white p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:shadow-md"
                 >
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-muted">
-                    <ListChecks
-                      className="size-5 text-muted-foreground"
-                      strokeWidth={2}
+                    <ListCheck
+                      size={20}
+                      className="text-muted-foreground"
+                      aria-hidden
                     />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -65,7 +66,11 @@ export default function ListsPage() {
                   </div>
                   <span className="flex shrink-0 items-center gap-0.5 text-sm text-muted-foreground transition-colors group-hover:text-foreground">
                     Open
-                    <ChevronRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                    <ChevronRight
+                      size={16}
+                      className="transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
                   </span>
                 </Link>
               </li>
@@ -73,7 +78,7 @@ export default function ListsPage() {
           </ul>
 
           <div className="flex items-center gap-3 rounded-3xl bg-surface-soft px-4 py-3.5 text-sm text-muted-foreground">
-            <Plus className="size-4 shrink-0" strokeWidth={2} />
+            <Plus size={16} className="shrink-0" aria-hidden />
             <p>
               Tip: tap + on any product to add it to a list or create a new one.
             </p>
@@ -82,9 +87,10 @@ export default function ListsPage() {
       ) : (
         <div className="rounded-3xl bg-white px-6 py-14 text-center">
           <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-muted">
-            <ListChecks
-              className="size-6 text-muted-foreground"
-              strokeWidth={2}
+            <ListCheck
+              size={24}
+              className="text-muted-foreground"
+              aria-hidden
             />
           </div>
           <h2 className="mt-4 font-heading text-xl font-medium">
@@ -99,7 +105,7 @@ export default function ListsPage() {
               className="h-10 rounded-full px-5"
               onClick={() => setOpen(true)}
             >
-              <Plus className="size-4" />
+              <Plus size={16} aria-hidden />
               Create your first list
             </Button>
             <Button
@@ -107,7 +113,7 @@ export default function ListsPage() {
               className="h-10 rounded-full px-5"
               render={<Link href="/deals" />}
             >
-              Browse deals
+              View deals
             </Button>
           </div>
         </div>

@@ -2,10 +2,12 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Camera, Image, Loader } from "reicon-react";
 import {
   Html5Qrcode,
   Html5QrcodeSupportedFormats,
 } from "html5-qrcode";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogContent,
@@ -26,7 +28,6 @@ const BARCODE_FORMATS = [
   Html5QrcodeSupportedFormats.CODE_128,
   Html5QrcodeSupportedFormats.CODE_39,
   Html5QrcodeSupportedFormats.ITF,
-  Html5QrcodeSupportedFormats.QR_CODE,
 ];
 
 export function BarcodeScanner({
@@ -38,157 +39,127 @@ export function BarcodeScanner({
 }) {
   const router = useRouter();
   const readerId = useId().replace(/:/g, "");
-  const elementId = `easishop-barcode-reader-${readerId}`;
+  const elementId = `easishop-barcode-file-${readerId}`;
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
+  const confirmAbortRef = useRef<AbortController | null>(null);
   const [scanned, setScanned] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [starting, setStarting] = useState(false);
-  const scannerRef = useRef<Html5Qrcode | null>(null);
-  const scanning = useRef(false);
-  const handled = useRef(false);
+  const [decoding, setDecoding] = useState(false);
+  const [confirming, setConfirming] = useState(false);
+
+  function resetState() {
+    confirmAbortRef.current?.abort();
+    confirmAbortRef.current = null;
+    setScanned(null);
+    setError(null);
+    setDecoding(false);
+    setConfirming(false);
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setPreviewUrl(null);
+    if (cameraInputRef.current) cameraInputRef.current.value = "";
+    if (galleryInputRef.current) galleryInputRef.current.value = "";
+  }
 
   useEffect(() => {
-    if (!open || scanned) {
-      void stopScanner();
-      return;
+    if (!open) {
+      confirmAbortRef.current?.abort();
+      confirmAbortRef.current = null;
     }
+  }, [open]);
 
-    let cancelled = false;
-    handled.current = false;
+  async function decodeFromFile(file: File) {
+    setDecoding(true);
+    setError(null);
+    setScanned(null);
 
-    async function start() {
-      setStarting(true);
-      setError(null);
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setPreviewUrl(URL.createObjectURL(file));
 
-      // Wait for dialog layout so the reader has real dimensions
-      await new Promise((r) => setTimeout(r, 400));
-      if (cancelled) return;
+    await new Promise((r) => requestAnimationFrame(() => r(undefined)));
 
-      const el = document.getElementById(elementId);
-      if (!el) {
-        setError("Scanner failed to load. Close and try again.");
-        setStarting(false);
+    let scanner: Html5Qrcode | null = null;
+    try {
+      scanner = new Html5Qrcode(elementId, {
+        formatsToSupport: BARCODE_FORMATS,
+        verbose: false,
+      });
+      const decoded = await scanner.scanFile(file, false);
+      const code = decoded.trim();
+      if (!code) {
+        setError(
+          "Couldn't read a barcode in that photo. Try again closer and sharper."
+        );
         return;
       }
-
+      setScanned(code);
+      track("scan_barcode", { code, method: "photo" });
+    } catch {
+      setError(
+        "Couldn't read a barcode in that photo. Fill the frame with the barcode and try again."
+      );
+    } finally {
       try {
-        const scanner = new Html5Qrcode(elementId, {
-          formatsToSupport: BARCODE_FORMATS,
-          verbose: false,
-        });
-        scannerRef.current = scanner;
-        scanning.current = true;
-
-        const config = {
-          fps: 12,
-          // Wide strip — grocery barcodes are 1D, not square QR
-          qrbox: (viewWidth: number, viewHeight: number) => {
-            const width = Math.min(Math.floor(viewWidth * 0.92), 360);
-            const height = Math.min(Math.floor(viewHeight * 0.28), 120);
-            return {
-              width: Math.max(width, 200),
-              height: Math.max(height, 80),
-            };
-          },
-          aspectRatio: 1.777778,
-          experimentalFeatures: {
-            useBarCodeDetectorIfSupported: true,
-          },
-        };
-
-        const onSuccess = (decoded: string) => {
-          if (!scanning.current || handled.current) return;
-          handled.current = true;
-          scanning.current = false;
-          const code = decoded.trim();
-          setScanned(code);
-          track("scan_barcode", { code });
-          void stopScanner();
-        };
-
-        try {
-          await scanner.start(
-            { facingMode: "environment" },
-            config,
-            onSuccess,
-            () => undefined
-          );
-        } catch {
-          // Desktop / no rear camera — fall back to any camera
-          await scanner.start(
-            { facingMode: "user" },
-            config,
-            onSuccess,
-            () => undefined
-          );
-        }
+        await scanner?.clear();
       } catch {
-        if (!cancelled) {
-          setError(
-            "Camera access is needed to scan. Allow the camera, or search by typing."
-          );
-        }
-      } finally {
-        if (!cancelled) setStarting(false);
+        // ignore
       }
+      setDecoding(false);
     }
+  }
 
-    void start();
-
-    return () => {
-      cancelled = true;
-      void stopScanner();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, scanned, elementId]);
-
-  async function stopScanner() {
-    const scanner = scannerRef.current;
-    scannerRef.current = null;
-    scanning.current = false;
-    if (!scanner) return;
-    try {
-      if (scanner.isScanning) await scanner.stop();
-    } catch {
-      // ignore
-    }
-    try {
-      await scanner.clear();
-    } catch {
-      // ignore
-    }
+  function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    void decodeFromFile(file);
   }
 
   async function confirmScan() {
     if (!scanned) return;
+
+    confirmAbortRef.current?.abort();
+    const controller = new AbortController();
+    confirmAbortRef.current = controller;
+    setConfirming(true);
+    setError(null);
+
+    const code = scanned;
+
     try {
       const res = await fetch(
-        `/api/search?q=${encodeURIComponent(scanned)}&barcode=1`
+        `/api/search?q=${encodeURIComponent(code)}&barcode=1`,
+        { signal: controller.signal }
       );
-      const data = (await res.json()) as { products: Product[] };
+
+      if (!res.ok) {
+        throw new Error(`Search failed (${res.status})`);
+      }
+
+      const data = (await res.json()) as { products?: Product[] };
+      if (controller.signal.aborted) return;
+
       const results = data.products ?? [];
+      resetState();
       onOpenChange(false);
       if (results.length === 1) {
         router.push(`/product/${results[0].id}`);
         return;
       }
-      router.push(`/search?q=${encodeURIComponent(scanned)}&scan=1`);
-    } catch {
-      onOpenChange(false);
-      router.push(`/search?q=${encodeURIComponent(scanned)}&scan=1`);
+      router.push(`/search?q=${encodeURIComponent(code)}&scan=1`);
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
+      setConfirming(false);
+      toast.error("Couldn't look up that barcode. Try again.");
+      setError("Lookup failed — check your connection and try again.");
     }
-  }
-
-  function restartScan() {
-    setScanned(null);
-    setError(null);
-    handled.current = false;
   }
 
   return (
     <Dialog
       open={open}
       onOpenChange={(next) => {
-        if (!next) void stopScanner();
+        if (!next) resetState();
         onOpenChange(next);
       }}
     >
@@ -200,28 +171,97 @@ export function BarcodeScanner({
           <DialogDescription>
             {scanned
               ? "Does this look right? We'll find matching products."
-              : "Point your camera at the product barcode."}
+              : "Take a clear photo of the barcode — we'll read it from the picture."}
           </DialogDescription>
         </DialogHeader>
 
-        {!scanned ? (
-          <div className="overflow-hidden rounded-3xl bg-black">
-            <div
-              id={elementId}
-              className="min-h-[260px] w-full overflow-hidden [&_video]:h-full [&_video]:w-full [&_video]:object-cover"
-            />
-            {starting ? (
-              <p className="px-4 py-3 text-center text-xs text-white/70">
-                Starting camera…
-              </p>
+        <div id={elementId} className="hidden" aria-hidden />
+
+        <input
+          ref={cameraInputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          className="hidden"
+          onChange={onFileChange}
+        />
+        <input
+          ref={galleryInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={onFileChange}
+        />
+
+        {scanned ? (
+          <div className="space-y-3">
+            {previewUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={previewUrl}
+                alt="Barcode photo"
+                className="mx-auto max-h-40 rounded-2xl object-contain"
+              />
             ) : null}
+            <div className="rounded-3xl bg-zinc-100 px-4 py-6 text-center">
+              <p className="text-sm text-muted-foreground">Detected code</p>
+              <p className="mt-1 font-heading text-xl font-semibold tracking-wide">
+                {scanned}
+              </p>
+            </div>
           </div>
         ) : (
-          <div className="rounded-3xl bg-zinc-100 px-4 py-6 text-center">
-            <p className="text-sm text-muted-foreground">Detected code</p>
-            <p className="mt-1 font-heading text-xl font-semibold tracking-wide">
-              {scanned}
-            </p>
+          <div className="space-y-3">
+            {previewUrl || decoding ? (
+              <div className="relative flex min-h-[180px] items-center justify-center overflow-hidden rounded-3xl bg-zinc-100">
+                {previewUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={previewUrl}
+                    alt="Selected photo"
+                    className="max-h-48 w-full object-contain"
+                  />
+                ) : null}
+                {decoding ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/40 text-white">
+                    <Loader size={24} className="animate-spin" aria-hidden />
+                    <p className="text-sm">Reading barcode…</p>
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <div className="flex min-h-[160px] flex-col items-center justify-center gap-2 rounded-3xl bg-zinc-100 px-6 text-center">
+                <Camera
+                  size={32}
+                  className="text-muted-foreground"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+                <p className="text-sm text-muted-foreground">
+                  Get close so the bars fill the photo.
+                </p>
+              </div>
+            )}
+
+            <div className="grid gap-2 sm:grid-cols-2">
+              <Button
+                className="h-11 rounded-full px-5"
+                disabled={decoding}
+                onClick={() => cameraInputRef.current?.click()}
+              >
+                <Camera size={16} aria-hidden />
+                Take photo
+              </Button>
+              <Button
+                variant="outline"
+                className="h-11 rounded-full px-5"
+                disabled={decoding}
+                onClick={() => galleryInputRef.current?.click()}
+              >
+                <Image size={16} aria-hidden />
+                Choose photo
+              </Button>
+            </div>
           </div>
         )}
 
@@ -233,22 +273,27 @@ export function BarcodeScanner({
               <Button
                 variant="ghost"
                 className="h-11 rounded-full bg-zinc-100 px-5 hover:bg-zinc-200"
-                onClick={restartScan}
+                disabled={confirming}
+                onClick={resetState}
               >
-                Scan again
+                Retake
               </Button>
               <Button
                 className="h-11 rounded-full px-6"
-                onClick={confirmScan}
+                disabled={confirming}
+                onClick={() => void confirmScan()}
               >
-                Find product
+                {confirming ? "Looking up…" : "Find product"}
               </Button>
             </>
           ) : (
             <Button
               variant="ghost"
               className="h-11 rounded-full bg-zinc-100 px-5 hover:bg-zinc-200"
-              onClick={() => onOpenChange(false)}
+              onClick={() => {
+                resetState();
+                onOpenChange(false);
+              }}
             >
               Cancel
             </Button>

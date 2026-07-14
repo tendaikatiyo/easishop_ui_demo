@@ -11,10 +11,7 @@ export type TrackEventName =
   | "toggle_alert"
   | "view_category"
   | "view_deals"
-  | "create_list"
-  | "onboarding_complete"
-  | "location_granted"
-  | "location_denied";
+  | "create_list";
 
 export function track(
   event: TrackEventName,

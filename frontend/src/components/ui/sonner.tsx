@@ -1,31 +1,28 @@
 "use client"
 
-import { useTheme } from "next-themes"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
-import { CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon, Loader2Icon } from "lucide-react"
+import { CheckCircle, CircleInfo, Loader, TriangleWarning, XCircle } from "reicon-react"
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
-
   return (
     <Sonner
-      theme={theme as ToasterProps["theme"]}
+      theme="light"
       className="toaster group"
       icons={{
         success: (
-          <CircleCheckIcon className="size-4" />
+          <CheckCircle size={16} aria-hidden />
         ),
         info: (
-          <InfoIcon className="size-4" />
+          <CircleInfo size={16} aria-hidden />
         ),
         warning: (
-          <TriangleAlertIcon className="size-4" />
+          <TriangleWarning size={16} aria-hidden />
         ),
         error: (
-          <OctagonXIcon className="size-4" />
+          <XCircle size={16} aria-hidden />
         ),
         loading: (
-          <Loader2Icon className="size-4 animate-spin" />
+          <Loader size={16} className="animate-spin" aria-hidden />
         ),
       }}
       style={

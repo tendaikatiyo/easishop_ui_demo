@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ScanBarcode, Search } from "lucide-react";
+import { ArrowRight, ScanBarcode2, Search } from "reicon-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
@@ -13,7 +13,6 @@ const SAMPLE_QUERIES = [
   "Milk",
   "Bread",
   "Eggs",
-  "Lay's chips",
   "Chicken breast",
   "Coffee",
   "Rice",
@@ -58,6 +57,10 @@ export function SearchCapsule({
   }, []);
 
   useEffect(() => {
+    setQuery(initialQuery);
+  }, [initialQuery]);
+
+  useEffect(() => {
     if (focused || query) return;
     const id = window.setInterval(() => {
       setIndex((current) => (current + 1) % queries.length);
@@ -88,8 +91,8 @@ export function SearchCapsule({
           className
         )}
       >
-        <Search className="ml-1 size-5 shrink-0 text-foreground/55" strokeWidth={2.5} />
-        <div className="relative min-w-0 flex-1">
+        <Search size={20} aria-hidden className="ml-1 shrink-0 text-foreground/55" />
+      <div className="relative min-w-0 flex-1">
           {showFlicker ? (
             <span
               key={sample}
@@ -124,7 +127,7 @@ export function SearchCapsule({
           aria-label="Scan barcode"
           onClick={() => setScanOpen(true)}
         >
-          <ScanBarcode className="size-4" />
+          <ScanBarcode2 size={16} aria-hidden />
         </Button>
         {variant === "hero" ? (
           <Button
@@ -133,7 +136,7 @@ export function SearchCapsule({
             className="size-9 shrink-0 rounded-full glass-dark"
             aria-label="Search"
           >
-            <ArrowRight className="size-4" />
+            <ArrowRight size={16} aria-hidden />
           </Button>
         ) : (
           <Button type="submit" size="sm" className="hidden sm:inline-flex">

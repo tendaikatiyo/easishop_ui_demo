@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { PackageOpen } from "lucide-react";
+import { BoxArchive } from "reicon-react";
 import { cn } from "@/lib/utils";
 
 export function ProductImage({
@@ -27,7 +27,7 @@ export function ProductImage({
         aria-label={alt}
         role="img"
       >
-        <PackageOpen className="size-10" strokeWidth={1.25} />
+        <BoxArchive size={40} strokeWidth={1.25} aria-hidden />
       </div>
     );
   }

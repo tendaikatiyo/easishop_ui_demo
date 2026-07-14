@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight } from "reicon-react";
 
 export interface Crumb {
   label: string;
@@ -14,7 +16,9 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
           const last = index === items.length - 1;
           return (
             <li key={`${item.label}-${index}`} className="flex items-center gap-1">
-              {index > 0 ? <ChevronRight className="size-3.5 shrink-0" /> : null}
+              {index > 0 ? (
+                <ChevronRight size={14} className="shrink-0" aria-hidden />
+              ) : null}
               {item.href && !last ? (
                 <Link
                   href={item.href}

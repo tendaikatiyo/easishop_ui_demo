@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Settings2 } from "lucide-react";
+import { Settings2 } from "reicon-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ProfileSectionHeader } from "@/components/profile/profile-ui";
 import { Button } from "@/components/ui/button";
