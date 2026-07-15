@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Search, TrendUp2 } from "reicon-react";
+import { Search, TrendingUp } from "lucide-react";
 import { CATEGORIES } from "@/lib/catalog";
 import { getCategoryIcon } from "@/components/product/category-icons";
 import { useReturningVisitor } from "@/hooks/use-returning-visitor";
@@ -64,7 +64,7 @@ export function SearchEmptyState() {
         </p>
         <div className="mt-8 space-y-3">
           <p className="figma-eyebrow flex items-center justify-center gap-1.5">
-            <TrendUp2 size={14} className="brand-green" aria-hidden />
+            <TrendingUp size={14} className="brand-green" aria-hidden />
             Popular searches
           </p>
           <PopularSearchPills />

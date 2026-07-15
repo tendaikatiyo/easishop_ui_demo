@@ -1,4 +1,5 @@
-import type { Category, Product, RetailerPrice } from "@/types";
+import type { Category, Product, RetailerName, RetailerPrice } from "@/types";
+import { RETAILERS, type Retailer } from "@/lib/retailers";
 
 export const CATEGORIES: Category[] = [
   { name: "Toiletries", slug: "toiletries" },
@@ -38,6 +39,61 @@ export function formatRand(amount: number): string {
 
 export function getAvailablePrices(product: Product): RetailerPrice[] {
   return product.prices.filter((p) => typeof p.price === "number" && p.price > 0);
+}
+
+/** Dedupe positive prices by retailer (keep cheapest), sort ascending. */
+export function getDedupedAvailablePrices(product: Product): RetailerPrice[] {
+  const byRetailer = new Map<RetailerName, RetailerPrice>();
+  for (const price of getAvailablePrices(product)) {
+    const existing = byRetailer.get(price.retailer);
+    if (!existing || price.price < existing.price) {
+      byRetailer.set(price.retailer, price);
+    }
+  }
+  return [...byRetailer.values()].sort((a, b) => a.price - b.price);
+}
+
+/** Partner retailers with no live price, in stable RETAILERS order. */
+export function getUnavailableRetailers(product: Product): Retailer[] {
+  const available = new Set(
+    getDedupedAvailablePrices(product).map((p) => p.retailer)
+  );
+  return RETAILERS.filter((r) => !available.has(r.apiName));
+}
+
+export function getPriceCoverage(product: Product): {
+  available: RetailerPrice[];
+  unavailable: Retailer[];
+  checkedCount: number;
+} {
+  const available = getDedupedAvailablePrices(product);
+  const unavailable = getUnavailableRetailers(product);
+  return {
+    available,
+    unavailable,
+    checkedCount: RETAILERS.length,
+  };
+}
+
+export function coverageNoteLabel(
+  unavailable: Retailer[],
+  checkedCount: number
+): string {
+  if (unavailable.length === 1) {
+    return `${unavailable[0].name} unavailable`;
+  }
+  if (unavailable.length === 2) {
+    return `${unavailable[0].name} and ${unavailable[1].name} unavailable`;
+  }
+  return `Checked ${checkedCount} stores · ${unavailable.length} unavailable`;
+}
+
+export function checkedPartnersSentence(): string {
+  const names = RETAILERS.map((r) => r.name);
+  if (names.length <= 1) return `We checked ${names[0] ?? "our partner stores"}.`;
+  const head = names.slice(0, -1).join(", ");
+  const last = names[names.length - 1];
+  return `We checked ${head}, and ${last}.`;
 }
 
 export function getLowestPrice(product: Product): RetailerPrice | null {

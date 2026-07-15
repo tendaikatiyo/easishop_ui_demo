@@ -15,7 +15,8 @@ Chrome:
 
 ## Find — search
 
-home › hero search › search results › product › add to list **or** visit store website
+home › hero search › search results › product › add to list **or** visit store website  
+*(PDP compare: available stores only in the price list; optional collapsed coverage note when a partner is unavailable)*
 
 search tab / page › type query › results › product › …
 
@@ -75,6 +76,16 @@ Profile › edit / marketing / account
 mobile Profile › About · FAQ · Privacy · Terms · Send feedback · social links (with icons)
 
 desktop footer › same legal / feedback links
+
+---
+
+## Errors & recovery
+
+unknown URL / missing product · store · category › **404** › Back home **or** Search / Shop by store / Deals / Lists **or** popular search pills
+
+page runtime error › **Error** › Try again **or** Back home **or** same keep-shopping links
+
+root layout crash › **global error** › Try again / Home / Search (standalone chrome)
 
 ---
 

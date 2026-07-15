@@ -11,7 +11,8 @@ export type TrackEventName =
   | "toggle_alert"
   | "view_category"
   | "view_deals"
-  | "create_list";
+  | "create_list"
+  | "toggle_unavailable_retailers";
 
 export function track(
   event: TrackEventName,

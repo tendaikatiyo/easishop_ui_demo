@@ -3,8 +3,8 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 // Barcode feature temporarily disabled
-// import { ArrowRight, ScanBarcode2, Search } from "reicon-react";
-import { ArrowRight, Search } from "reicon-react";
+// import { ArrowRight, ScanBarcode } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
@@ -132,20 +132,20 @@ export function SearchCapsule({
           aria-label="Scan barcode"
           onClick={() => setScanOpen(true)}
         >
-          <ScanBarcode2 size={16} aria-hidden />
+          <ScanBarcode size={16} aria-hidden />
         </Button>
         */}
         {variant === "hero" ? (
           <Button
             type="submit"
             size="icon"
-            className="size-9 shrink-0 rounded-full glass-dark"
+            className="size-9 shrink-0 cursor-pointer rounded-full glass-dark"
             aria-label="Search"
           >
             <ArrowRight size={16} aria-hidden />
           </Button>
         ) : (
-          <Button type="submit" size="sm" className="hidden sm:inline-flex">
+          <Button type="submit" size="sm" className="hidden cursor-pointer sm:inline-flex">
             Search
           </Button>
         )}

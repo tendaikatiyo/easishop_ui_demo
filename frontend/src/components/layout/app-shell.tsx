@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import {
   Compass,
   Home,
-  ListCheck,
-  PercentCircle,
+  ListChecks,
+  BadgePercent,
   Search,
   User,
-} from "reicon-react";
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDemoUser } from "@/hooks/use-demo-user";
 import { totalListItems } from "@/lib/lists";
@@ -32,8 +32,8 @@ const searchPlaceholder = (returning: boolean) =>
 const mobileNav = [
   { href: "/", label: "Home", icon: Home },
   { href: "/search", label: "Search", icon: Search },
-  { href: "/deals", label: "Deals", icon: PercentCircle },
-  { href: "/lists", label: "Lists", icon: ListCheck },
+  { href: "/deals", label: "Deals", icon: BadgePercent },
+  { href: "/lists", label: "Lists", icon: ListChecks },
   { href: "/profile", label: "Profile", icon: User },
 ] as const;
 
@@ -80,7 +80,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
           </Link>
 
           <div className="ml-auto hidden min-w-0 flex-1 md:block md:max-w-sm">
-            {!onHome ? (
+            {!onHome && pathname !== "/search" ? (
               <Link
                 href="/search"
                 className="glass glass-pill flex items-center gap-2.5 px-4 py-2.5 text-sm text-foreground/45 transition-colors hover:text-foreground/70"
@@ -188,7 +188,8 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
                   <span className="flex size-7 items-center justify-center">
                     <Icon
                       size={20}
-                      weight={active ? "Filled" : "Outline"}
+                      strokeWidth={active ? 2.25 : 1.75}
+                      absoluteStrokeWidth
                       aria-hidden
                     />
                   </span>

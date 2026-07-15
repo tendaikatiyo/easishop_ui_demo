@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Search } from "reicon-react";
+import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /** Compact pivot to global Search from store/category browse pages. */
@@ -20,7 +20,7 @@ export function BrowseSearchLink({
         className
       )}
     >
-      <Search size={16} aria-hidden className="shrink-0" />
+      <Search size={16} strokeWidth={1.75} aria-hidden className="shrink-0" />
       <span className="truncate">{hint}</span>
     </Link>
   );

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Compass, Edit2, Refresh, Search, Trash2 } from "reicon-react";
 import { toast } from "sonner";
@@ -38,6 +38,8 @@ export default function ListDetailPage() {
   const [refreshing, setRefreshing] = useState(false);
   const [renameOpen, setRenameOpen] = useState(false);
   const [draftName, setDraftName] = useState("");
+  const [exitingIds, setExitingIds] = useState<Set<string>>(() => new Set());
+  const exitTimersRef = useRef<Map<string, number>>(new Map());
 
   const productIds = useMemo(
     () => list?.items.map((item) => item.productId).join(",") ?? "",
@@ -89,6 +91,14 @@ export default function ListDetailPage() {
     return () => controller.abort();
   }, [loadProducts]);
 
+  useEffect(() => {
+    const timers = exitTimersRef.current;
+    return () => {
+      for (const id of timers.values()) window.clearTimeout(id);
+      timers.clear();
+    };
+  }, []);
+
   if (!user) {
     return (
       <div className="py-20 text-center text-sm text-muted-foreground">
@@ -112,10 +122,12 @@ export default function ListDetailPage() {
   }
 
   const total = products.reduce((sum, product) => {
+    if (exitingIds.has(product.id)) return sum;
     const lowest = getLowestPrice(product);
     return sum + (lowest?.price ?? 0);
   }, 0);
 
+  const visibleItemCount = Math.max(list.items.length - exitingIds.size, 0);
   const skeletonCount = Math.max(list.items.length, 1);
   const showSkeleton = loadingProducts || refreshing;
 
@@ -134,6 +146,36 @@ export default function ListDetailPage() {
     refresh();
     setRenameOpen(false);
     toast.success("List renamed");
+  }
+
+  function onRemoveItem(productId: string) {
+    if (exitingIds.has(productId) || exitTimersRef.current.has(productId)) {
+      return;
+    }
+
+    setExitingIds((prev) => new Set(prev).add(productId));
+    removeFromList(productId, list!.id);
+    track("remove_from_list", {
+      productId,
+      listId: list!.id,
+    });
+
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const durationMs = reducedMotion ? 120 : 200;
+
+    const timer = window.setTimeout(() => {
+      exitTimersRef.current.delete(productId);
+      setProducts((prev) => prev.filter((p) => p.id !== productId));
+      setExitingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(productId);
+        return next;
+      });
+      refresh();
+    }, durationMs);
+    exitTimersRef.current.set(productId, timer);
   }
 
   return (
@@ -162,8 +204,9 @@ export default function ListDetailPage() {
             </Button>
           </div>
           <p className="text-sm text-muted-foreground">
-            {list.items.length} item{list.items.length === 1 ? "" : "s"}
-            {!showSkeleton && products.length
+            {visibleItemCount} item{visibleItemCount === 1 ? "" : "s"}
+            {!showSkeleton &&
+            products.some((p) => !exitingIds.has(p.id))
               ? ` · ${formatRand(total)}`
               : null}
           </p>
@@ -202,81 +245,86 @@ export default function ListDetailPage() {
       {showSkeleton ? (
         <ListProductSkeleton count={skeletonCount} />
       ) : products.length ? (
-        <ul className="space-y-2">
+        <ul className="flex flex-col gap-2">
           {products.map((product) => {
             const lowest = getLowestPrice(product);
             const logo = lowest ? getRetailerLogo(lowest.retailer) : null;
+            const exiting = exitingIds.has(product.id);
             return (
               <li
                 key={product.id}
-                className="flex items-center gap-3 rounded-2xl bg-white p-3"
+                className={cn(
+                  "grid transition-[grid-template-rows] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:duration-[120ms]",
+                  exiting ? "grid-rows-[0fr]" : "grid-rows-[1fr]"
+                )}
               >
-                <Link
-                  href={`/product/${product.id}`}
-                  className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-surface-warm"
-                >
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                    sizes="56px"
-                  />
-                </Link>
-                <div className="min-w-0 flex-1">
-                  <Link
-                    href={`/product/${product.id}`}
-                    className="line-clamp-1 font-medium hover:text-primary"
+                <div className="min-h-0 overflow-hidden">
+                  <div
+                    className={cn(
+                      "flex items-center gap-3 rounded-2xl bg-white p-3 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:translate-x-0 motion-reduce:transition-opacity motion-reduce:duration-[120ms]",
+                      exiting &&
+                        "pointer-events-none translate-x-2 opacity-0 motion-reduce:translate-x-0"
+                    )}
                   >
-                    {product.name}
-                  </Link>
-                  {lowest ? (
-                    <div className="mt-1 flex items-center gap-2">
-                      <span
-                        className="relative size-5 shrink-0 overflow-hidden rounded-full border border-border bg-white"
-                        title={lowest.retailer}
+                    <Link
+                      href={`/product/${product.id}`}
+                      className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-surface-warm"
+                    >
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                        sizes="56px"
+                      />
+                    </Link>
+                    <div className="min-w-0 flex-1">
+                      <Link
+                        href={`/product/${product.id}`}
+                        className="line-clamp-1 font-medium hover:text-primary"
                       >
-                        {logo ? (
-                          <Image
-                            src={logo}
-                            alt={lowest.retailer}
-                            fill
-                            className="object-contain p-0.5"
-                            sizes="20px"
-                          />
-                        ) : (
-                          <span className="flex size-full items-center justify-center text-[7px] font-semibold leading-none">
-                            {lowest.retailer.slice(0, 2)}
+                        {product.name}
+                      </Link>
+                      {lowest ? (
+                        <div className="mt-1 flex items-center gap-2">
+                          <span
+                            className="relative size-5 shrink-0 overflow-hidden rounded-full border border-border bg-white"
+                            title={lowest.retailer}
+                          >
+                            {logo ? (
+                              <Image
+                                src={logo}
+                                alt={lowest.retailer}
+                                fill
+                                className="object-contain p-0.5"
+                                sizes="20px"
+                              />
+                            ) : (
+                              <span className="flex size-full items-center justify-center text-[7px] font-semibold leading-none">
+                                {lowest.retailer.slice(0, 2)}
+                              </span>
+                            )}
                           </span>
-                        )}
-                      </span>
-                      <span className="text-sm font-medium tabular-nums">
-                        {formatRand(lowest.price)}
-                      </span>
+                          <span className="text-sm font-medium tabular-nums">
+                            {formatRand(lowest.price)}
+                          </span>
+                        </div>
+                      ) : (
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          Price unavailable
+                        </p>
+                      )}
                     </div>
-                  ) : (
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Price unavailable
-                    </p>
-                  )}
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      disabled={exiting}
+                      onClick={() => onRemoveItem(product.id)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
                 </div>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => {
-                    removeFromList(product.id, list.id);
-                    track("remove_from_list", {
-                      productId: product.id,
-                      listId: list.id,
-                    });
-                    setProducts((prev) =>
-                      prev.filter((p) => p.id !== product.id)
-                    );
-                    refresh();
-                  }}
-                >
-                  Remove
-                </Button>
               </li>
             );
           })}

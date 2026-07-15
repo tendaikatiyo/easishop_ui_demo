@@ -27,7 +27,7 @@ there is a consumer facing platform and another platform only accessible the adm
 
 - for ease of maintaining I want the site to have reusable components so I can make one change in one place and not worry about it
 
-- if a product is not available at certain retailer dont display that retailer on the comparison page
+- Don’t show unavailable retailers as primary compare rows. When any partner store lacks a live price, show a collapsed coverage note under the list (expand for store names + “Unavailable”). No greyed Buy rows in the main list.
 
 - the onboarding on the site must be geared towards conversions
 - there must be an account profile where users can edit their account names, adjust marketing preferences 

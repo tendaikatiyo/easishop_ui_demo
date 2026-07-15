@@ -14,9 +14,12 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="space-y-1">
-              <p className="font-heading text-lg font-semibold brand-green">
+              <Link
+                href="/"
+                className="font-heading text-lg font-semibold brand-green"
+              >
                 EasiShop
-              </p>
+              </Link>
               <p className="max-w-sm text-sm text-muted-foreground">
                 Compare grocery prices across South Africa&apos;s leading
                 retailers.

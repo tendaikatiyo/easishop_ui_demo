@@ -31,8 +31,20 @@ async function searchApiUncached(
   if (!q) return [];
   try {
     const data = await apiSearch(q, opts);
-    return normalizeSearchResults(data.products ?? []);
-  } catch {
+    const products = normalizeSearchResults(data.products ?? []);
+    if (
+      process.env.NODE_ENV === "development" &&
+      (data.products?.length ?? 0) === 0
+    ) {
+      console.warn(
+        `[searchApi] upstream /search returned 0 products for "${q}"`
+      );
+    }
+    return products;
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") {
+      console.error(`[searchApi] failed for "${q}"`, err);
+    }
     return [];
   }
 }

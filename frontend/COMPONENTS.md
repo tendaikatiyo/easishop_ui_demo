@@ -337,13 +337,13 @@ Home page (`app/page.tsx`) order: `HomeHero` → `HomeStores` → `CategoryStrip
 | **Type** | Client · **Both** |
 | **Used by** | Product detail page (mobile + desktop layouts) |
 
-**What it does:** Sorted retailer prices, “Lowest” callout when unambiguous, best-value unit badge, external Buy buttons.
+**What it does:** Sorted retailer prices, “Lowest” callout when unambiguous, best-value unit badge, external Buy buttons. When any partner store is missing a price, a collapsed coverage note under the list can expand to name unavailable stores (no Buy).
 
-**Logic:** “Lowest” only when there are 2+ prices and the cheapest is unique vs the most expensive. Buy uses `Button` + `render={<a/>}` and `track("open_retailer", …)`. Empty state is a dashed card.
+**Logic:** Uses `getPriceCoverage` (available rows only in the list; unavailable partners from `RETAILERS`). “Lowest” only when there are 2+ prices and the cheapest differs from the most expensive. Buy uses `Button` + `render={<a/>}` and `track("open_retailer", …)`. Expand/collapse fires `track("toggle_unavailable_retailers", …)`. Empty state is a dashed card plus a “We checked …” line listing partners.
 
 **Props:** `{ product: Product }`
 
-**Interacts with:** `DealBadge`, `Badge` / `Button` / `Card`, catalog helpers, `track`.
+**Interacts with:** `DealBadge`, `Badge` / `Button` / `Card`, catalog coverage helpers, `track`.
 
 ---
 

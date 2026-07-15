@@ -1,11 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight2, Medal } from "reicon-react";
+import { useId, useState } from "react";
+import { ArrowUpRight2, ChevronRight, Medal } from "reicon-react";
 import {
+  checkedPartnersSentence,
+  coverageNoteLabel,
   formatRand,
-  getAvailablePrices,
   getBestValue,
+  getPriceCoverage,
   getSavingsAmount,
 } from "@/lib/catalog";
 import { getRetailerLogo } from "@/lib/retailers";
@@ -18,23 +21,41 @@ import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 export function PriceComparisonPanel({ product }: { product: Product }) {
-  const prices = getAvailablePrices(product).sort((a, b) => a.price - b.price);
+  const { available: prices, unavailable, checkedCount } =
+    getPriceCoverage(product);
   const bestValue = getBestValue(product);
-  // "Lowest" only means something when stores actually differ on price
   const hasLowest =
     prices.length > 1 && prices[0].price < prices[prices.length - 1].price;
   const lowestPrice = hasLowest ? prices[0].price : null;
+  const [coverageOpen, setCoverageOpen] = useState(false);
+  const coveragePanelId = useId();
 
   if (!prices.length) {
     return (
       <Card className="border-dashed py-8 text-center">
-        <CardContent>
+        <CardContent className="space-y-2">
           <p className="text-sm text-muted-foreground">
             No retailer prices available for this product right now.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {checkedPartnersSentence()}
           </p>
         </CardContent>
       </Card>
     );
+  }
+
+  const showCoverage = unavailable.length > 0;
+
+  function toggleCoverage() {
+    const next = !coverageOpen;
+    setCoverageOpen(next);
+    track("toggle_unavailable_retailers", {
+      productId: product.id,
+      expanded: next,
+      unavailableCount: unavailable.length,
+      unavailableRetailers: unavailable.map((r) => r.apiName),
+    });
   }
 
   return (
@@ -93,7 +114,8 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
                       <span className="font-accent text-xl font-medium tracking-tight">
                         {formatRand(price.price)}
                       </span>
-                      {price.previousPrice && price.previousPrice > price.price ? (
+                      {price.previousPrice &&
+                      price.previousPrice > price.price ? (
                         <span className="font-accent text-sm tracking-tight text-muted-foreground line-through">
                           {formatRand(price.previousPrice)}
                         </span>
@@ -130,6 +152,73 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
           );
         })}
       </ul>
+
+      {showCoverage ? (
+        <div className="space-y-1">
+          <button
+            type="button"
+            onClick={toggleCoverage}
+            aria-expanded={coverageOpen}
+            aria-controls={coveragePanelId}
+            className="flex min-h-11 w-full items-center gap-2 rounded-2xl px-1 py-2 text-left text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ChevronRight
+              size={16}
+              aria-hidden
+              className={cn(
+                "shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none",
+                coverageOpen && "rotate-90"
+              )}
+            />
+            <span className="min-w-0 truncate">
+              {coverageNoteLabel(unavailable, checkedCount)}
+            </span>
+          </button>
+
+          <div
+            id={coveragePanelId}
+            className={cn(
+              "grid transition-[grid-template-rows] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:duration-150",
+              coverageOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+            )}
+          >
+            <div className="min-h-0 overflow-hidden">
+              <div className="space-y-2 pb-1 pl-1">
+                <p className="text-xs text-muted-foreground">
+                  No live price from these stores right now.
+                </p>
+                <ul className="space-y-1.5">
+                  {unavailable.map((retailer) => {
+                    const logo = retailer.logo;
+                    return (
+                      <li
+                        key={retailer.slug}
+                        className="flex min-h-11 items-center gap-3 rounded-2xl px-1 py-1.5"
+                      >
+                        <div className="relative size-9 shrink-0 overflow-hidden rounded-full border border-border/60 bg-zinc-50 opacity-60">
+                          <Image
+                            src={logo}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            sizes="36px"
+                          />
+                        </div>
+                        <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">
+                          {retailer.name}
+                        </span>
+                        <span className="shrink-0 text-sm text-muted-foreground">
+                          Unavailable
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
