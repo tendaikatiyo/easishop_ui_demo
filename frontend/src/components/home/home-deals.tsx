@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ProductCard } from "@/components/product/product-card";
 import { SeeAllDealsButton } from "@/components/home/see-all-deals-button";
 import { getDeals } from "@/lib/products";
@@ -31,7 +30,7 @@ export async function HomeDeals() {
             Top deals of the day
           </h2>
           <p className="text-sm font-light">
-            Prices that dropped — worth a look.
+            Biggest Rand drops first — worth a look.
           </p>
         </div>
         <SeeAllDealsButton />

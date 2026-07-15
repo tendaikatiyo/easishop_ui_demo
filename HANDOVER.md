@@ -26,10 +26,20 @@ Create `frontend/.env` from `frontend/.env.example`:
 ```
 EASISHOP_API_USERNAME=...
 EASISHOP_API_PASSWORD=...
+# Optional: force offline barcode index even if API recovers
+# EASISHOP_USE_LOCAL_CATALOG=true
 ```
 
 Credentials are server-only — they never reach the browser. Client components go
 through the Next API routes under `src/app/api/*`.
+
+Rebuild demo aisle map (from `frontend/`):
+
+```bash
+npm run build:demo-categories
+# Optional OFF enrichment (offline only; not for production):
+# OPEN_FOOD_FACTS=1 OFF_BUDGET=200 npm run build:demo-categories
+```
 
 ## Latest session (15 Jul 2026) — summary
 
@@ -40,11 +50,15 @@ Unavailable retailers UX: [`ux-unavailable-retailers-middle-ground.md`](./ux-una
 | Area | What changed |
 |---|---|
 | **API diagnosis** | Live `POST /search` returns **200 + empty `products`** while dashboard still reports ~99k products — **backend blocker**. Frontend auth/request shape are fine. Dev logging in `searchApi`. |
+| **Offline catalog** | `barcodeIndex` + `EASISHOP_USE_LOCAL_CATALOG` power search/deals/aisles while live `/search` is empty. Aisles use **brand/product knowledge** (`demo-product-knowledge.ts` + `demo-category-by-barcode.json`), not naïve name substrings. Marked DEMO ONLY in code/docs — **no “demo” labels in the UI**. |
+| **Open Food Facts** | Optional **offline** enrichment only in `build-demo-categories.mjs` — **not** runtime, **not** sustainable as production category source. Prefer DB category column + scrapers at ingest. |
+| **Price sanity** | `plausiblePreviousPrice` drops bogus previous prices before savings/deals calc. |
+| **Desktop typeahead** | Google-style suggestions (`/api/search/suggest`); layout `[image][product name]`; **desktop only** — skip mobile floating panel. |
 | **Compare middle ground** | Available-only price rows + collapsed **coverage note** when partners are missing; expand for Unavailable (no Buy). Helpers in `catalog.ts`; `toggle_unavailable_retailers` analytics. |
 | **List motion** | List-detail Remove **exit animation** (fade / slide / height collapse) + delayed refresh. |
 | **Chrome polish** | Footer wordmark → `/`; `cursor-pointer` on search CTAs; hide header search capsule on `/search`. |
 | **Agent skills** | Emil Kowalski pack under `frontend/.agents/skills/` (animation + Apple design + design-eng). |
-| **Docs** | `context.md` / `COMPONENTS.md` / `user_flows.md` aligned with coverage rule. |
+| **Docs** | `context.md` / `COMPONENTS.md` / `user_flows.md` aligned with coverage rule; this handover + 15 Jul session file. |
 
 ## Architecture cheat-sheet
 
@@ -53,8 +67,11 @@ Unavailable retailers UX: [`ux-unavailable-retailers-middle-ground.md`](./ux-una
 - `src/lib/api/normalize.ts` — raw API rows → `Product`. Retailer columns are
   `chk/dsc/pnp/srt/woo` (+ `_image`, `_url`, `_prev`). Product IDs are
   `p-<base64url(name)>`. Images resolve to `https://www.easishop.co.za/images/...`.
-- `src/lib/products.ts` — data layer. React `cache`d per request; `searchProducts()`
-  uses query expansion from `search-query.ts`. Dev warns on empty/failed upstream search.
+  Previous prices pass through price-sanity.
+- `src/lib/products.ts` — data layer. React `cache`d per request; falls back to
+  local catalog when API search is empty/fails. Dev warns on empty/failed upstream.
+- `src/lib/local-catalog.ts` / `demo-catalog.ts` / `demo-product-knowledge.ts` —
+  offline index + DEMO aisle classification (precomputed map preferred).
 - `src/lib/catalog.ts` — money helpers + **`getPriceCoverage` / unavailable partner math**
   vs `RETAILERS`.
 - `src/lib/storage.ts` — localStorage user, lists, analytics events, visit flag.
@@ -63,8 +80,9 @@ Unavailable retailers UX: [`ux-unavailable-retailers-middle-ground.md`](./ux-una
   in the shell for hash sections and safe soft-nav Back.
 - `src/components/product/category-picker.tsx` — Explore drawer (Stores \| Aisles).
 - `src/components/product/price-comparison-panel.tsx` — compare rows + coverage disclosure.
-- `src/app/api/{search,deals,featured,products/[id],products/batch}` — client proxies.
-  Batch: `GET ?ids=...&refresh=1`.
+- `src/components/search/search-suggest-panel.tsx` — desktop typeahead listbox.
+- `src/app/api/{search,search/suggest,deals,featured,products/[id],products/batch}` —
+  client proxies. Batch: `GET ?ids=...&refresh=1`.
 
 ## Key routes
 
@@ -73,8 +91,8 @@ Unavailable retailers UX: [`ux-unavailable-retailers-middle-ground.md`](./ux-una
 | `/` | Home — hero, **stores**, categories, deals, featured |
 | `/search` | Search (barcode UI currently disabled; header capsule hidden here) |
 | `/store/[slug]` | Products by retailer |
-| `/category/[slug]` | Aisle (search-term approximated) |
-| `/deals` | Price drops |
+| `/category/[slug]` | Aisle (demo: offline classified map; prod: needs API category) |
+| `/deals` | Price drops (demo: biggest Rand drops from offline index) |
 | `/lists`, `/lists/[id]` | Lists + detail (rename, refresh, add more, **animated remove**) |
 | `/profile` (+ edit / marketing / account) | Settings hub |
 | `/about`, `/faq`, `/privacy`, `/terms` | Legal / info |
@@ -89,18 +107,21 @@ Toasts (Sonner) match the same bubble look; list mutations use promise-style toa
 ## Known issues / next steps
 
 - **Critical — empty search API** — `POST /api/v1/search` returns `[]` while catalog
-  still has data. Blocks products across the demo until backend fixes it.
+  still has data. Offline index unblocks the UI demo until backend fixes it.
+- **Categories (production)** — frontend/demo map is a bridge. Prefer **DB category
+  column + scrapers label on commit**, then API `category` / `category_slug`.
+  Open Food Facts is **not** a sustainable live classifier (see 15 Jul handover).
 - **Barcode** — UI is commented out in `search-capsule.tsx`; re-enable by restoring the
   scan button + `BarcodeScanner` mount. Scanner file and `/api/search?barcode=1` remain.
 - **Search** — frontend shim is a workaround; fuzzy search belongs on the backend.
 - **Dischem / Shoprite** — API field gaps (`dsc` often empty); coverage note makes this
   transparent on the PDP without greying Buy rows.
-- **Categories** — still search-term approximated; need a real category endpoint.
-- **Deals** — fall back to search-derived drops if analytics endpoint fails.
+- **Deals** — fall back to search-derived / offline drops if analytics endpoint fails.
 - Price history, location pricing, real auth — stubs / localStorage-only by design.
 - Keep `frontend/.next/` gitignored locally.
 - Optional motion follow-ups: delete-list hold-to-confirm; `+`/`✓` morph; list-sheet
   create↔picker crossfade (see 15 Jul handover).
+- Mobile search suggestions: skipped; use inline or full-screen search if revisited.
 
 ## Who did what
 
@@ -110,4 +131,4 @@ Toasts (Sonner) match the same bubble look; list mutations use promise-style toa
 | Image fix, add-to-list, similar products | Fable 5 (11 Jul) |
 | Profile, lists, search polish, stores, glass UI | Cursor (13 Jul) |
 | Explore/nav P0–P5, footer/legal, reicon, bugfix | Cursor (14 Jul) — see `HANDOVER-2026-07-14.md` |
-| API diagnose, compare coverage UI, list remove exit, skills | Cursor (15 Jul) — see `HANDOVER-2026-07-15.md` |
+| API diagnose, offline catalog/aisles, typeahead, coverage UI, list exit, skills | Cursor (15 Jul) — see `HANDOVER-2026-07-15.md` |

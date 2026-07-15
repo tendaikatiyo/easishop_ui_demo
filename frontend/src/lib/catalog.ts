@@ -1,5 +1,6 @@
 import type { Category, Product, RetailerName, RetailerPrice } from "@/types";
 import { RETAILERS, type Retailer } from "@/lib/retailers";
+import { plausiblePreviousPrice } from "@/lib/price-sanity";
 
 export const CATEGORIES: Category[] = [
   { name: "Toiletries", slug: "toiletries" },
@@ -115,13 +116,13 @@ export function getBestValue(product: Product): RetailerPrice | null {
 }
 
 export function getSavingsPercent(price: RetailerPrice): number | null {
-  if (!price.previousPrice || price.previousPrice <= price.price) return null;
-  return Math.round(
-    ((price.previousPrice - price.price) / price.previousPrice) * 100
-  );
+  const prev = plausiblePreviousPrice(price.price, price.previousPrice);
+  if (prev == null) return null;
+  return Math.round(((prev - price.price) / prev) * 100);
 }
 
 export function getSavingsAmount(price: RetailerPrice): number | null {
-  if (!price.previousPrice || price.previousPrice <= price.price) return null;
-  return price.previousPrice - price.price;
+  const prev = plausiblePreviousPrice(price.price, price.previousPrice);
+  if (prev == null) return null;
+  return prev - price.price;
 }

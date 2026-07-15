@@ -1,4 +1,5 @@
 import { slugify } from "@/lib/catalog";
+import { plausiblePreviousPrice } from "@/lib/price-sanity";
 import type { Product, RetailerName, RetailerPrice } from "@/types";
 import type { RawApiProduct } from "@/lib/api/client";
 
@@ -29,7 +30,13 @@ export function productNameFromId(id: string): string | null {
 
 function parsePrice(val: unknown): number | null {
   if (val == null || val === "N/A" || val === "") return null;
-  const n = Number(String(val).replace(/[^0-9.]/g, ""));
+  // Index often embeds newlines in Shoprite prices, e.g. "17\n.99".
+  const cleaned = String(val)
+    .replace(/[\s,]/g, "")
+    .replace(/[^0-9.]/g, "");
+  if (!cleaned) return null;
+  if ((cleaned.match(/\./g) ?? []).length > 1) return null;
+  const n = Number(cleaned);
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
@@ -57,11 +64,12 @@ export function normalizeApiProduct(
     const imgRaw = raw[`${r.code}_image`];
     const urlRaw = raw[`${r.code}_url`];
     const prevRaw = raw[`${r.code}_prev`];
+    const previousPrice = plausiblePreviousPrice(price, parsePrice(prevRaw));
 
     prices.push({
       retailer: r.name,
       price,
-      previousPrice: parsePrice(prevRaw),
+      previousPrice,
       url: urlRaw && urlRaw !== "N/A" ? String(urlRaw) : null,
       image: resolveImageUrl(imgRaw != null ? String(imgRaw) : null),
       unitPrice: null,

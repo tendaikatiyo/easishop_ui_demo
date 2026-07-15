@@ -9,6 +9,16 @@ import {
   productIdFromName,
   productNameFromId,
 } from "@/lib/api/normalize";
+import {
+  findLocalProduct,
+  getLocalCatalogProducts,
+  isLocalCatalogForced,
+  searchLocalCatalog,
+} from "@/lib/local-catalog";
+import {
+  getDemoBiggestDeals,
+  getDemoProductsByCategory,
+} from "@/lib/demo-catalog";
 import type { Product } from "@/types";
 import type { RawApiProduct } from "@/lib/api/client";
 import {
@@ -29,39 +39,49 @@ async function searchApiUncached(
 ): Promise<Product[]> {
   const q = query.trim();
   if (!q) return [];
+
+  if (isLocalCatalogForced()) {
+    return searchLocalCatalog(q);
+  }
+
   try {
     const data = await apiSearch(q, opts);
     const products = normalizeSearchResults(data.products ?? []);
-    if (
-      process.env.NODE_ENV === "development" &&
-      (data.products?.length ?? 0) === 0
-    ) {
+    if (products.length) return products;
+
+    if (process.env.NODE_ENV === "development") {
       console.warn(
-        `[searchApi] upstream /search returned 0 products for "${q}"`
+        `[searchApi] upstream /search returned 0 products for "${q}" — falling back to local catalog`
       );
     }
-    return products;
   } catch (err) {
     if (process.env.NODE_ENV === "development") {
-      console.error(`[searchApi] failed for "${q}"`, err);
+      console.error(
+        `[searchApi] failed for "${q}" — falling back to local catalog`,
+        err
+      );
     }
-    return [];
   }
+
+  return searchLocalCatalog(q);
 }
 
 async function searchCategory(slug: string): Promise<Product[]> {
+  // DEMO ONLY path: keyword filter against offline barcode index.
+  const demo = getDemoProductsByCategory(slug, 48);
+  if (demo.length) return demo;
+
   const queries = CATEGORY_SEARCH_QUERIES[slug] ?? [slug.replace(/-/g, " ")];
   const category = CATEGORIES.find((c) => c.slug === slug);
   const byName = new Map<string, Product>();
 
   for (const q of queries.slice(0, 3)) {
-    const data = await apiSearch(q);
-    const normalized = normalizeSearchResults(
-      data.products ?? [],
-      category ? { name: category.name, slug: category.slug } : undefined
-    );
-    for (const p of normalized) {
-      if (!byName.has(p.name)) byName.set(p.name, p);
+    const results = await searchApi(q);
+    for (const p of results) {
+      const tagged: Product = category
+        ? { ...p, category: category.name, categorySlug: category.slug }
+        : p;
+      if (!byName.has(tagged.name)) byName.set(tagged.name, tagged);
     }
   }
 
@@ -109,13 +129,22 @@ export async function getProductById(
   const name = productNameFromId(id);
   if (!name) return undefined;
 
+  const localExact = findLocalProduct(id, name);
+
+  if (isLocalCatalogForced()) {
+    return localExact ?? searchLocalCatalog(name, 12).find(
+      (p) => p.id === id || p.name.toLowerCase() === name.toLowerCase()
+    );
+  }
+
   const query = name.split(" ")[0] ?? name;
   const results = opts?.fresh
     ? await searchApiUncached(query, { fresh: true })
     : await searchApi(query);
   return (
     results.find((p) => p.id === id || p.name === name) ??
-    results.find((p) => p.name.toLowerCase() === name.toLowerCase())
+    results.find((p) => p.name.toLowerCase() === name.toLowerCase()) ??
+    localExact
   );
 }
 
@@ -147,19 +176,29 @@ export async function getProductsByBarcode(
 }
 
 export async function getDeals(): Promise<Product[]> {
-  try {
-    const payload = await apiPriceChangesLastWeek();
-    const raw = extractRawProducts(payload);
-    const fromApi = normalizeSearchResults(raw).filter((p) =>
-      p.prices.some(
-        (price) =>
-          price.previousPrice != null && price.previousPrice > price.price
-      )
-    );
-    if (fromApi.length) return fromApi;
-  } catch {
-    // fall through to search-based deals
+  // DEMO ONLY: biggest Rand drops from the offline barcode index.
+  const demoDeals = getDemoBiggestDeals(48);
+  if (demoDeals.length && (isLocalCatalogForced() || demoDeals.length >= 4)) {
+    return demoDeals;
   }
+
+  if (!isLocalCatalogForced()) {
+    try {
+      const payload = await apiPriceChangesLastWeek();
+      const raw = extractRawProducts(payload);
+      const fromApi = normalizeSearchResults(raw).filter((p) =>
+        p.prices.some(
+          (price) =>
+            price.previousPrice != null && price.previousPrice > price.price
+        )
+      );
+      if (fromApi.length) return fromApi;
+    } catch {
+      // fall through
+    }
+  }
+
+  if (demoDeals.length) return demoDeals;
 
   const terms = ["milk", "bread", "chicken", "shampoo", "wine"];
   const byName = new Map<string, Product>();
@@ -215,6 +254,16 @@ export async function getProductsByRetailer(
       if (byName.size >= limit) break;
     }
     if (byName.size >= limit) break;
+  }
+
+  if (byName.size < limit) {
+    for (const p of getLocalCatalogProducts()) {
+      if (!p.prices.some((price) => price.retailer === retailerApiName)) {
+        continue;
+      }
+      if (!byName.has(p.name)) byName.set(p.name, p);
+      if (byName.size >= limit) break;
+    }
   }
 
   return [...byName.values()].slice(0, limit);

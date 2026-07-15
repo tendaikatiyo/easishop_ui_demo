@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/product/product-card";
 import { ProductGridSkeleton } from "@/components/product/skeletons";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
-import { getSavingsPercent } from "@/lib/catalog";
+import { getSavingsAmount, getSavingsPercent } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/types";
 
@@ -89,12 +89,19 @@ export default function DealsPage() {
     () =>
       [...filtered].sort((a, b) => {
         const saveA = Math.max(
-          ...a.prices.map((p) => getSavingsPercent(p) ?? 0)
+          ...a.prices.map((p) => getSavingsAmount(p) ?? 0)
         );
         const saveB = Math.max(
+          ...b.prices.map((p) => getSavingsAmount(p) ?? 0)
+        );
+        if (saveB !== saveA) return saveB - saveA;
+        const pctA = Math.max(
+          ...a.prices.map((p) => getSavingsPercent(p) ?? 0)
+        );
+        const pctB = Math.max(
           ...b.prices.map((p) => getSavingsPercent(p) ?? 0)
         );
-        return saveB - saveA;
+        return pctB - pctA;
       }),
     [filtered]
   );
@@ -109,9 +116,11 @@ export default function DealsPage() {
       />
       <div className="space-y-1">
         <p className="figma-eyebrow">Savings</p>
-        <h1 className="font-heading text-2xl font-medium md:text-3xl">Top deals</h1>
+        <h1 className="font-heading text-2xl font-medium md:text-3xl">
+          Top deals
+        </h1>
         <p className="text-sm font-light">
-          Products where the price has dropped. Sorted by biggest cut.
+          Biggest price cuts first — sorted by Rand saved.
         </p>
       </div>
 
