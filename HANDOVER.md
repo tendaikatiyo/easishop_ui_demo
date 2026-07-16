@@ -46,6 +46,7 @@ npm run build:demo-categories
 Full write-up: [`HANDOVER-2026-07-16.md`](./HANDOVER-2026-07-16.md).  
 Prior: [`HANDOVER-2026-07-15.md`](./HANDOVER-2026-07-15.md) · [`HANDOVER-2026-07-14.md`](./HANDOVER-2026-07-14.md).  
 Onboarding: [`ux-onboarding-conversion.md`](./ux-onboarding-conversion.md).  
+Doodles: [`design-doodles.md`](./design-doodles.md).  
 Unavailable retailers: [`ux-unavailable-retailers-middle-ground.md`](./ux-unavailable-retailers-middle-ground.md).
 
 | Area | What changed |
@@ -54,6 +55,7 @@ Unavailable retailers: [`ux-unavailable-retailers-middle-ground.md`](./ux-unavai
 | **Onboarding** | Conversion-first: welcome → PDP aha → guest list/alert auth prompts. No signed-in “name on device” dialog. Spec: `ux-onboarding-conversion.md`. |
 | **Auth (demo)** | `/signup` · `/signin` — local `signedIn` only. **Not** a welcome gate; soft prompts at list/alert. Auth pages: no search/footer/tabs; Back + logo + **Back to shop**. |
 | **Subcategories** | Checkers-depth trees **deferred** — keep flat aisles until DB category + scrapers. |
+| **Doodles** | Brief + PNG set in `frontend/public/doodles/`. Spec: [`design-doodles.md`](./design-doodles.md) (African-descent characters required). **Not wired into UI** — assets only for later. |
 
 ### Still true from 15 Jul
 

@@ -193,4 +193,22 @@ Before merging assets:
 
 ## Implementation note (for dev)
 
-When assets exist, wire them in empty-state components (e.g. `search-empty-state.tsx`, lists empty, `error-page-view.tsx`, onboarding sheets) via `next/image` or inline SVG. Keep `alt` text action-focused for accessibility.
+PNG assets live in `frontend/public/doodles/` (not currently wired into the UI).
+
+When ready to use again, prefer a shared helper such as `DoodleBadge` / `DoodleHero` and map files as below:
+
+| File | Intended placement |
+|------|--------------------|
+| `doodle-empty-search.png` | Search empty state |
+| `doodle-no-results.png` | Search no matches |
+| `doodle-compare-aha.png` | PDP compare aha tip |
+| `doodle-list-saved.png` | Guest list-save prompt |
+| `doodle-price-alert.png` | Price alert dialog |
+| `doodle-welcome.png` | Welcome onboarding |
+| `doodle-empty-lists.png` | Lists empty + empty list detail |
+| `doodle-404.png` | `not-found` |
+| `doodle-error.png` | Error pages |
+| `doodle-signup.png` | `/signup` |
+| `doodle-signin.png` | `/signin` |
+
+Serve as `/doodles/<file>`. Prefer SVG later for crisp scaling. Keep `alt` text action-focused.
