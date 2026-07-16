@@ -46,7 +46,7 @@ flowchart LR
   C --> E[PDP compare]
   E --> F[Layer 2 aha tip]
   E --> G{Intent}
-  G -->|Add to list| H[Guest: signup soft prompt]
+  G -->|Add to list| H[Guest only: signup soft prompt]
   G -->|Alert me| I[Guest: signup · Signed-in: contact]
 ```
 
@@ -54,7 +54,7 @@ flowchart LR
 |-------|------|-----|-------------|
 | **1 — Welcome** | First open: `!onboardingSeen` and not returning visitor | Search · Deals · Skip + Create account · Sign in | `user.onboardingSeen` |
 | **2 — Aha tip** | PDP with ≥2 available prices, once | Dismissible tip under Compare | `easishop.demo.onboard.aha` |
-| **3a — List** | After first add-to-list | Guest → signup/signin; signed-in → optional name | `easishop.demo.onboard.listPrompt` |
+| **3a — List** | After first add-to-list, **guests only** | Soft signup / sign-in (“Keep this list”) | `easishop.demo.onboard.listPrompt` (signed-in users skip; flag marked seen) |
 | **3b — Alert** | PDP “Alert me” | Guest → `/signup?intent=alert`; signed-in → email/phone | `priceAlerts` + profile |
 | **Auth pages** | `/signup`, `/signin` | Minimal chrome: logo · Back · **Back to shop** — no search, footer, or bottom tabs | `user.signedIn` |
 

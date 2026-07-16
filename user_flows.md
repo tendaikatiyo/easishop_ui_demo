@@ -10,7 +10,7 @@ Onboarding (conversion-first — see [`ux-onboarding-conversion.md`](./ux-onboar
 | Welcome | first home visit › soft sheet › **Start searching** / **See today's deals** / Skip · optional **Create account** / **Sign in** |
 | Auth | `/signup` · `/signin` (`?next=` · `?intent=`) — local preview only; not a welcome gate |
 | Aha tip | product (≥2 prices) › one-time tip under Compare › dismiss |
-| List prompt | add to list (first time) › guest: signup/signin soft prompt · signed-in: optional name |
+| List prompt | add to list (first time, **guest only**) › Create account / Sign in / Not now |
 | Price alert | PDP › **Alert me** › guest → signup · signed-in → email/phone |
 
 Chrome:

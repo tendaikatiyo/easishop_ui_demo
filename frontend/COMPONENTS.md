@@ -471,7 +471,7 @@ Conversion-first layers — see repo root `ux-onboarding-conversion.md`.
 | **Type** | Client · mounted in `AppShell`; triggered from `ListSheet` after first add |
 | **Used by** | `app-shell.tsx`, `list-sheet.tsx` |
 
-**What it does:** Optional first-name capture after the first add-to-list.
+**What it does:** After the first add-to-list, **guests only** get a soft Create account / Sign in dialog. Signed-in users skip (no name dialog).
 
 ### `price-alert-prompt.tsx`
 

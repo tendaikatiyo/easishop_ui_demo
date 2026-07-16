@@ -51,7 +51,7 @@ Unavailable retailers: [`ux-unavailable-retailers-middle-ground.md`](./ux-unavai
 | Area | What changed |
 |---|---|
 | **Aisle fix** | Purity Meati / “from N months” baby food → **Kids & Baby** (was meat via “beef”/“chicken”). Classifier + rebuilt barcode map. |
-| **Onboarding** | Conversion-first layers: welcome → PDP aha → list/alert intent. Replay via footer/Profile **Onboarding**. Spec: `ux-onboarding-conversion.md`. |
+| **Onboarding** | Conversion-first: welcome → PDP aha → guest list/alert auth prompts. No signed-in “name on device” dialog. Spec: `ux-onboarding-conversion.md`. |
 | **Auth (demo)** | `/signup` · `/signin` — local `signedIn` only. **Not** a welcome gate; soft prompts at list/alert. Auth pages: no search/footer/tabs; Back + logo + **Back to shop**. |
 | **Subcategories** | Checkers-depth trees **deferred** — keep flat aisles until DB category + scrapers. |
 
