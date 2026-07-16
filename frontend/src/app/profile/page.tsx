@@ -17,6 +17,12 @@ import {
 } from "@/components/profile/profile-ui";
 import { useDemoUser } from "@/hooks/use-demo-user";
 import { SITE_LINKS } from "@/lib/site-links";
+import { signOut } from "@/lib/auth";
+import { replayOnboarding } from "@/lib/onboarding";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { startPageTransition } from "@/components/layout/navigation-loader";
 
 const SOCIAL_LINKS = [
   {
@@ -42,7 +48,8 @@ const SOCIAL_LINKS = [
 ] as const;
 
 export default function ProfilePage() {
-  const { user } = useDemoUser();
+  const router = useRouter();
+  const { user, refresh } = useDemoUser();
   const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   if (!user) {
@@ -53,7 +60,16 @@ export default function ProfilePage() {
     );
   }
 
+  const signedIn = user.signedIn === true;
   const fullName = [user.name, user.surname].filter(Boolean).join(" ");
+
+  function onSignOut() {
+    signOut();
+    refresh();
+    toast.success("Signed out");
+    startPageTransition();
+    router.push("/");
+  }
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 animate-rise">
@@ -75,46 +91,85 @@ export default function ProfilePage() {
         />
         <div className="relative flex items-center gap-4">
           <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-white/15 font-heading text-xl font-medium ring-1 ring-white/20">
-            {getInitials(user.name, user.surname)}
+            {signedIn ? getInitials(user.name, user.surname) : "?"}
           </span>
           <div className="min-w-0">
             <h1 className="font-heading text-2xl font-semibold">
-              {fullName || "Your profile"}
+              {signedIn ? fullName || "Your profile" : "Guest"}
             </h1>
-            <p className="truncate text-sm text-white/70">@{user.username}</p>
-            {user.email ? (
-              <p className="truncate text-xs text-white/55">{user.email}</p>
-            ) : null}
+            {signedIn ? (
+              <>
+                <p className="truncate text-sm text-white/70">@{user.username}</p>
+                {user.email ? (
+                  <p className="truncate text-xs text-white/55">{user.email}</p>
+                ) : null}
+              </>
+            ) : (
+              <p className="text-sm text-white/70">
+                Sign in to sync lists and price alerts.
+              </p>
+            )}
           </div>
         </div>
       </section>
 
-      <section className="space-y-3">
-        <p className="figma-eyebrow px-1">Settings</p>
-        <ul className="space-y-2.5">
-          <li>
-            <ProfileNavLink
-              href="/profile/edit"
-              title="Edit profile"
-              description="Email, username, name, surname, and phone"
-            />
-          </li>
-          <li>
-            <ProfileNavLink
-              href="/profile/marketing"
-              title="Marketing preferences"
-              description="Email marketing consent"
-            />
-          </li>
-          <li>
-            <ProfileNavLink
-              href="/profile/account"
-              title="Account settings"
-              description="Delete your account"
-            />
-          </li>
-        </ul>
-      </section>
+      {!signedIn ? (
+        <section className="space-y-3 rounded-3xl bg-white p-5 md:p-6">
+          <p className="text-sm text-muted-foreground">
+            Create an account to keep lists and alerts under your profile.
+          </p>
+          <div className="flex flex-col gap-2.5 sm:flex-row">
+            <Button
+              type="button"
+              onClick={() => {
+                startPageTransition();
+                router.push("/signup?next=%2Fprofile&intent=profile");
+              }}
+              className="h-11 flex-1 rounded-full bg-[var(--brand-green)] px-5 text-white hover:bg-[var(--brand-green)]/90"
+            >
+              Create account
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => {
+                startPageTransition();
+                router.push("/signin?next=%2Fprofile&intent=profile");
+              }}
+              className="h-11 flex-1 rounded-full bg-zinc-100 px-5 hover:bg-zinc-200/80"
+            >
+              Sign in
+            </Button>
+          </div>
+        </section>
+      ) : (
+        <section className="space-y-3">
+          <p className="figma-eyebrow px-1">Settings</p>
+          <ul className="space-y-2.5">
+            <li>
+              <ProfileNavLink
+                href="/profile/edit"
+                title="Edit profile"
+                description="Email, username, name, surname, and phone"
+              />
+            </li>
+            <li>
+              <ProfileNavLink
+                href="/profile/marketing"
+                title="Marketing preferences"
+                description="Email marketing consent"
+              />
+            </li>
+            <li>
+              <ProfileNavLink
+                href="/profile/account"
+                title="Account settings"
+                description="Sign out or delete your account"
+              />
+            </li>
+          </ul>
+        </section>
+      )}
 
       <section className="space-y-3 md:hidden">
         <p className="figma-eyebrow px-1">EasiShop</p>
@@ -146,6 +201,23 @@ export default function ProfilePage() {
                 <p className="font-medium text-foreground">Send feedback</p>
                 <p className="text-sm text-muted-foreground">
                   Ideas, bugs, or anything else
+                </p>
+              </div>
+              <span className="text-lg text-muted-foreground transition-transform group-hover:translate-x-0.5">
+                ›
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              onClick={() => replayOnboarding()}
+              className="group flex w-full items-center gap-3 rounded-3xl bg-white p-4 text-left shadow-xs transition-all hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <div className="min-w-0 flex-1 space-y-0.5">
+                <p className="font-medium text-foreground">Onboarding</p>
+                <p className="text-sm text-muted-foreground">
+                  Replay the welcome flow
                 </p>
               </div>
               <span className="text-lg text-muted-foreground transition-transform group-hover:translate-x-0.5">
@@ -185,6 +257,18 @@ export default function ProfilePage() {
           ))}
         </div>
       </section>
+
+      {signedIn ? (
+        <div className="px-1 text-center">
+          <button
+            type="button"
+            onClick={onSignOut}
+            className="text-sm font-medium text-foreground/55 underline underline-offset-2 transition-colors hover:text-foreground"
+          >
+            Sign out
+          </button>
+        </div>
+      ) : null}
 
       <p className="px-1 text-center text-xs text-muted-foreground">
         Looking for something else?{" "}

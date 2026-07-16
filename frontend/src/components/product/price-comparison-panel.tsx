@@ -17,6 +17,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { DealBadge } from "@/components/product/deal-badge";
+import { CompareAhaTip } from "@/components/onboarding/compare-aha-tip";
+import { PriceAlertPrompt } from "@/components/onboarding/price-alert-prompt";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -74,6 +76,8 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
           </Badge>
         ) : null}
       </div>
+
+      <CompareAhaTip productId={product.id} priceCount={prices.length} />
 
       <ul className="space-y-2">
         {prices.map((price) => {
@@ -219,6 +223,8 @@ export function PriceComparisonPanel({ product }: { product: Product }) {
           </div>
         </div>
       ) : null}
+
+      <PriceAlertPrompt productId={product.id} productName={product.name} />
     </div>
   );
 }

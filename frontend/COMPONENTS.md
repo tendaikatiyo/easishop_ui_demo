@@ -8,6 +8,7 @@ Reference for every file under `frontend/src/components/`, plus the small app-le
 app/layout.tsx
 ├── AppShell                          # global chrome + CategoryPickerProvider
 │   ├── HashScroll / NavigationHistory / NavigationLoader
+│   ├── WelcomeOnboarding / ListSavePrompt
 │   ├── BackButton, header search, Explore, bottom tabs
 │   ├── <main>{children}</main>       # each page
 │   └── SiteFooter → FeedbackDialog
@@ -40,11 +41,11 @@ Pages compose section components → domain building blocks → ui/* primitives
 | **Type** | Client · **Parent (root shell)** |
 | **Used by** | `app/layout.tsx` |
 
-**What it does:** Global chrome around every page — sticky glass header, main content, desktop footer, mobile bottom tab bar (Home, Search, Explore, Lists, Profile).
+**What it does:** Global chrome around every page — sticky glass header, main content, desktop footer, mobile bottom tab bar (Home, Search, Explore, Lists, Profile). Mounts conversion onboarding (`WelcomeOnboarding`, `ListSavePrompt`).
 
 **Logic:** Wraps the tree in `CategoryPickerProvider`. Mounts invisible nav helpers (`HashScroll`, `NavigationHistory`, `NavigationLoader`). Shows `BackButton` on mobile when not on `/`. Hides the header search capsule on home (hero owns search). Returning visitors get different search placeholder copy via `useReturningVisitor`. Lists tab badge uses `useDemoUser` + `totalListItems()`. Explore opens the category picker on the stores tab and looks “active” when the picker is open or the route is under `/category` / `/store`.
 
-**Interacts with:** `BackButton`, `SiteFooter`, `HashScroll`, `NavigationHistory`, `NavigationLoader`, `CategoryPickerProvider` / `useCategoryPicker`, `useDemoUser`, `useReturningVisitor`, `Button`, list helpers.
+**Interacts with:** `BackButton`, `SiteFooter`, `WelcomeOnboarding`, `ListSavePrompt`, `HashScroll`, `NavigationHistory`, `NavigationLoader`, `CategoryPickerProvider` / `useCategoryPicker`, `useDemoUser`, `useReturningVisitor`, `Button`, list helpers.
 
 ---
 
@@ -337,13 +338,13 @@ Home page (`app/page.tsx`) order: `HomeHero` → `HomeStores` → `CategoryStrip
 | **Type** | Client · **Both** |
 | **Used by** | Product detail page (mobile + desktop layouts) |
 
-**What it does:** Sorted retailer prices, “Lowest” callout when unambiguous, best-value unit badge, external Buy buttons. When any partner store is missing a price, a collapsed coverage note under the list can expand to name unavailable stores (no Buy).
+**What it does:** Sorted retailer prices, “Lowest” callout when unambiguous, best-value unit badge, external Buy buttons. When any partner store is missing a price, a collapsed coverage note under the list can expand to name unavailable stores (no Buy). Also mounts `CompareAhaTip` (first multi-price visit) and `PriceAlertPrompt`.
 
 **Logic:** Uses `getPriceCoverage` (available rows only in the list; unavailable partners from `RETAILERS`). “Lowest” only when there are 2+ prices and the cheapest differs from the most expensive. Buy uses `Button` + `render={<a/>}` and `track("open_retailer", …)`. Expand/collapse fires `track("toggle_unavailable_retailers", …)`. Empty state is a dashed card plus a “We checked …” line listing partners.
 
 **Props:** `{ product: Product }`
 
-**Interacts with:** `DealBadge`, `Badge` / `Button` / `Card`, catalog coverage helpers, `track`.
+**Interacts with:** `DealBadge`, `CompareAhaTip`, `PriceAlertPrompt`, `Badge` / `Button` / `Card`, catalog coverage helpers, `track`.
 
 ---
 
@@ -438,6 +439,52 @@ Home page (`app/page.tsx`) order: `HomeHero` → `HomeStores` → `CategoryStrip
 
 ---
 
+## Onboarding (`components/onboarding/`)
+
+Conversion-first layers — see repo root `ux-onboarding-conversion.md`.
+
+### `welcome-onboarding.tsx`
+
+| | |
+|---|---|
+| **Exports** | `WelcomeOnboarding` |
+| **Type** | Client · **Child** of `AppShell` |
+| **Used by** | `app-shell.tsx` |
+
+**What it does:** First-visit welcome (Search / Deals / Skip). Mobile bottom sheet; desktop dialog. Sets `onboardingSeen`.
+
+### `compare-aha-tip.tsx`
+
+| | |
+|---|---|
+| **Exports** | `CompareAhaTip` |
+| **Type** | Client |
+| **Used by** | `price-comparison-panel.tsx` |
+
+**What it does:** One-time tip when a product has ≥2 available prices.
+
+### `list-save-prompt.tsx`
+
+| | |
+|---|---|
+| **Exports** | `ListSavePrompt`, `requestListSavePrompt` |
+| **Type** | Client · mounted in `AppShell`; triggered from `ListSheet` after first add |
+| **Used by** | `app-shell.tsx`, `list-sheet.tsx` |
+
+**What it does:** Optional first-name capture after the first add-to-list.
+
+### `price-alert-prompt.tsx`
+
+| | |
+|---|---|
+| **Exports** | `PriceAlertPrompt` |
+| **Type** | Client |
+| **Used by** | `price-comparison-panel.tsx` |
+
+**What it does:** “Alert me when price drops” → email or phone; marketing opt-in defaults off.
+
+---
+
 ## Lists (`components/lists/`)
 
 ### `list-sheet.tsx`
@@ -450,11 +497,11 @@ Home page (`app/page.tsx`) order: `HomeHero` → `HomeStores` → `CategoryStrip
 
 **What it does:** Dual-mode dialog — create a list, and optionally add/remove a product across lists.
 
-**Logic:** `isPicker = !!productId`. Create UI shows when not picking, when creating, or when the user has no lists. Create → optional `addToList` → analytics → toast → `refresh()` → close. Toggle stays open on remove, closes on add. Toasts can route to the list via `startPageTransition` + `router.push`.
+**Logic:** `isPicker = !!productId`. Create UI shows when not picking, when creating, or when the user has no lists. Create → optional `addToList` → analytics → toast → `refresh()` → close. Toggle stays open on remove, closes on add. After a successful add, may request `ListSavePrompt`. Toasts can route to the list via `startPageTransition` + `router.push`.
 
 **Props:** `{ open; onOpenChange; productId?; productName? }`
 
-**Interacts with:** Demo user + `@/lib/lists`, Dialog / Input / Button, `track`, `startPageTransition`.
+**Interacts with:** Demo user + `@/lib/lists`, Dialog / Input / Button, `track`, `requestListSavePrompt`, `startPageTransition`.
 
 ---
 

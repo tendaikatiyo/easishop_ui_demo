@@ -180,6 +180,33 @@ const BRAND_AISLES: { brand: string; slug: DemoAisleSlug }[] = [
  * More specific / disambiguating rules first.
  */
 const PRODUCT_TYPE_RULES: Rule[] = [
+  // Baby food before meat/dairy flavour words ("beef meati", "yoghurt yogi")
+  {
+    slug: "kids-baby",
+    phrases: [
+      "nappies",
+      "nappy",
+      "baby wipes",
+      "baby formula",
+      "infant formula",
+      "from 6 months",
+      "from 7 months",
+      "from 8 months",
+      "from 9 months",
+      "from 10 months",
+      "from 12 months",
+      "toddler",
+      "baby food",
+      "baby cereal",
+      "teething",
+      "meati",
+      "yogi",
+      "fruiti",
+      "veggi",
+      "treati",
+      "brekki",
+    ],
+  },
   // Confectionery before wine / fruit words
   {
     slug: "pantry",
@@ -537,25 +564,6 @@ const PRODUCT_TYPE_RULES: Rule[] = [
     ],
   },
   {
-    slug: "kids-baby",
-    phrases: [
-      "nappies",
-      "nappy",
-      "baby wipes",
-      "baby formula",
-      "infant formula",
-      "from 6 months",
-      "from 7 months",
-      "from 8 months",
-      "toddler",
-      "baby food",
-      "teething",
-      "yogi",
-      "fruiti",
-      "veggi",
-    ],
-  },
-  {
     slug: "deli",
     phrases: [
       "mayonnaise",
@@ -639,8 +647,8 @@ function matchProductType(name: string): DemoAisleSlug | null {
  * Classify a product from what it *is* (product identity + brand knowledge).
  * DEMO ONLY — not a live retailer taxonomy.
  *
- * Specific product phrases win first (roll-on, washing powder, wine gums…);
- * known brands fill gaps. Avoids treating flavour words as fresh produce.
+ * Specific product phrases win first (meati / from 7 months before "beef";
+ * wine gums before wine). Known brands fill gaps.
  */
 export function classifyProductToAisle(
   productName: string
@@ -648,6 +656,8 @@ export function classifyProductToAisle(
   const name = normalizeSearchText(productName);
   if (!name) return null;
 
+  // Specific product phrases win first (meati / from 7 months before "beef";
+  // wine gums before wine). Known brands fill remaining gaps.
   const slug = matchProductType(name) ?? matchBrand(name);
   if (!slug) return null;
   return categoryMeta(slug);

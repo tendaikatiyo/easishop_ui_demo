@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "extract-demo": "node ./scripts/extract-demo-sample.mjs",
-    "build:demo-categories": "tsx scripts/build-demo-categories.mjs"
+    "build:demo-categories": "npx tsx scripts/build-demo-categories.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

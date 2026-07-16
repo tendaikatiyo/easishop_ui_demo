@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/dialog";
 import { useDemoUser } from "@/hooks/use-demo-user";
 import { deleteAccount } from "@/lib/storage";
+import { signOut } from "@/lib/auth";
+import { startPageTransition } from "@/components/layout/navigation-loader";
 
 export default function AccountSettingsPage() {
   const router = useRouter();
@@ -55,6 +57,29 @@ export default function AccountSettingsPage() {
           title="Account settings"
           description="Manage your EasiShop account."
         />
+
+        <div className="space-y-3 rounded-3xl bg-zinc-50 px-4 py-4">
+          <div className="space-y-1">
+            <p className="font-medium">Sign out</p>
+            <p className="text-sm text-muted-foreground">
+              Stay on this device as a guest. Your local lists remain until you
+              delete the account.
+            </p>
+          </div>
+          <Button
+            variant="secondary"
+            className="rounded-full bg-zinc-100 px-5 hover:bg-zinc-200/80"
+            onClick={() => {
+              signOut();
+              refresh();
+              toast.success("Signed out");
+              startPageTransition();
+              router.push("/");
+            }}
+          >
+            Sign out
+          </Button>
+        </div>
 
         <div className="space-y-3 rounded-3xl bg-red-50 px-4 py-4">
           <div className="space-y-1">

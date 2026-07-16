@@ -21,7 +21,7 @@ export function getNavParent(pathname: string): NavParent | null {
   if (pathname.startsWith("/store/")) {
     return { href: "/#stores", force: true };
   }
-  if (/^\/(about|faq|privacy|terms)$/.test(pathname)) {
+  if (/^\/(about|faq|privacy|terms|signin|signup)$/.test(pathname)) {
     return { href: "/", force: true };
   }
   if (pathname.startsWith("/product/")) {

@@ -12,7 +12,23 @@ export type TrackEventName =
   | "view_category"
   | "view_deals"
   | "create_list"
-  | "toggle_unavailable_retailers";
+  | "toggle_unavailable_retailers"
+  | "onboard_shown"
+  | "onboard_skipped"
+  | "onboard_cta_search"
+  | "onboard_cta_deals"
+  | "onboard_aha_compare"
+  | "onboard_list_prompt_shown"
+  | "onboard_list_prompt_accepted"
+  | "onboard_list_prompt_skipped"
+  | "onboard_alert_prompt_shown"
+  | "onboard_alert_prompt_accepted"
+  | "onboard_alert_prompt_skipped"
+  | "onboard_cta_signup"
+  | "onboard_cta_signin"
+  | "sign_up"
+  | "sign_in"
+  | "sign_out";
 
 export function track(
   event: TrackEventName,

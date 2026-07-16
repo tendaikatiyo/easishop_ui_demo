@@ -23,6 +23,8 @@ import { HashScroll } from "@/components/layout/hash-scroll";
 import { NavigationHistory } from "@/components/layout/navigation-history";
 import { NavigationLoader } from "@/components/layout/navigation-loader";
 import { useReturningVisitor } from "@/hooks/use-returning-visitor";
+import { WelcomeOnboarding } from "@/components/onboarding/welcome-onboarding";
+import { ListSavePrompt } from "@/components/onboarding/list-save-prompt";
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 
@@ -56,6 +58,42 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
     pathname.startsWith("/category/") || pathname.startsWith("/store/");
   const isReturning = useReturningVisitor();
   const onHome = pathname === "/";
+  const isAuthRoute = pathname === "/signin" || pathname === "/signup";
+
+  if (isAuthRoute) {
+    return (
+      <>
+        <HashScroll />
+        <NavigationHistory />
+        <Suspense fallback={null}>
+          <NavigationLoader />
+        </Suspense>
+        <header className="sticky top-0 z-40 border-b border-white/50 bg-white/80 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/72">
+          <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4 md:h-[4.25rem]">
+            <BackButton
+              pathname={pathname}
+              className="-ml-1 shrink-0 glass-soft"
+            />
+            <Link href="/" className="shrink-0">
+              <span className="font-heading text-xl font-bold tracking-tight brand-green md:text-[1.35rem]">
+                EasiShop
+              </span>
+            </Link>
+            <Link
+              href="/"
+              className="ml-auto rounded-full px-3.5 py-2 text-sm font-medium text-foreground/55 transition-colors hover:bg-zinc-100 hover:text-foreground"
+            >
+              Back to shop
+            </Link>
+          </div>
+        </header>
+        <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-8 md:py-12">
+          {children}
+        </main>
+        <ListSavePrompt />
+      </>
+    );
+  }
 
   return (
     <>
@@ -165,6 +203,9 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
       </main>
 
       <SiteFooter />
+
+      <WelcomeOnboarding />
+      <ListSavePrompt />
 
       <nav
         className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden"

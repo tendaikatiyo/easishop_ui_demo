@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { SITE_LINKS } from "@/lib/site-links";
 import { FeedbackDialog } from "@/components/layout/feedback-dialog";
+import { replayOnboarding } from "@/lib/onboarding";
 
 export function SiteFooter() {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
@@ -44,6 +45,15 @@ export function SiteFooter() {
                     className="text-foreground/70 transition-colors hover:text-foreground"
                   >
                     Feedback
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => replayOnboarding()}
+                    className="text-foreground/45 transition-colors hover:text-foreground"
+                  >
+                    Onboarding
                   </button>
                 </li>
               </ul>

@@ -79,6 +79,8 @@ export interface DemoUser {
     updatedAt: string;
   } | null;
   onboardingSeen: boolean;
+  /** Demo auth — no real backend. Guests can browse; account unlocks lists sync story. */
+  signedIn: boolean;
 }
 
 export interface AnalyticsEvent {

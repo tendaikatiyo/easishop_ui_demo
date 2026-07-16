@@ -22,6 +22,7 @@ import {
   toggleInList,
 } from "@/lib/lists";
 import { track } from "@/lib/analytics";
+import { requestListSavePrompt } from "@/components/onboarding/list-save-prompt";
 import { startPageTransition } from "@/components/layout/navigation-loader";
 import { cn } from "@/lib/utils";
 
@@ -104,6 +105,10 @@ export function ListSheet({
     });
   }
 
+  function afterFirstAdd() {
+    window.setTimeout(() => requestListSavePrompt(), 400);
+  }
+
   function onCreateList() {
     const trimmed = name.trim() || "New list";
     const list = createList(trimmed);
@@ -113,6 +118,7 @@ export function ListSheet({
       addToList(productId, list.id);
       track("add_to_list", { productId, productName, listId: list.id });
       notifyAdded(list.id, trimmed);
+      afterFirstAdd();
     } else {
       notifyCreated(list.id, trimmed);
     }
@@ -134,6 +140,7 @@ export function ListSheet({
     });
     if (added) {
       notifyAdded(listId, listName);
+      afterFirstAdd();
     } else {
       notifyRemoved(listName);
     }

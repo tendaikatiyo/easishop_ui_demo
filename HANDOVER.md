@@ -1,6 +1,6 @@
 # EasiShop UI Demo — Handover
 
-Last updated: 15 July 2026
+Last updated: 16 July 2026
 
 ## What this repo is
 
@@ -41,94 +41,83 @@ npm run build:demo-categories
 # OPEN_FOOD_FACTS=1 OFF_BUDGET=200 npm run build:demo-categories
 ```
 
-## Latest session (15 Jul 2026) — summary
+## Latest session (16 Jul 2026) — summary
 
-Full write-up: [`HANDOVER-2026-07-15.md`](./HANDOVER-2026-07-15.md).  
-Prior day: [`HANDOVER-2026-07-14.md`](./HANDOVER-2026-07-14.md).  
-Unavailable retailers UX: [`ux-unavailable-retailers-middle-ground.md`](./ux-unavailable-retailers-middle-ground.md).
+Full write-up: [`HANDOVER-2026-07-16.md`](./HANDOVER-2026-07-16.md).  
+Prior: [`HANDOVER-2026-07-15.md`](./HANDOVER-2026-07-15.md) · [`HANDOVER-2026-07-14.md`](./HANDOVER-2026-07-14.md).  
+Onboarding: [`ux-onboarding-conversion.md`](./ux-onboarding-conversion.md).  
+Unavailable retailers: [`ux-unavailable-retailers-middle-ground.md`](./ux-unavailable-retailers-middle-ground.md).
 
 | Area | What changed |
 |---|---|
-| **API diagnosis** | Live `POST /search` returns **200 + empty `products`** while dashboard still reports ~99k products — **backend blocker**. Frontend auth/request shape are fine. Dev logging in `searchApi`. |
-| **Offline catalog** | `barcodeIndex` + `EASISHOP_USE_LOCAL_CATALOG` power search/deals/aisles while live `/search` is empty. Aisles use **brand/product knowledge** (`demo-product-knowledge.ts` + `demo-category-by-barcode.json`), not naïve name substrings. Marked DEMO ONLY in code/docs — **no “demo” labels in the UI**. |
-| **Open Food Facts** | Optional **offline** enrichment only in `build-demo-categories.mjs` — **not** runtime, **not** sustainable as production category source. Prefer DB category column + scrapers at ingest. |
-| **Price sanity** | `plausiblePreviousPrice` drops bogus previous prices before savings/deals calc. |
-| **Desktop typeahead** | Google-style suggestions (`/api/search/suggest`); layout `[image][product name]`; **desktop only** — skip mobile floating panel. |
-| **Compare middle ground** | Available-only price rows + collapsed **coverage note** when partners are missing; expand for Unavailable (no Buy). Helpers in `catalog.ts`; `toggle_unavailable_retailers` analytics. |
-| **List motion** | List-detail Remove **exit animation** (fade / slide / height collapse) + delayed refresh. |
-| **Chrome polish** | Footer wordmark → `/`; `cursor-pointer` on search CTAs; hide header search capsule on `/search`. |
-| **Agent skills** | Emil Kowalski pack under `frontend/.agents/skills/` (animation + Apple design + design-eng). |
-| **Docs** | `context.md` / `COMPONENTS.md` / `user_flows.md` aligned with coverage rule; this handover + 15 Jul session file. |
+| **Aisle fix** | Purity Meati / “from N months” baby food → **Kids & Baby** (was meat via “beef”/“chicken”). Classifier + rebuilt barcode map. |
+| **Onboarding** | Conversion-first layers: welcome → PDP aha → list/alert intent. Replay via footer/Profile **Onboarding**. Spec: `ux-onboarding-conversion.md`. |
+| **Auth (demo)** | `/signup` · `/signin` — local `signedIn` only. **Not** a welcome gate; soft prompts at list/alert. Auth pages: no search/footer/tabs; Back + logo + **Back to shop**. |
+| **Subcategories** | Checkers-depth trees **deferred** — keep flat aisles until DB category + scrapers. |
+
+### Still true from 15 Jul
+
+| Area | Notes |
+|---|---|
+| **API** | Live `POST /search` often returns empty `products` — offline catalog fallback. |
+| **Offline aisles / deals** | Brand/product knowledge + `demo-category-by-barcode.json`; no UI “demo” labels. |
+| **OFF** | Optional offline enrichment only — not production taxonomy. |
+| **Typeahead** | Desktop only. |
+| **Compare coverage** | Available-only rows + coverage note. |
+| **List remove** | Exit animation + delayed refresh. |
 
 ## Architecture cheat-sheet
 
 - `src/lib/api/client.ts` — server-only fetch wrapper: Basic Auth, 30s timeout,
   5-min revalidate (or `fresh: true` / `cache: "no-store"` for on-demand refresh).
-- `src/lib/api/normalize.ts` — raw API rows → `Product`. Retailer columns are
-  `chk/dsc/pnp/srt/woo` (+ `_image`, `_url`, `_prev`). Product IDs are
-  `p-<base64url(name)>`. Images resolve to `https://www.easishop.co.za/images/...`.
-  Previous prices pass through price-sanity.
-- `src/lib/products.ts` — data layer. React `cache`d per request; falls back to
-  local catalog when API search is empty/fails. Dev warns on empty/failed upstream.
+- `src/lib/api/normalize.ts` — raw API rows → `Product`. Previous prices pass through price-sanity.
+- `src/lib/products.ts` — data layer; falls back to local catalog when API search empty/fails.
 - `src/lib/local-catalog.ts` / `demo-catalog.ts` / `demo-product-knowledge.ts` —
-  offline index + DEMO aisle classification (precomputed map preferred).
-- `src/lib/catalog.ts` — money helpers + **`getPriceCoverage` / unavailable partner math**
-  vs `RETAILERS`.
-- `src/lib/storage.ts` — localStorage user, lists, analytics events, visit flag.
-- `src/lib/lists.ts` — CRUD; **deleteList may leave zero lists** (empty state is real).
-- `src/lib/nav-parent.ts` — hierarchical Back parents; `HashScroll` + `NavigationHistory`
-  in the shell for hash sections and safe soft-nav Back.
-- `src/components/product/category-picker.tsx` — Explore drawer (Stores \| Aisles).
-- `src/components/product/price-comparison-panel.tsx` — compare rows + coverage disclosure.
-- `src/components/search/search-suggest-panel.tsx` — desktop typeahead listbox.
+  offline index + DEMO aisle classification.
+- `src/lib/onboarding.ts` / `src/lib/auth.ts` — conversion flags + demo sign up/in/out.
+- `src/lib/catalog.ts` — money helpers + price coverage / unavailable partners.
+- `src/lib/storage.ts` — localStorage user (`signedIn`, `onboardingSeen`), lists, events, visited.
+- `src/components/onboarding/*` — welcome, aha tip, list prompt, price-alert prompt.
+- `src/components/auth/auth-form.tsx` — shared signup/signin form.
+- `src/components/layout/app-shell.tsx` — full chrome vs **auth minimal chrome**.
 - `src/app/api/{search,search/suggest,deals,featured,products/[id],products/batch}` —
-  client proxies. Batch: `GET ?ids=...&refresh=1`.
+  client proxies.
 
 ## Key routes
 
 | Route | Purpose |
 |---|---|
-| `/` | Home — hero, **stores**, categories, deals, featured |
-| `/search` | Search (barcode UI currently disabled; header capsule hidden here) |
+| `/` | Home — hero, stores, categories, deals, featured |
+| `/search` | Search (barcode UI disabled; header capsule hidden here) |
+| `/signin`, `/signup` | Auth — minimal chrome; `?next=` · `?intent=` |
 | `/store/[slug]` | Products by retailer |
-| `/category/[slug]` | Aisle (demo: offline classified map; prod: needs API category) |
-| `/deals` | Price drops (demo: biggest Rand drops from offline index) |
-| `/lists`, `/lists/[id]` | Lists + detail (rename, refresh, add more, **animated remove**) |
-| `/profile` (+ edit / marketing / account) | Settings hub |
+| `/category/[slug]` | Aisle (demo offline map; prod needs API category) |
+| `/deals` | Price drops |
+| `/lists`, `/lists/[id]` | Lists + detail |
+| `/profile` (+ edit / marketing / account) | Settings; guest sees signup/signin |
 | `/about`, `/faq`, `/privacy`, `/terms` | Legal / info |
-| Custom `not-found` / `error` / `global-error` | Recovery-focused error pages |
 
 ## Dialog / sheet conventions
 
 See `.cursor/rules/dialogs.mdc`. Bubble feel: `rounded-[32px]`, white surface,
 soft shadow, pill inputs/buttons. List picker: `ListSheet`. Explore: category picker sheet.
-Toasts (Sonner) match the same bubble look; list mutations use promise-style toasts.
 
 ## Known issues / next steps
 
-- **Critical — empty search API** — `POST /api/v1/search` returns `[]` while catalog
-  still has data. Offline index unblocks the UI demo until backend fixes it.
-- **Categories (production)** — frontend/demo map is a bridge. Prefer **DB category
-  column + scrapers label on commit**, then API `category` / `category_slug`.
-  Open Food Facts is **not** a sustainable live classifier (see 15 Jul handover).
-- **Barcode** — UI is commented out in `search-capsule.tsx`; re-enable by restoring the
-  scan button + `BarcodeScanner` mount. Scanner file and `/api/search?barcode=1` remain.
-- **Search** — frontend shim is a workaround; fuzzy search belongs on the backend.
-- **Dischem / Shoprite** — API field gaps (`dsc` often empty); coverage note makes this
-  transparent on the PDP without greying Buy rows.
-- **Deals** — fall back to search-derived / offline drops if analytics endpoint fails.
-- Price history, location pricing, real auth — stubs / localStorage-only by design.
-- Keep `frontend/.next/` gitignored locally.
-- Optional motion follow-ups: delete-list hold-to-confirm; `+`/`✓` morph; list-sheet
-  create↔picker crossfade (see 15 Jul handover).
-- Mobile search suggestions: skipped; use inline or full-screen search if revisited.
+- **Critical — empty search API** — offline index unblocks the UI until backend fixes it.
+- **Categories (production)** — DB column + scrapers at ingest; retire demo map when live.
+- **Auth (production)** — replace localStorage `signedIn` with real sessions; keep auth-at-intent UX.
+- **Barcode** — UI commented out in `search-capsule.tsx`.
+- Mobile typeahead skipped; subcategories deferred.
+- Do not commit `.env` or the infrastructure PDF unless intentional.
 
 ## Who did what
 
 | Phase | Work |
 |---|---|
-| Scaffold + live API + early design | Earlier sessions (git history) |
+| Scaffold + live API + early design | Earlier sessions |
 | Image fix, add-to-list, similar products | Fable 5 (11 Jul) |
 | Profile, lists, search polish, stores, glass UI | Cursor (13 Jul) |
-| Explore/nav P0–P5, footer/legal, reicon, bugfix | Cursor (14 Jul) — see `HANDOVER-2026-07-14.md` |
-| API diagnose, offline catalog/aisles, typeahead, coverage UI, list exit, skills | Cursor (15 Jul) — see `HANDOVER-2026-07-15.md` |
+| Explore/nav, footer/legal, reicon | Cursor (14 Jul) — `HANDOVER-2026-07-14.md` |
+| Offline catalog, typeahead, coverage, list exit | Cursor (15 Jul) — `HANDOVER-2026-07-15.md` |
+| Onboarding, demo auth, aisle fix, auth chrome | Cursor (16 Jul) — `HANDOVER-2026-07-16.md` |

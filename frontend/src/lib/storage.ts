@@ -27,6 +27,8 @@ export const DEFAULT_USER: DemoUser = {
   ],
   location: null,
   onboardingSeen: false,
+  /** Seeded demo starts signed in (context: demo assumes an account). */
+  signedIn: true,
 };
 
 function canUseStorage(): boolean {
@@ -72,6 +74,12 @@ function normalizeUser(raw: Partial<DemoUser> & Record<string, unknown>): DemoUs
     priceAlerts: Array.isArray(merged.priceAlerts)
       ? merged.priceAlerts
       : base.priceAlerts,
+    onboardingSeen:
+      typeof merged.onboardingSeen === "boolean"
+        ? merged.onboardingSeen
+        : base.onboardingSeen,
+    signedIn:
+      typeof merged.signedIn === "boolean" ? merged.signedIn : base.signedIn,
   };
 }
 
@@ -115,6 +123,8 @@ export function deleteAccount(): void {
   localStorage.removeItem(USER_KEY);
   localStorage.removeItem(EVENTS_KEY);
   const seed = structuredClone(DEFAULT_USER);
+  seed.signedIn = false;
+  seed.onboardingSeen = false;
   localStorage.setItem(USER_KEY, JSON.stringify(seed));
   window.dispatchEvent(new CustomEvent("easishop:user-updated"));
 }
