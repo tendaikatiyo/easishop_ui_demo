@@ -11,7 +11,7 @@ Onboarding (conversion-first — see [`ux-onboarding-conversion.md`](./ux-onboar
 | Auth | `/signup` · `/signin` (`?next=` · `?intent=`) — local preview only; not a welcome gate |
 | Aha tip | product (≥2 prices) › one-time tip under Compare › dismiss |
 | List prompt | add to list (first time, **guest only**) › Create account / Sign in / Not now |
-| Price alert | PDP › **Alert me** › guest → signup · signed-in → email/phone |
+| Price alert | PDP › **Alert me on WhatsApp** › guest → signup · signed-in → WhatsApp number (country code required) |
 
 Chrome:
 

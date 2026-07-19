@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /* Allow hot reload when testing from other devices on the LAN. */
+  allowedDevOrigins: ["192.168.0.37"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },

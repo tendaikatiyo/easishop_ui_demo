@@ -29,7 +29,7 @@ Auth here is **local preview only** (`signedIn` on `DemoUser`) — no real passw
 1. **Aha** — first search / multi-price product compare  
 2. **Habit** — first list save  
 3. **Account** — sign up / sign in when they care (list / alert)  
-4. **Lead** — email/phone for price alerts (+ optional marketing opt-in)  
+4. **Lead** — WhatsApp number for price alerts (country code required)  
 5. **Return** — come back (`easishop.demo.visited`)
 
 Do **not** force signup, location, retailer picks, or loyalty before search.
@@ -47,7 +47,7 @@ flowchart LR
   E --> F[Layer 2 aha tip]
   E --> G{Intent}
   G -->|Add to list| H[Guest only: signup soft prompt]
-  G -->|Alert me| I[Guest: signup · Signed-in: contact]
+  G -->|Alert me| I[Guest: signup · Signed-in: WhatsApp number]
 ```
 
 | Layer | When | UI | Persistence |
@@ -55,7 +55,7 @@ flowchart LR
 | **1 — Welcome** | First open: `!onboardingSeen` and not returning visitor | Search · Deals · Skip + Create account · Sign in | `user.onboardingSeen` |
 | **2 — Aha tip** | PDP with ≥2 available prices, once | Dismissible tip under Compare | `easishop.demo.onboard.aha` |
 | **3a — List** | After first add-to-list, **guests only** | Soft signup / sign-in (“Keep this list”) | `easishop.demo.onboard.listPrompt` (signed-in users skip; flag marked seen) |
-| **3b — Alert** | PDP “Alert me” | Guest → `/signup?intent=alert`; signed-in → email/phone | `priceAlerts` + profile |
+| **3b — Alert** | PDP “Alert me on WhatsApp” | Guest → `/signup?intent=alert`; signed-in → WhatsApp number | `priceAlerts` + profile phone |
 | **Auth pages** | `/signup`, `/signin` | Minimal chrome: logo · Back · **Back to shop** — no search, footer, or bottom tabs | `user.signedIn` |
 
 Footer **Onboarding** (desktop) and Profile **Onboarding** (mobile) call `replayOnboarding()` — resets flags and sets `signedIn: false` so you can walk auth again.

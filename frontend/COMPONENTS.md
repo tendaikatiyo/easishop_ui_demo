@@ -481,7 +481,7 @@ Conversion-first layers — see repo root `ux-onboarding-conversion.md`.
 | **Type** | Client |
 | **Used by** | `price-comparison-panel.tsx` |
 
-**What it does:** “Alert me when price drops” → email or phone; marketing opt-in defaults off.
+**What it does:** “Alert me on WhatsApp” → WhatsApp number with country-code validation (E.164).
 
 ---
 

@@ -1,6 +1,6 @@
 # EasiShop UI Demo — Handover
 
-Last updated: 16 July 2026
+Last updated: 19 July 2026
 
 ## What this repo is
 
@@ -41,13 +41,22 @@ npm run build:demo-categories
 # OPEN_FOOD_FACTS=1 OFF_BUDGET=200 npm run build:demo-categories
 ```
 
-## Latest session (16 Jul 2026) — summary
+## Latest session (19 Jul 2026) — summary
 
-Full write-up: [`HANDOVER-2026-07-16.md`](./HANDOVER-2026-07-16.md).  
-Prior: [`HANDOVER-2026-07-15.md`](./HANDOVER-2026-07-15.md) · [`HANDOVER-2026-07-14.md`](./HANDOVER-2026-07-14.md).  
+Full write-up: [`HANDOVER-2026-07-19.md`](./HANDOVER-2026-07-19.md).  
+Prior: [`HANDOVER-2026-07-16.md`](./HANDOVER-2026-07-16.md) · [`HANDOVER-2026-07-15.md`](./HANDOVER-2026-07-15.md) · [`HANDOVER-2026-07-14.md`](./HANDOVER-2026-07-14.md).  
 Onboarding: [`ux-onboarding-conversion.md`](./ux-onboarding-conversion.md).  
 Doodles: [`design-doodles.md`](./design-doodles.md).  
 Unavailable retailers: [`ux-unavailable-retailers-middle-ground.md`](./ux-unavailable-retailers-middle-ground.md).
+
+| Area | What changed |
+|---|---|
+| **Price alert** | Now **WhatsApp-only**: single number field, country-code (E.164) validation, WhatsApp icon on button + CTA. Email/marketing removed from this dialog. Helpers in `lib/whatsapp.ts`. |
+| **Dev config** | `allowedDevOrigins: ["192.168.0.37"]` in `next.config.ts` so HMR works from LAN devices (fixed stale-bundle "dialog not opening"). |
+
+### From 16 Jul
+
+Full write-up: [`HANDOVER-2026-07-16.md`](./HANDOVER-2026-07-16.md).
 
 | Area | What changed |
 |---|---|
@@ -77,6 +86,7 @@ Unavailable retailers: [`ux-unavailable-retailers-middle-ground.md`](./ux-unavai
 - `src/lib/local-catalog.ts` / `demo-catalog.ts` / `demo-product-knowledge.ts` —
   offline index + DEMO aisle classification.
 - `src/lib/onboarding.ts` / `src/lib/auth.ts` — conversion flags + demo sign up/in/out.
+- `src/lib/whatsapp.ts` — WhatsApp number normalize + E.164 validation (price alerts).
 - `src/lib/catalog.ts` — money helpers + price coverage / unavailable partners.
 - `src/lib/storage.ts` — localStorage user (`signedIn`, `onboardingSeen`), lists, events, visited.
 - `src/components/onboarding/*` — welcome, aha tip, list prompt, price-alert prompt.
@@ -123,3 +133,4 @@ soft shadow, pill inputs/buttons. List picker: `ListSheet`. Explore: category pi
 | Explore/nav, footer/legal, reicon | Cursor (14 Jul) — `HANDOVER-2026-07-14.md` |
 | Offline catalog, typeahead, coverage, list exit | Cursor (15 Jul) — `HANDOVER-2026-07-15.md` |
 | Onboarding, demo auth, aisle fix, auth chrome | Cursor (16 Jul) — `HANDOVER-2026-07-16.md` |
+| WhatsApp-only price alert + validation, LAN HMR fix | Cursor (19 Jul) — `HANDOVER-2026-07-19.md` |
