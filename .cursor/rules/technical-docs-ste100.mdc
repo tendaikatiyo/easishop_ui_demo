@@ -1,0 +1,54 @@
+---
+description: Write technical documentation in ASD-STE100 Simplified Technical English
+globs: "**/*.md,**/*.mdx,**/docs/**,**/README*,**/AGENTS.md,**/CLAUDE.md,**/*HANDOVER*,**/api_doc*,**/COMPONENTS.md,**/DESIGN.md"
+alwaysApply: false
+---
+
+# Technical documentation: ASD-STE100
+
+When you write or edit technical documentation (README, API docs, handovers, design notes, component docs, AGENTS/CLAUDE guides, inline docs meant for humans), write in **ASD-STE100 Simplified Technical English**.
+
+Goal: clear, unambiguous prose — not marketing copy, not AI filler.
+
+## Core STE rules (apply these)
+
+### Words
+- Prefer simple, common words. One word → one meaning. Do not use synonyms for variety.
+- Prefer: `start` not commence/initiate; `use` not utilize; `show` not demonstrate; `make` not create/generate (unless “generate” is the technical verb); `stop` not cease/terminate (unless terminate is the API/OS term).
+- Do not invent jargon. Keep project technical nouns and verbs (API names, product terms, code identifiers) as-is.
+- Do not stack more than three nouns in a row (`user auth token flow` → rewrite).
+
+### Sentences
+- Keep sentences short: **≤20 words** for procedures/instructions; **≤25 words** for descriptions.
+- One instruction per sentence. One topic per paragraph. **≤6 sentences** per paragraph.
+- Use **active voice**. Imperative for steps (`Click Save.` not `Saving should be clicked.`).
+- Use simple verb forms: infinitive, imperative, simple present/past/future. Avoid heavy auxiliaries and progressive `-ing` verb constructions where a simple form works.
+- Do not omit the subject, verb, or article to sound terse.
+
+### Structure
+- Prefer vertical lists for steps, options, and constraints.
+- Put the condition or command first in warnings and safety-like notes.
+- Cut content the reader does not need to complete the task or understand the system.
+- Prefer concrete nouns and verbs over abstract phrasing (`configure the webhook` not `enable webhook functionality`).
+
+## Anti-slop (explicitly forbidden in docs)
+
+Do not write:
+- Throat-clearing: “In today’s world…”, “It’s important to note…”, “Let’s dive in…”
+- Hedging stacks: “essentially”, “basically”, “in order to”, “as well as”, “leverages”, “robust”, “seamless”, “comprehensive”, “cutting-edge”
+- Fake enthusiasm or blog tone in technical docs
+- Parallel synonym lists used only for rhythm
+
+## Allowed exceptions
+
+- Code, commands, file paths, identifiers, and quoted UI strings stay unchanged.
+- Established product/API terms stay unchanged even if they are not “simple” English.
+- Tables, diagrams, and typed signatures may use denser wording when clarity requires it.
+- Do not rewrite existing docs into STE unless the task is to edit that documentation.
+
+## Quick check
+
+Before finishing a doc change, confirm:
+1. A non-native reader can follow each sentence once.
+2. Each procedural sentence has one action.
+3. No synonym-churn or filler remains.
