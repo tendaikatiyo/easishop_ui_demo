@@ -1,6 +1,6 @@
 # EasiShop UI Demo — Handover
 
-Last updated: 19 July 2026
+Last updated: 22 July 2026
 
 ## What this repo is
 
@@ -41,10 +41,21 @@ npm run build:demo-categories
 # OPEN_FOOD_FACTS=1 OFF_BUDGET=200 npm run build:demo-categories
 ```
 
-## Latest session (19 Jul 2026) — summary
+## Latest session (22 Jul 2026) — summary
+
+Full write-up: [`HANDOVER-2026-07-22.md`](./HANDOVER-2026-07-22.md).  
+Auth UX: [`ux-auth-forms.md`](./ux-auth-forms.md).  
+Docs style: [`.cursor/rules/documentation-style.mdc`](./.cursor/rules/documentation-style.mdc).  
+Prior: [`HANDOVER-2026-07-19.md`](./HANDOVER-2026-07-19.md) · [`HANDOVER-2026-07-16.md`](./HANDOVER-2026-07-16.md).
+
+| Area | What changed |
+|---|---|
+| **Auth forms** | Google first; short signup; WhatsApp on `intent=alert`; bottom-left orb; neutral inputs; brand-green CTA. Spec: `ux-auth-forms.md`. |
+| **Docs rule** | Project documentation house style (ops / UX / product modes). Replaces blanket STE100. |
+
+### From 19 Jul
 
 Full write-up: [`HANDOVER-2026-07-19.md`](./HANDOVER-2026-07-19.md).  
-Prior: [`HANDOVER-2026-07-16.md`](./HANDOVER-2026-07-16.md) · [`HANDOVER-2026-07-15.md`](./HANDOVER-2026-07-15.md) · [`HANDOVER-2026-07-14.md`](./HANDOVER-2026-07-14.md).  
 Onboarding: [`ux-onboarding-conversion.md`](./ux-onboarding-conversion.md).  
 Doodles: [`design-doodles.md`](./design-doodles.md).  
 Unavailable retailers: [`ux-unavailable-retailers-middle-ground.md`](./ux-unavailable-retailers-middle-ground.md).
@@ -134,3 +145,4 @@ soft shadow, pill inputs/buttons. List picker: `ListSheet`. Explore: category pi
 | Offline catalog, typeahead, coverage, list exit | Cursor (15 Jul) — `HANDOVER-2026-07-15.md` |
 | Onboarding, demo auth, aisle fix, auth chrome | Cursor (16 Jul) — `HANDOVER-2026-07-16.md` |
 | WhatsApp-only price alert + validation, LAN HMR fix | Cursor (19 Jul) — `HANDOVER-2026-07-19.md` |
+| Auth form UX (short signup, Google first) + docs style rule | Cursor (22 Jul) — `HANDOVER-2026-07-22.md` |

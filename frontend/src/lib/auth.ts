@@ -19,6 +19,7 @@ export function signUp(input: {
   name: string;
   email: string;
   phone?: string;
+  /** Marketing defaults off — collect later on Profile. */
   marketing?: boolean;
 }): DemoUser {
   const name = input.name.trim() || "Shopper";
@@ -56,6 +57,26 @@ export function signIn(input: { email: string }): DemoUser {
   });
 
   track("sign_in", { method: "email" });
+  return user;
+}
+
+/** Demo Google path — no real OAuth; signs the local preview account in. */
+export function continueWithGoogle(): DemoUser {
+  const current = getUser();
+  const email =
+    current.email && !current.email.includes("@easishop.co.za")
+      ? current.email
+      : "google.user@easishop.co.za";
+
+  const user = updateUser({
+    signedIn: true,
+    onboardingSeen: true,
+    email,
+    name: current.name?.trim() || "Google shopper",
+    username: usernameFromEmail(email),
+  });
+
+  track("sign_in", { method: "google" });
   return user;
 }
 

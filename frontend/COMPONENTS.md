@@ -25,6 +25,7 @@ Pages compose section components → domain building blocks → ui/* primitives
 | `lists/` | List create / pick sheet |
 | `search/` | Search form and empty / no-results states |
 | `profile/` | Shared profile page widgets |
+| `auth/` | Sign-up / sign-in form |
 | `ui/` | Design-system primitives (shadcn-style over Base UI) |
 
 **Parent vs child:** “Parent” means it composes other domain components or mounts children. “Child” means it is mainly consumed by a parent. Many files are both.
@@ -177,11 +178,11 @@ Pages compose section components → domain building blocks → ui/* primitives
 
 | | |
 |---|---|
-| **Exports** | `TikTokIcon`, `InstagramIcon`, `FacebookIcon`, `LinkedInIcon` |
+| **Exports** | `TikTokIcon`, `InstagramIcon`, `FacebookIcon`, `LinkedInIcon`, `WhatsAppIcon`, `GoogleIcon` |
 | **Type** | Server-safe SVGs · **Child** |
-| **Used by** | `app/profile/page.tsx` |
+| **Used by** | Profile, auth form, price-alert prompt |
 
-**What it does:** Brand social icons (`currentColor`, optional `size`, default 16). Shared internal `SocialSvg` wrapper.
+**What it does:** Brand social icons (`currentColor`, optional `size`, default 16). `GoogleIcon` is multicolour. Shared internal `SocialSvg` wrapper for mono icons.
 
 ---
 
@@ -436,6 +437,20 @@ Home page (`app/page.tsx`) order: `HomeHero` → `HomeStores` → `CategoryStrip
 **Status:** No importers in the frontend today; strip + picker cover the live browse UX.
 
 **Props:** `{ limit?: number; className?: string }`
+
+---
+
+## Auth (`components/auth/`)
+
+### `auth-form.tsx`
+
+| | |
+|---|---|
+| **Exports** | `AuthForm`, `AuthMode` |
+| **Type** | Client |
+| **Used by** | `app/signup/page.tsx`, `app/signin/page.tsx` |
+
+**What it does:** Shared sign-up / sign-in. Bottom-left brand orb (via `AppShell`). Google first; short email form; WhatsApp only when `?intent=alert`. Neutral `zinc-100` inputs; brand-green primary CTA (native button — avoids `glass-dark`). Spec: [`ux-auth-forms.md`](../ux-auth-forms.md).
 
 ---
 

@@ -8,7 +8,7 @@ Onboarding (conversion-first — see [`ux-onboarding-conversion.md`](./ux-onboar
 | Layer | Flow |
 |-------|------|
 | Welcome | first home visit › soft sheet › **Start searching** / **See today's deals** / Skip · optional **Create account** / **Sign in** |
-| Auth | `/signup` · `/signin` (`?next=` · `?intent=`) — local preview only; not a welcome gate |
+| Auth | `/signup` · `/signin` (`?next=` · `?intent=`) — short form; Google first; WhatsApp on alert intent; bottom-left orb; neutral inputs — [`ux-auth-forms.md`](./ux-auth-forms.md) |
 | Aha tip | product (≥2 prices) › one-time tip under Compare › dismiss |
 | List prompt | add to list (first time, **guest only**) › Create account / Sign in / Not now |
 | Price alert | PDP › **Alert me on WhatsApp** › guest → signup · signed-in → WhatsApp number (country code required) |

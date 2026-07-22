@@ -1,0 +1,62 @@
+---
+description: EasiShop documentation house style for all Markdown docs
+globs: "**/*.md,**/*.mdx,**/docs/**,**/README*,**/AGENTS.md,**/CLAUDE.md,**/*HANDOVER*,**/api_doc*,**/COMPONENTS.md,**/DESIGN.md,**/*.mdc"
+alwaysApply: false
+---
+
+# Documentation house style
+
+Write docs for humans and agents who need to ship or hand over work. Prefer clarity over polish. Do not rewrite a doc into this style unless you are already editing it.
+
+## Voice (all docs)
+
+- Active voice. Short sentences. One idea per sentence.
+- Procedures: ≤20 words per step. Imperative (`Open the PDP.`).
+- Descriptions: ≤25 words when practical. Prefer lists over long paragraphs.
+- Simple words: `use` not utilize; `start` not commence; `show` not demonstrate.
+- Keep product terms, API names, paths, commands, and UI strings unchanged.
+- No filler: “essentially”, “basically”, “in order to”, “robust”, “seamless”, “comprehensive”, “cutting-edge”, “Let’s dive in”, “It’s important to note”.
+
+## Pick the mode for the file
+
+| Mode | Files | Write like this |
+|------|--------|-----------------|
+| **Ops** | `HANDOVER*`, `COMPONENTS.md`, README, AGENTS, runbooks, verify sections | Steps, tables, file paths, constraints. STE-tight. No opinion fluff. |
+| **UX / design** | `ux-*.md`, `design-*.md`, dialog rules | Goals, trade-offs, and decisions. Judgment words OK (`prefer`, `avoid`). Still short and concrete. |
+| **Product notes** | `context.md` | Founder intent. Keep the raw requirements. Clean typos when editing; do not turn into a brochure. |
+| **Third-party skills** | `frontend/.agents/**` | Do not restyle. Follow that skill’s own voice. |
+
+## Ops structure (default for handovers)
+
+1. Goal / what changed  
+2. Key files (table)  
+3. Conventions to keep  
+4. How to verify (numbered steps)  
+5. Next steps (optional)
+
+Use vertical lists for steps and constraints. Put the condition first in warnings (`If HMR is blocked, hard-refresh.`).
+
+## Project conventions
+
+- Link related docs instead of duplicating (`HANDOVER.md`, `user_flows.md`, `ux-onboarding-conversion.md`).
+- Customer-facing UI copy: no “demo” / “demo only” labels (code comments OK).
+- Price alerts are WhatsApp-only (E.164). Say that plainly when relevant.
+- Auth is at intent, never a welcome gate before search/compare.
+- Auth pages: bottom-left orb only. No soft green wash, no washed-green inputs, no auth doodles.
+
+## Examples
+
+```markdown
+❌ The dialog leverages a comprehensive WhatsApp validation flow in order to ensure robust input.
+✅ Validate the WhatsApp number with `lib/whatsapp.ts` (E.164, country code required).
+
+❌ Saving should be clicked after the number is entered.
+✅ Click **Turn on WhatsApp alert**.
+```
+
+## Quick check
+
+1. Can a new reader act on this without rereading?  
+2. Is every procedure step one action?  
+3. Does the tone match the file’s mode (ops / UX / product)?  
+4. Any filler or synonym-churn left?

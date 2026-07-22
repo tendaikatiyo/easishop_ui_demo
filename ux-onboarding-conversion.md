@@ -3,7 +3,7 @@
 **Status:** Implemented in UI (demo / localStorage)  
 **Goal:** Maximise conversion without gating the aha moment (search → compare).
 
-Related: [`user_flows.md`](./user_flows.md), [`HANDOVER.md`](./HANDOVER.md), `context.md` (“onboarding geared towards conversions”).
+Related: [`user_flows.md`](./user_flows.md), [`HANDOVER.md`](./HANDOVER.md), [`ux-auth-forms.md`](./ux-auth-forms.md), `context.md` (“onboarding geared towards conversions”).
 
 ---
 
@@ -56,7 +56,7 @@ flowchart LR
 | **2 — Aha tip** | PDP with ≥2 available prices, once | Dismissible tip under Compare | `easishop.demo.onboard.aha` |
 | **3a — List** | After first add-to-list, **guests only** | Soft signup / sign-in (“Keep this list”) | `easishop.demo.onboard.listPrompt` (signed-in users skip; flag marked seen) |
 | **3b — Alert** | PDP “Alert me on WhatsApp” | Guest → `/signup?intent=alert`; signed-in → WhatsApp number | `priceAlerts` + profile phone |
-| **Auth pages** | `/signup`, `/signin` | Minimal chrome: logo · Back · **Back to shop** — no search, footer, or bottom tabs | `user.signedIn` |
+| **Auth pages** | `/signup`, `/signin` | Minimal chrome; Google first; short form; WhatsApp if `intent=alert`; bottom-left orb; neutral inputs — see `ux-auth-forms.md` | `user.signedIn` |
 
 Footer **Onboarding** (desktop) and Profile **Onboarding** (mobile) call `replayOnboarding()` — resets flags and sets `signedIn: false` so you can walk auth again.
 

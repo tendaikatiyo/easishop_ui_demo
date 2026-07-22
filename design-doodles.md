@@ -170,7 +170,7 @@ dignified not sad, grocery list app empty state
 |--------|-------------|--------|
 | Search / lists empty | **Yes** | ~56–80px inside mint circle (`--brand-green-light`) |
 | Onboarding sheet | **Yes** | Max ~120px; one illustration only |
-| Sign up / sign in | **Yes** | One calm header illustration; form stays focal |
+| Sign up / sign in | **No** | Keep form focal. Doodle assets exist but are **not** wired on auth. Spec: `ux-auth-forms.md`. |
 | Product / compare PDP | **No** | Price rows are the hero — no competing art |
 | Product cards / grids | **No** | Real product images only |
 | Category browse | **Icons only** | Tier 3 object doodles if consistent set exists |
@@ -208,7 +208,7 @@ When ready to use again, prefer a shared helper such as `DoodleBadge` / `DoodleH
 | `doodle-empty-lists.png` | Lists empty + empty list detail |
 | `doodle-404.png` | `not-found` |
 | `doodle-error.png` | Error pages |
-| `doodle-signup.png` | `/signup` |
-| `doodle-signin.png` | `/signin` |
+| `doodle-signup.png` | `/signup` (asset only — **not wired**) |
+| `doodle-signin.png` | `/signin` (asset only — **not wired**) |
 
 Serve as `/doodles/<file>`. Prefer SVG later for crisp scaling. Keep `alt` text action-focused.

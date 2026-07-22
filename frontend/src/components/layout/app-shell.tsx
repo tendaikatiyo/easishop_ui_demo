@@ -87,9 +87,15 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
             </Link>
           </div>
         </header>
-        <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-8 md:py-12">
-          {children}
-        </main>
+        <div className="relative flex flex-1 flex-col overflow-hidden bg-background">
+          <div
+            className="pointer-events-none absolute -bottom-24 -left-16 size-[22rem] rounded-full bg-[var(--brand-green)]/20 blur-3xl md:size-[26rem]"
+            aria-hidden
+          />
+          <main className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-8 md:py-12">
+            {children}
+          </main>
+        </div>
         <ListSavePrompt />
       </>
     );
